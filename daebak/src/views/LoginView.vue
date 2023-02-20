@@ -22,56 +22,56 @@ export default {
 </script>
 
 <style scoped>
-    .title {
-        font-size: 50px;
-        font-weight: bolder;
-        color: rgb(255, 123, 0);
-        text-align: center;
-        margin-top: 100px;
-        margin-bottom: 30px;
-    }
-    .oval {
-        background: white;
-        width: 260px;
-        height: 40px;
-        margin: 15px auto;
-        border-radius: 20px;
-        font-size: 20px;
-    }
-    .input i {
-        font-size: 30px;
-        line-height: 40px;
-        margin: auto 20px;
-        width: 30px;
-        color: #757575
-    }
-    .input:hover i {
-        color: rgb(255, 123, 0);
-    }
-    .input input {
-        position: relative;
-        width: 130px;
-        font-size: 20px;
-        top: -4px;
-        border: 0;
-    }
-    .input input:focus {
-        outline: 0px;
-    }
-    .login {
-        text-align: center;
-        font-size: 22px;
-        font-weight: bolder;
-        width: 270px;
-        height: 45px;
-        line-height: 45px;
-        border-radius: 23px;
-        margin-top: 30px;
-        background: #FFA200;
-        cursor: pointer;
-    }
-    .login a {
-        text-decoration: none;
-        color: white;
-    }
+.title {
+    font-size: 50px;
+    font-weight: bolder;
+    color: rgb(255, 123, 0);
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+.oval {
+    background: white;
+    width: 260px;
+    height: 40px;
+    margin: 15px auto;
+    border-radius: 20px;
+    font-size: 20px;
+}
+.input i {
+    font-size: 30px;
+    line-height: 40px;
+    margin: auto 20px;
+    width: 30px;
+    color: #757575
+}
+.input:hover i {
+    color: rgb(255, 123, 0);
+}
+.input input {
+    position: relative;
+    width: 130px;
+    font-size: 20px;
+    top: -4px;
+    border: 0;
+}
+.input input:focus {
+    outline: 0px;
+}
+.login {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bolder;
+    width: 270px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 23px;
+    margin-top: 30px;
+    background: #FFA200;
+    cursor: pointer;
+}
+.login a {
+    text-decoration: none;
+    color: white;
+}
 </style>
