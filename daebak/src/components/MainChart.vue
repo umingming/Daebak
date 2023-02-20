@@ -17,7 +17,7 @@ export default {
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['23.02.01', '23.02.02', '23.02.03', '23.02.04', '23.02.05', '23.02.06', '23.02.07', '23.02.08', '23.02.09', '23.02.10'],
+                    labels: ['02.01', '02.02', '02.03', '02.04', '02.05', '02.06', '02.07', '02.08', '02.09', '02.10'],
                     datasets: [
                         {
                             label: '배달',
@@ -25,7 +25,7 @@ export default {
                             borderWidth: 2,
                             order: 0,
                             borderColor: 'white',
-                            backgroundColor: '#2AC0BB',
+                            backgroundColor: '#5aa9e6',
                         }, 
                         {
                             label: '포장',
@@ -36,7 +36,7 @@ export default {
                         },
                         {
                             label: '합계',
-                            data: [220000, 22000, 150000, 14000, 270000, 330000, 22000, 250000, 370000, 220000],
+                            data: [220000, 200000, 150000, 140000, 270000, 330000, 220000, 250000, 370000, 220000],
                             borderWidth: 1,
                             type: 'line',
                             order: 2,
@@ -51,6 +51,32 @@ export default {
                         } 
                     ]
                 },
+                options: {
+                    legend: {
+                        labels: {
+                            fontSize: 13
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                callback: function(dataLabel) {
+                                    let value = dataLabel + "";
+                                    return `${value.slice(0, value.length - 4)}만원`
+                                },
+                                fontSize: 15,
+                                stepSize: 100000
+                            }
+                        }],
+                        xAxes: [{
+                            display: true,
+                            ticks: {
+                                fontSize: 15
+                            }
+                        }]
+                    },
+                }
             });
         }
     }
@@ -63,5 +89,6 @@ export default {
     background: white;
     height: 400px !important;
     width: 700px !important;
+    font-size: 25px !important;
 }
 </style>

@@ -1,7 +1,8 @@
 import Vue from 'vue'; 
 import VueRouter from 'vue-router';
-import LoginView from '../views/LoginView.vue';
 import MainView from '../views/MainView.vue';
+import LoginView from '../views/LoginView.vue';
+import LoginNaverView from '../views/LoginNaverView.vue';
 
 Vue.use(VueRouter);
 
@@ -13,14 +14,19 @@ export const router = new VueRouter({
             redirect: '/login',
         },
         {
+            path: '/main', 
+            name: "main",
+            component: MainView, 
+        },
+        {
             path: '/login', 
             name: "login",
             component: LoginView, 
         },
         {
-            path: '/main', 
-            name: "main",
-            component: MainView, 
-        }
+            path: '/login/naver', 
+            name: "naver",
+            component: LoginNaverView, 
+        },
     ]
 });
