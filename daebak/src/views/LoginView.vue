@@ -9,7 +9,9 @@
             <i class="fa-solid fa-key"></i>
             <input type="password" placeholder="비밀번호">
         </div>
-        <div class="oval login">로그인</div>
+        <div class="oval login">
+            <router-link to="/main">로그인</router-link>
+        </div>
     </div>
 </template>
 
@@ -64,9 +66,12 @@ export default {
         height: 45px;
         line-height: 45px;
         border-radius: 23px;
-        color: white;
         margin-top: 30px;
         background: #FFA200;
         cursor: pointer;
+    }
+    .login a {
+        text-decoration: none;
+        color: white;
     }
 </style>

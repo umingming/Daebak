@@ -1,17 +1,16 @@
 <template>
     <div id="app">
-        <login-view>
-        </login-view>
+        <transition name="page">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
 <script>
-import LoginView from "./view/LoginView.vue";
 
 export default {
     name: "App",
     components: {
-        LoginView,
     },
 };
 </script>
