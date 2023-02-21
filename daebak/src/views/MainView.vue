@@ -1,15 +1,18 @@
 <template>
     <div>
         <div class="title">💸대박나라💸</div>
-        <main-chart></main-chart>
+        <budget-chart></budget-chart>
+        <budget-list></budget-list>
     </div>
 </template>
 
 <script>
-import MainChart from "@/components/MainChart.vue";
+import BudgetChart from "@/components/BudgetChart.vue";
+import BudgetList from "@/components/BudgetList.vue";
 export default {
 	components: {
-        MainChart,
+        BudgetChart,
+        BudgetList,
     }
 };
 </script>
