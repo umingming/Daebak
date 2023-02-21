@@ -1,43 +1,46 @@
 <template>
     <div>
-        <div class="title">💸대박나라💸</div>
-        <div class="input oval">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" placeholder="아이디">
-        </div>
-        <div class="input oval">
-            <i class="fa-solid fa-key"></i>
-            <input type="password" placeholder="비밀번호">
-        </div>
-        <div class="oval login">
-            <router-link to="/main">로그인</router-link>
-        </div>
-
-        <div class="join">
+        <header>
+            <div class="title">💸대박나라💸</div>
+        </header>
+        <section id="login">
+            <div class="input">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="아이디">
+            </div>
+            <div class="input">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" placeholder="비밀번호">
+            </div>
+            <div class="oval login">
+                <router-link to="/main">로그인</router-link>
+            </div>
+        </section>
+        <section id="join">
             <div class="text">또는</div>
-            <div class="btn" id="naver_id_login">
-                <button class="naver">N</button>
-            </div>
             <div class="btn">
-                <button class="kakao" @click="kakaoLogin">K</button>
+                <button id="naver_id_login"></button>
+                <button class="kakao" @click="kakaoLogin"></button>
+                <button class="google" @click="kakaoLogin"></button>
             </div>
-            <div class="btn">
-                <button class="google" @click="kakaoLogin">G</button>
-            </div>
-        </div>
+        </section>
     </div>
 </template>
 
 <script>
 export default {
-    mounded() {
-        const naver_id_login = new window.naver_id_login("ZEBr31RYP_YsPp4wMrLq", "http://localhost:8081/main");
-        const state = naver_id_login.getUniqState();
-        naver_id_login.setButton("white", 2,40); 
-        naver_id_login.setState(state);
-        naver_id_login.init_naver_id_login();
+    mounted() {
+        this.initNaver();
     },
     methods: {
+        initNaver() {
+            const naver_id_login = new window.naver_id_login("ZEBr31RYP_YsPp4wMrLq", "http://localhost:8080/login/naver");
+            const state = naver_id_login.getUniqState();
+            naver_id_login.setButton("green", 1, 45);
+            naver_id_login.setState(state);
+            naver_id_login.setPopup();
+            naver_id_login.init_naver_id_login();
+        },
         kakaoLogin() {
             window.Kakao.Auth.login({
                 success: () => {
@@ -67,11 +70,11 @@ export default {
     color: rgb(255, 123, 0);
     text-align: center;
     margin-top: 100px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
-.oval {
+.input {
     background: white;
-    width: 260px;
+    width: 300px;
     height: 40px;
     margin: 15px auto;
     border-radius: 20px;
@@ -99,14 +102,15 @@ export default {
 }
 .login {
     text-align: center;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bolder;
-    width: 270px;
+    width: 300px;
     height: 45px;
     line-height: 45px;
     border-radius: 23px;
+    margin: 15px auto;
     margin-top: 30px;
-    background: #FFA200;
+    background: #FF7B00;
     cursor: pointer;
 }
 .login a {
@@ -114,46 +118,40 @@ export default {
     color: white;
 }
 
-.join {
-    margin: 40px auto;
-    width: 240px;
+#join {
+    margin: 50px auto;
+    width: 270px;
     text-align: center;
-    border-top: 2px solid #757575;
+    border-top: 1px solid #757575;
 }
-.join .text {
+#join .text {
     position: relative;
     font-size: 20px;
     font-weight: bolder;
     color: #757575;
-    top: -12px;
-    width: 45px;
+    top: -14px;
+    width: 85px;
     margin: 0 auto;
     background: #f9f2d3;
 }
 .btn {
+    width: 270px;
+    height: 50px;
     float: left;
-    margin: 10px 17px;
+    margin: 5px auto;
 }
 .btn button {
     width: 45px;
     height: 45px;
-    border-radius: 25px;
-    line-height: 45px;
-    font-size: 35px;
-    font-weight: bolder;
     border: none;
+    border-radius: 25px;
+    overflow: hidden;
 }
 .btn .kakao {
-    background: #FAE100;
-    color: #3B1E1E;
-}
-.btn .naver {
-    background: #04CF5C;
-    color: #FFF;
+    background: url(../../public/img/btnKakao.PNG) center/cover;
+    margin: 0 55px;
 }
 .btn .google {
-    font-size: 40px;
-    background: #FFF;
-    color: #DB2828;
+    background: url(../../public/img/btnGoogle.PNG) center/cover;
 }
 </style>
