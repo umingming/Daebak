@@ -3,11 +3,22 @@
         <div class="budget-box">
             <table>
                 <tr>
-                    <th>날짜</th>
-                    <th>내용</th>
-                    <th>금액</th>
-                    <th>주문</th>
-                    <th>분류</th>
+                    <th 
+                        v-for="(value, key) in header"
+                        :key="key"
+                        @click="sortBudgetItems(key)"
+                    >
+                        <span>{{ value }}</span>
+                        <i 
+                           v-if="sortKey === key"
+                           class="fa-solid"
+                           :class="[
+                                {'fa-angle-up': isAscending},
+                                {'fa-angle-down': !isAscending},
+                            ]"
+                        >
+                        </i>
+                    </th>
                 </tr>
                 <tr v-for="(item, index) in pageItems" :key="index">
                     <td>{{ item.date }}</td>
@@ -33,7 +44,9 @@
             </div>
         </div>
         <budget-add 
+            v-if="addFlag"
             @updateItem="updateItem"
+            @close="addFlag = false"
         >
         </budget-add>
     </div>
@@ -48,6 +61,15 @@ export default {
     },
     data() {
         return {
+            header: {
+                date: "날짜",
+                title: "내용",
+                value: "금액",
+                amount: "주문",
+                cate: "분류"
+            },
+            sortKey: "",
+            isAscending: false,
             pageIndex: 0,
             pageSize: 10,
             budgetList: [
@@ -76,14 +98,14 @@ export default {
                     date: "2023-02-03",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "5",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-04",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "1",
                     cate: "배달"
                 },
                 {
@@ -97,7 +119,7 @@ export default {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "8",
                     cate: "배달"
                 },
                 {
@@ -356,12 +378,16 @@ export default {
                 && this.pageItems.length < this.pageSize
         },
     },
-    created() {
-        this.SortBudgetDateWithDesc();
-    },
     methods: {
-        SortBudgetDateWithDesc() {
-            this.budgetList = this.budgetList.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse();
+        sortBudgetItems(key) {
+            this.sortKey = key;
+            this.isAscending = !this.isAscending;
+            
+            if (this.isAscending) {
+                this.budgetList = this.budgetList.sort((a, b) => a[key] - b[key]);
+            } else {
+                this.budgetList = this.budgetList.reverse();
+            }
         },
         increaseIndex() {
             if (this.pageIndex < this.pageCount - 1) {
@@ -403,6 +429,15 @@ export default {
 .budget-box table tr {
     width: 100%;
     height: 32px !important;
+}
+.budget-box table th {
+    cursor: pointer;
+}
+.budget-box table th i {
+    transform: translateX(10px);
+}
+.budget-box table th:hover i {
+    color: #FF7B00
 }
 .budget-box table th,
 .budget-box table td{
