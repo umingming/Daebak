@@ -1,33 +1,51 @@
 <template>
-    <div class="budget-box">
-        <table>
-            <tr>
-                <th>날짜</th>
-                <th>내용</th>
-                <th>금액</th>
-                <th>주문</th>
-                <th>분류</th>
-            </tr>
-            <tr v-for="(item, index) in pageItems" :key="index">
-                <td>{{ item.date }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ itemPrice(item.value) }}</td>
-                <td>{{ item.amount }}건</td>
-                <td>{{ item.cate }}</td>
-            </tr>
-        </table>
-        <div class="pagination">
-            <button @click="decreaseIndex">◀️</button>
-            <div>
-                {{ pageIndex + 1 }} / {{ pageCount }}
+    <div class="budget">
+        <div class="budget-box">
+            <table>
+                <tr>
+                    <th>날짜</th>
+                    <th>내용</th>
+                    <th>금액</th>
+                    <th>주문</th>
+                    <th>분류</th>
+                </tr>
+                <tr v-for="(item, index) in pageItems" :key="index">
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ itemPrice(item.value) }}</td>
+                    <td>{{ item.amount }}건</td>
+                    <td>{{ item.cate }}</td>
+                </tr>
+                <tr v-if="isAddingItem">
+                    <td>{{ addItem.date }}</td>
+                    <td>{{ addItem.title }}</td>
+                    <td>{{ itemPrice(addItem.value) }}</td>
+                    <td>{{ addItem.amount }}건</td>
+                    <td>{{ addItem.cate }}</td>
+                </tr>
+            </table>
+            <div class="pagination">
+                <button @click="decreaseIndex">◀️</button>
+                <div>
+                    {{ pageIndex + 1 }} / {{ pageCount }}
+                </div>
+                <button @click="increaseIndex">▶️</button>
             </div>
-            <button @click="increaseIndex">▶️</button>
         </div>
+        <budget-add 
+            @updateItem="updateItem"
+        >
+        </budget-add>
     </div>
 </template>
 
 <script>
+import BudgetAdd from "@/components/BudgetAdd.vue";
+
 export default {
+    components: {
+        BudgetAdd
+    },
     data() {
         return {
             pageIndex: 0,
@@ -306,7 +324,15 @@ export default {
                     amount: "10",
                     cate: "배달"
                 },
-            ]
+            ],
+            addFlag: true,
+            addItem: {
+                date: "",
+                title: "",
+                value: "",
+                amount: "",
+                cate: ""
+            }
         }
     },
     computed: {
@@ -323,20 +349,42 @@ export default {
                 let price = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 return `${price}원`;
             }
-        }
+        },
+        isAddingItem() {
+            return this.addFlag 
+                && this.pageIndex === this.pageCount - 1
+                && this.pageItems.length < this.pageSize
+        },
+    },
+    created() {
+        this.SortBudgetDateWithDesc();
     },
     methods: {
+        SortBudgetDateWithDesc() {
+            this.budgetList = this.budgetList.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse();
+        },
         increaseIndex() {
-            ++this.pageIndex;
+            if (this.pageIndex < this.pageCount - 1) {
+                ++this.pageIndex;
+            }
         },
         decreaseIndex() {
-            --this.pageIndex;
+            if (this.pageIndex > 0) {
+                --this.pageIndex;
+            }
+        },
+        updateItem(key, value) {
+            this.addItem[key] = value;
         }
     }
 };
 </script>
 
 <style scoped>
+.budget {
+    position: relative;
+    width: 720px;
+}
 .budget-box {
     position: relative;
     margin: 150px auto;
@@ -371,6 +419,10 @@ export default {
 .budget-box table td:nth-child(4),
 .budget-box table td:nth-child(5){
     width: 15%;
+}
+.budget-box table td:nth-child(3),
+.budget-box table td:nth-child(4){
+    text-align: right;
 }
 
 .pagination {
