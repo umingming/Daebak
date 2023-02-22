@@ -96,13 +96,13 @@ export default {
     background: white;
     border-radius: 5px;
     border: 1px solid #7575753e;
-    font-size: 20px;
+    font-size: 15px;
     z-index: 1;
 }
 .budget-add .add-item {
     float: left;
-    width: 300px;
-    height: 90%;
+    width: 200px;
+    height: 80%;
     padding-top: 30px;
     border-right: 1px solid #7575753e;
 }
@@ -110,33 +110,51 @@ export default {
     height: 34px;
 }
 .budget-add .add-item span {
-    margin-left: 10px;
     font-weight: bolder;
+    letter-spacing: 10px;
+}
+.budget-add .add-item input::-webkit-calendar-picker-indicator {
+    background: #000;
+    width: 10%;
+    height: 60%;
+    transform: translateX(-3px);
+    background: url(../../public/img/btnCalendar.png) center/cover;
 }
 .budget-add .add-item input {
     position: relative;
-    margin-left: 20px;
-    height: 22px;
-    width: 200px;
-    top: -3px;
+    margin-left: 5px;
+    line-height: 10px;
+    height: 20px;
+    width: 120px;
+    top: -2px;
     padding-left: 5px;
-    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border: 1px solid #b4b4b4;
+    border-radius: 3px;
 }
 .budget-add .add-item input:focus {
     outline: 0px;
 }
 .budget-add .add-item select {
+    font-family: 'Noto Sans KR', sans-serif;
     position: relative;
-    margin-left: 20px;
-    height: 25px;
-    width: 209px;
-    top: -4px;
-    font-size: 16px;
+    margin-left: 4px;
+    height: 23px;
+    width: 128px;
+    top: -2px;
+    font-size: 13px;
+    border: 1px solid #b4b4b4;
+    border-radius: 3px;
 }
 .budget-add .add-list {
     float: left;
-    width: 450px;
+    width: 560px;
+    transform: translateX(15px);
     margin-left: 10px;
+}
+.add-list #budget-table table th,
+.add-list #budget-table table td{
+    width: 19% !important;
 }
 
 .btn {

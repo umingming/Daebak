@@ -6,19 +6,19 @@
                     <input 
                         type="checkbox" 
                         @click="checkAll"
-                        :checked="isCheckedAll"
+                        v-model="isCheckedAll"
                     >
                 </th>
                 <th 
                     v-for="(value, key) in header"
                     :key="key"
-                    @click="sortBudgetItems(key)"
+                    @click="sortTableItems(key)"
                 >
                     <span>{{ value }}</span>
                     <i 
-                        v-if="sortKey === key"
                         class="fa-solid"
                         :class="[
+                            {'sorting': sortKey === key},
                             {'fa-angle-up': isAscending},
                             {'fa-angle-down': !isAscending},
                         ]"
@@ -30,9 +30,9 @@
                 <td>
                     <input 
                         type="checkbox"
-                        ref="check"
-                        :value="itemIndex(index)"
-                        @click="updateCheckItems"
+                        :value="index"
+                        v-model="item.check"
+                        @click="isCheckedAll = false"
                     >
                 </td>
                 <td>{{ item.date }}</td>
@@ -43,11 +43,28 @@
             </tr>
         </table>
         <div class="pagination" v-if="hasPagination">
-            <button @click="decreaseIndex">◀️</button>
-            <div>
-                {{ pageIndex + 1 }} / {{ pageCount }}
-            </div>
-            <button @click="increaseIndex">▶️</button>
+            <button @click="setIndex(1)">
+                <i class="fa-solid fa-angles-left"></i>
+            </button>
+            <button @click="decreaseIndex">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <ul>
+                <li
+                    v-for="index in pageCount" 
+                    :key="index"
+                    :class="{'page-index' : (pageIndex + 1) === index}"
+                    @click="setIndex(index)"
+                >
+                    <span>{{ index }}</span>
+                </li>
+            </ul>
+            <button @click="increaseIndex">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+            <button @click="setIndex(pageCount)">
+                <i class="fa-solid fa-angles-right"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -70,7 +87,7 @@ export default {
             sortKey: "",
             isAscending: false,
             pageIndex: 0,
-            pageSize: 10,
+            pageSize: 15,
             tableItems: [],
             isCheckedAll: false,
             checkItems: [],
@@ -81,7 +98,6 @@ export default {
             return Math.ceil(this.tableItems.length / this.pageSize);
         },
         pageItems() {
-            this.applyCheckItems();
             let start = this.pageIndex * this.pageSize;
             let end = start + this.pageSize;
             return this.tableItems.slice(start, end);
@@ -96,30 +112,20 @@ export default {
             return(index) => {
                 return this.pageIndex * this.pageSize + index;
             }
-        }
+        },
     },
     created() {
-        this.tableItems = [ ...this.items ];
+        this.tableItems = [ ...this.items ]
+        this.tableItems.forEach(i => i.check = false);
     },
     methods: {
-        updateCheckItems({target}) {
-            this.isCheckedAll = false;
-            let index = +target.value;
-
-            if (this.checkItems.includes(index)) {
-                let deleteIndex = this.checkItems.findIndex(i => i === index);
-                this.checkItems.splice(deleteIndex, 1);
-            } else {
-                this.checkItems.push(index);
-            }
-        },
         applyCheckItems() {
             this.$refs.check?.forEach((item, i) => {
                 let index = this.itemIndex(i);
                 item.checked = this.checkItems.includes(index);
             })
         },
-        sortBudgetItems(key) {
+        sortTableItems(key) {
             if (this.sortKey !== key) {
                 this.sortKey = key;
                 this.isAscending = false;
@@ -143,15 +149,12 @@ export default {
                 --this.pageIndex;
             }
         },
-        checkAll({target}) {
-            this.isCheckedAll = target.checked;
-            this.$refs.check.forEach(i => i.checked = this.isCheckedAll);
-
-            if (this.isCheckedAll) {
-                this.checkItems = new Array(this.tableItems.length).fill(0).map((i, index) => i = index);
-            } else {
-                this.checkItems = [];
-            }
+        setIndex(value) {
+            this.pageIndex = value - 1;
+        },
+        checkAll() {
+            this.isCheckedAll = !this.isCheckedAll;
+            this.tableItems.forEach(i => i.check = this.isCheckedAll);
         }
     }
 };
