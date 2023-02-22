@@ -2,17 +2,17 @@
     <div>
         <div class="title">💸대박나라💸</div>
         <budget-chart></budget-chart>
-        <budget-list></budget-list>
+        <budget-board></budget-board>
     </div>
 </template>
 
 <script>
 import BudgetChart from "@/components/BudgetChart.vue";
-import BudgetList from "@/components/BudgetList.vue";
+import BudgetBoard from "@/components/BudgetBoard.vue";
 export default {
 	components: {
         BudgetChart,
-        BudgetList,
+        BudgetBoard,
     }
 };
 </script>

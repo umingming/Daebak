@@ -45,71 +45,33 @@
                     <i class="fa-solid fa-floppy-disk"></i>
                 </export-excel>
             </div>
-            <table id="budget-list">
-                <tr>
-                    <th 
-                        v-for="(value, key) in header"
-                        :key="key"
-                        @click="sortBudgetItems(key)"
-                    >
-                        <span>{{ value }}</span>
-                        <i 
-                           v-if="sortKey === key"
-                           class="fa-solid"
-                           :class="[
-                                {'fa-angle-up': isAscending},
-                                {'fa-angle-down': !isAscending},
-                            ]"
-                        >
-                        </i>
-                    </th>
-                </tr>
-                <tr v-for="(item, index) in pageItems" :key="index">
-                    <td>{{ item.date }}</td>
-                    <td>{{ item.title }}</td>
-                    <td>{{ itemPrice(item.value) }}</td>
-                    <td>{{ item.amount }}건</td>
-                    <td>{{ item.cate }}</td>
-                </tr>
-                <tr v-if="isAddingItem">
-                    <td>{{ addItem.date }}</td>
-                    <td>{{ addItem.title }}</td>
-                    <td>{{ itemPrice(addItem.value) }}</td>
-                    <td>{{ addItem.amount }}건</td>
-                    <td>{{ addItem.cate }}</td>
-                </tr>
-            </table>
-            <div class="pagination">
-                <button @click="decreaseIndex">◀️</button>
-                <div>
-                    {{ pageIndex + 1 }} / {{ pageCount }}
-                </div>
-                <button @click="increaseIndex">▶️</button>
-            </div>
+            <budget-table
+                :items="budgetList"
+                :hasPagination="true"
+            >
+            </budget-table>
         </div>
     </div>
 </template>
 
 <script>
 import ModalAdd from "@/components/BudgetModalAdd.vue";
+import BudgetTable from "@/components/BudgetTable.vue";
 
 export default {
     components: {
-        ModalAdd
+        ModalAdd,
+        BudgetTable
     },
     data() {
         return {
-            header: {
-                date: "날짜",
-                title: "내용",
-                value: "금액",
-                amount: "주문",
-                cate: "분류"
+            excelField: {
+                날짜: "date",
+                내용: "title",
+                금액: "value",
+                주문: "amount",
+                분류: "cate"
             },
-            sortKey: "",
-            isAscending: false,
-            pageIndex: 0,
-            pageSize: 10,
             budgetList: [
                 {
                     date: "2023-02-01",
@@ -398,57 +360,13 @@ export default {
         }
     },
     computed: {
-        pageCount() {
-            return Math.ceil(this.budgetList.length / this.pageSize);
-        },
-        pageItems() {
-            let start = this.pageIndex * this.pageSize;
-            let end = start + this.pageSize;
-            return this.budgetList.slice(start, end);
-        },
-        itemPrice() {
-            return (value) => {
-                let price = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                return `${price}원`;
-            }
-        },
         isAddingItem() {
             return this.isShowModal["add"]
                 && this.pageIndex === this.pageCount - 1
                 && this.pageItems.length < this.pageSize
         },
-        excelField() {
-            let field = {};
-            Object.keys(this.header).forEach(i => field[this.header[i]] = i);
-
-            return field;
-        },
     },
     methods: {
-        sortBudgetItems(key) {
-            if (this.sortKey !== key) {
-                this.sortKey = key;
-                this.isAscending = false;
-            }
-
-            if (!this.isAscending) {
-                this.budgetList = this.budgetList.sort((a, b) => (+a[key] || a[key]) > (+b[key] || b[key]) ? 1 : -1);
-            } else {
-                this.budgetList = this.budgetList.reverse();
-            }
-
-            this.isAscending = !this.isAscending;
-        },
-        increaseIndex() {
-            if (this.pageIndex < this.pageCount - 1) {
-                ++this.pageIndex;
-            }
-        },
-        decreaseIndex() {
-            if (this.pageIndex > 0) {
-                --this.pageIndex;
-            }
-        },
         showModal({target}) {
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;

@@ -103,6 +103,7 @@ export default {
     },
     methods: {
         updateCheckItems({target}) {
+            this.isCheckedAll = false;
             let index = +target.value;
 
             if (this.checkItems.includes(index)) {
@@ -113,7 +114,6 @@ export default {
             }
         },
         applyCheckItems() {
-            this.isCheckedAll = false;
             this.$refs.check?.forEach((item, i) => {
                 let index = this.itemIndex(i);
                 item.checked = this.checkItems.includes(index);
@@ -148,7 +148,9 @@ export default {
             this.$refs.check.forEach(i => i.checked = this.isCheckedAll);
 
             if (this.isCheckedAll) {
-                this.checkItems = 
+                this.checkItems = new Array(this.tableItems.length).fill(0).map((i, index) => i = index);
+            } else {
+                this.checkItems = [];
             }
         }
     }

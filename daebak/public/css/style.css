@@ -4,3 +4,140 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
     background-color: #f9f2d3;
 }
+
+.budget {
+    position: relative;
+    width: 1000px;
+    margin: 150px auto;
+}
+.budget-box {
+    position: relative;
+    margin: 150px auto;
+    background: white;
+    border-radius: 5px;
+    height: 370px;
+    width: 900px;
+    padding: 60px 50px 60px 30px;
+    z-index: 0;
+}
+#budget-table table {
+    position: relative;
+    width: 100%;
+    font-size: 20px;
+    border-collapse: collapse;
+}
+#budget-table table tr {
+    width: 100%;
+    height: 32px !important;
+}
+#budget-table table th {
+    cursor: pointer;
+}
+#budget-table table th i {
+    transform: translateX(10px);
+}
+#budget-table table th:hover i {
+    color: #FF7B00
+}
+#budget-table table th,
+#budget-table table td{
+    border-bottom: 1px solid #7575753e;
+    width: 20%;
+    text-align: center;
+}
+#budget-table table th:nth-child(1),
+#budget-table table td:nth-child(1){
+    width: 5px;
+    transform: translateX(15px);
+    text-align: right;
+}
+#budget-table table th:nth-child(3),
+#budget-table table td:nth-child(3){
+    width: 30%;
+}
+#budget-table table th:nth-child(5),
+#budget-table table th:nth-child(6),
+#budget-table table td:nth-child(5),
+#budget-table table td:nth-child(6){
+    width: 15%;
+}
+#budget-table table td:nth-child(4),
+#budget-table table td:nth-child(5){
+    text-align: right;
+}
+
+#budget-table .pagination {
+    position: absolute;
+    bottom: 10px;
+    height: 30px;
+    line-height: 30px;
+    left:50%;
+    transform:translateX(-50%);
+}
+#budget-table .pagination div {
+    width: 70px;
+    text-align: center;
+    display: inline-block
+}
+
+.budget-box .btn {
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    width: 220px;
+    height: 40px;
+    z-index: 1;
+}
+.budget-box .btn button,
+.budget-box .btn #excel {
+    position: relative;
+    float: left;
+    width: 35px;
+    height: 25px;
+    background: black;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+.budget-box .btn #refresh {
+    margin-right: 10px;
+    background: #277DA1;
+}
+.budget-box .btn::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 39px;
+    width: 125px;
+    height: 22px;
+    border-left: 1px solid #7575753e;
+    border-right: 1px solid #7575753e;
+    z-index: 0;
+}
+.budget-box .btn #add {
+    background: #F9C74F;
+}
+.budget-box .btn #modify {
+    background: #F9844A;
+}
+.budget-box .btn #delete {
+    background: #F94144;
+}
+.budget-box .btn #excel {
+    text-align: center;
+    line-height: 28px;
+    margin-left: 5px;
+    background: #43AA8B;
+}
+.budget-box .btn i {
+    position: relative;
+    font-size: 20px;
+    z-index: 0;
+}
+.budget-box .btn #modify i,
+.budget-box .btn #delete i {
+    font-size: 18px;
+}
