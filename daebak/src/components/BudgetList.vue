@@ -1,7 +1,51 @@
 <template>
     <div class="budget">
+        <modal-add 
+            v-if="isShowModal.add"
+            @updateItem="updateItem"
+            @close="isShowModal['add'] = false"
+        >
+        </modal-add>
         <div class="budget-box">
-            <table>
+            <div class="search">
+                <input type="date">
+                <input type="date">
+                <select 
+                    name="type"
+                >
+                    <option value="title">내용</option>
+                    <option value="value">금액</option>
+                    <option value="amount">주문</option>
+                    <option value="cate">분류</option>
+                </select>
+                <input type="text" id="keyword">
+            </div>
+            <div class="btn">
+                <button id="refresh">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+                <button 
+                    id="add"
+                    @click="showModal"
+                >
+                    <i class="fa-solid fa-square-plus"></i>
+                </button>
+                <button id="modify">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button id="delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <export-excel
+                    id="excel"
+                    :data="budgetList"
+                    :fields="excelField"
+                    name="excel.xls"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </export-excel>
+            </div>
+            <table id="budget-list">
                 <tr>
                     <th 
                         v-for="(value, key) in header"
@@ -43,21 +87,15 @@
                 <button @click="increaseIndex">▶️</button>
             </div>
         </div>
-        <budget-add 
-            v-if="addFlag"
-            @updateItem="updateItem"
-            @close="addFlag = false"
-        >
-        </budget-add>
     </div>
 </template>
 
 <script>
-import BudgetAdd from "@/components/BudgetAdd.vue";
+import ModalAdd from "@/components/BudgetModalAdd.vue";
 
 export default {
     components: {
-        BudgetAdd
+        ModalAdd
     },
     data() {
         return {
@@ -76,22 +114,22 @@ export default {
                 {
                     date: "2023-02-01",
                     title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
+                    value: "320000",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-01",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
+                    title: "가달의 민족",
+                    value: "10000",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-02",
-                    title: "배달의 민족",
+                    title: "마달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
@@ -103,8 +141,8 @@ export default {
                 },
                 {
                     date: "2023-02-04",
-                    title: "배달의 민족",
-                    value: "300000",
+                    title: "사달의 민족",
+                    value: "500000",
                     amount: "1",
                     cate: "배달"
                 },
@@ -112,7 +150,7 @@ export default {
                     date: "2023-02-05",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
@@ -126,7 +164,182 @@ export default {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
+                    cate: "배달"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
@@ -140,214 +353,41 @@ export default {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
+                    amount: "3",
+                    cate: "매장"
+                },
+                {
+                    date: "2023-02-06",
+                    title: "배달의 민족",
+                    value: "300000",
+                    amount: "3",
                     cate: "배달"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
-                    cate: "배달"
-                },
-                {
-                    date: "2023-02-06",
-                    title: "배달의 민족",
-                    value: "300000",
-                    amount: "10",
+                    amount: "3",
                     cate: "배달"
                 },
             ],
-            addFlag: true,
+            isShowModal: {
+                add: false
+            },
             addItem: {
                 date: "",
                 title: "",
@@ -373,21 +413,31 @@ export default {
             }
         },
         isAddingItem() {
-            return this.addFlag 
+            return this.isShowModal["add"]
                 && this.pageIndex === this.pageCount - 1
                 && this.pageItems.length < this.pageSize
+        },
+        excelField() {
+            let field = {};
+            Object.keys(this.header).forEach(i => field[this.header[i]] = i);
+
+            return field;
         },
     },
     methods: {
         sortBudgetItems(key) {
-            this.sortKey = key;
-            this.isAscending = !this.isAscending;
-            
-            if (this.isAscending) {
-                this.budgetList = this.budgetList.sort((a, b) => a[key] - b[key]);
+            if (this.sortKey !== key) {
+                this.sortKey = key;
+                this.isAscending = false;
+            }
+
+            if (!this.isAscending) {
+                this.budgetList = this.budgetList.sort((a, b) => (+a[key] || a[key]) > (+b[key] || b[key]) ? 1 : -1);
             } else {
                 this.budgetList = this.budgetList.reverse();
             }
+
+            this.isAscending = !this.isAscending;
         },
         increaseIndex() {
             if (this.pageIndex < this.pageCount - 1) {
@@ -399,6 +449,10 @@ export default {
                 --this.pageIndex;
             }
         },
+        showModal({target}) {
+            let key = target.id || target.parentNode.id;
+            this.isShowModal[key] = true;
+        },
         updateItem(key, value) {
             this.addItem[key] = value;
         }
@@ -407,70 +461,26 @@ export default {
 </script>
 
 <style scoped>
-.budget {
-    position: relative;
-    width: 720px;
-}
-.budget-box {
-    position: relative;
-    margin: 150px auto;
-    background: white;
-    border-radius: 5px;
-    height: 410px;
-    width: 690px;
-    padding: 10px 20px;
-}
-.budget-box table {
-    position: relative;
-    width: 100%;
-    font-size: 20px;
-    border-collapse: collapse;
-}
-.budget-box table tr {
-    width: 100%;
-    height: 32px !important;
-}
-.budget-box table th {
-    cursor: pointer;
-}
-.budget-box table th i {
-    transform: translateX(10px);
-}
-.budget-box table th:hover i {
-    color: #FF7B00
-}
-.budget-box table th,
-.budget-box table td{
-    border-bottom: 1px solid #7575753e;
-    width: 20%;
-    text-align: center;
-}
-.budget-box table th:nth-child(2),
-.budget-box table td:nth-child(2){
-    width: 30%;
-}
-.budget-box table th:nth-child(4),
-.budget-box table th:nth-child(5),
-.budget-box table td:nth-child(4),
-.budget-box table td:nth-child(5){
-    width: 15%;
-}
-.budget-box table td:nth-child(3),
-.budget-box table td:nth-child(4){
-    text-align: right;
-}
-
-.pagination {
+.budget-box .search {
     position: absolute;
-    bottom: 10px;
+    left: 50px;
+    top: 19px;
+    width: 450px;
     height: 30px;
-    line-height: 30px;
-    left:50%;
-    transform:translateX(-50%);
+    line-height: 25px;
 }
-.pagination div {
-    width: 70px;
-    text-align: center;
-    display: inline-block
+.budget-box .search input {
+    height: 22px;
+    margin-right: 10px;
+}
+.budget-box .search input:focus,
+.budget-box .search select:focus {
+    outline: none;
+}
+.budget-box .search select {
+    height: 26px;
+}
+.budget-box .search #keyword {
+    width: 120px;
 }
 </style>
