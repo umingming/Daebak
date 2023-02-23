@@ -111,6 +111,7 @@ export default {
             pageSize: 15,
             isCheckedAll: false,
             checkItems: [],
+            tableItems: [...this.items]
         }
     },
     computed: {
@@ -133,16 +134,14 @@ export default {
                 return this.pageIndex * this.pageSize + index;
             }
         },
-        tableItems() {
-            return [...this.items];
-        }
     },
     watch: {
         pageIndex() {
-            let inputList = this.$el.querySelectorAll('.check > input');
-            inputList.forEach(i => i.checked = false);
-            this.isCheckedAll = false;
-            console.log(inputList);
+            this.isCheckedAll = true;
+            this.checkAll();
+        },
+        items() {
+            this.tableItems = [...this.items];
         }
     },
     methods: {
@@ -178,11 +177,11 @@ export default {
         },
         setIndex(value) {
             this.pageIndex = value - 1;
-            console.log(this.pageIndex);
         },
         checkAll() {
             this.isCheckedAll = !this.isCheckedAll;
-            this.tableItems.forEach(i => i.check = this.isCheckedAll);
+            let inputList = this.$el.querySelectorAll('.check > input');
+            inputList.forEach(i => i.checked = this.isCheckedAll);
         },
         deleteItem(index) {
             this.$emit("delete", index);
