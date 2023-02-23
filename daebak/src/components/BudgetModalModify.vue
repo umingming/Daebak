@@ -2,12 +2,13 @@
     <div class="budget-add">
         <div class="add-item">
             <budget-item
-                @add="addItem"
+                @apply="modifyList"
             >
             </budget-item>
         </div>
         <div class="add-list">
             <budget-table 
+                ref="table"
                 :items="checkItems"
                 :isModal="true"
             >
@@ -34,12 +35,21 @@ export default {
     },
     data() {
         return {
-            addItems: [],
+            modifyItems: [...this.checkItems],
+            index: 0,
         }
     },
+    computed: {
+        listItems() {
+            let items = [...this.modifyItems];
+            return items;
+        },
+    },
     methods: {
-        addItem(item) {
-            this.addItems = [...this.addItems, item];
+        modifyList() {
+            console.log(this.$refs.table.$refs.cate);
+            // console.log(this.$refs.table.$el.querySelectorAll("td#value"));
+            // this.$refs.table.$el.querySelectorAll("td#value > span").forEach(i => i.textContent = 'test');
         }
     }
 };

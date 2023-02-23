@@ -57,7 +57,7 @@
             </button>
             <button 
                 class="btn-add"
-                @click="addItem"
+                @click="applyItem"
             >
                 <i class="fa-solid fa-square-plus"></i>
             </button>
@@ -88,8 +88,8 @@ export default {
         resetItem() {
             this.item = {};
         },
-        addItem() {
-            this.$emit('add', {...this.item});
+        applyItem() {
+            this.$emit('apply', {...this.item});
         },
     }
 };

@@ -33,9 +33,9 @@
                     <input 
                         v-if="!isModal"
                         type="checkbox"
-                        :id="itemIndex(index)"
-                        :value="item.check"
-                        @input="checkItem"
+                        :value="index"
+                        v-model="item.check"
+                        @click="isCheckedAll = false"
                     >
                     <button 
                         v-else
@@ -45,11 +45,21 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </td>
-                <td id="date">{{ item.date }}</td>
-                <td id="title">{{ item.title }}</td>
-                <td id="value">{{ itemPrice(item.value) }}</td>
-                <td id="amount">{{ item.amount }}건</td>
-                <td id="cate">{{ item.cate }}</td>
+                <td id="date" ref="date">
+                    {{ item.date }}<span></span>
+                </td>
+                <td id="title" ref="title">
+                    {{ item.title }}<span></span>
+                </td>
+                <td id="value" ref="value">
+                    {{ itemPrice(item.value) }}<span></span>
+                </td>
+                <td id="amount" ref="amount">
+                    {{ item.amount }}건<span></span>
+                </td>
+                <td id="cate" ref="cate">
+                    {{ item.cate }}<span></span>
+                </td>
             </tr>
         </table>
         <div class="pagination" v-if="hasPagination">
@@ -108,19 +118,15 @@ export default {
             return Math.ceil(this.tableItems.length / this.pageSize);
         },
         pageItems() {
-            return this.tableItems.slice(this.pageStartIndex, this.pageEndIndex);
+            let start = this.pageIndex * this.pageSize;
+            let end = start + this.pageSize;
+            return this.tableItems.slice(start, end);
         },
         itemPrice() {
             return (value) => {
                 let price = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 return `${price}원`;
             }
-        },
-        pageStartIndex() {
-            return this.pageIndex * this.pageSize;
-        },
-        pageEndIndex() {
-            return this.pageStartIndex + this.pageSize;
         },
         itemIndex() {
             return(index) => {
@@ -132,11 +138,6 @@ export default {
             items.filter(i => !i.check).forEach(i => i.check = false);
             
             return items;
-        }
-    },
-    watch: {
-        pageIndex() {
-            this.isCheckedAll = false;
         }
     },
     methods: {
@@ -175,14 +176,7 @@ export default {
         },
         checkAll() {
             this.isCheckedAll = !this.isCheckedAll;
-            this.tableItems
-                .filter((i, index) => index >= this.pageStartIndex && index <= this.pageEndIndex)
-                .forEach(i => i.check = this.isCheckedAll);
-        },
-        checkItem({target}) {
-            this.isCheckedAll = false;
-            let {id, checked} = target;
-            this.tableItems[id].check = checked;
+            this.tableItems.forEach(i => i.check = this.isCheckedAll);
         },
         deleteItem(index) {
             this.$emit("delete", index);
@@ -202,5 +196,8 @@ export default {
 
 #budget-table .btn-delete i {
     font-size: 17px;
+}
+#budget-table table #value:after {
+    content: '';
 }
 </style>

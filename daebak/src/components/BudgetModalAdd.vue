@@ -3,7 +3,7 @@
         <div class="add-item">
             <budget-item
                 :checkItem="checkItem"
-                @add="addItem"
+                @apply="addItem"
             >
             </budget-item>
         </div>
