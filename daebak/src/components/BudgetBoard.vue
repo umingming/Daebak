@@ -2,10 +2,16 @@
     <div class="budget">
         <modal-add 
             v-if="isShowModal.add"
-            @updateItem="updateItem"
+            :checkItem="checkItems[0]"
             @close="isShowModal['add'] = false"
         >
         </modal-add>
+        <modal-modify 
+            v-if="isShowModal.modify"
+            :checkItems="checkItems"
+            @close="isShowModal['modify'] = false"
+        >
+        </modal-modify>
         <div class="budget-box">
             <div class="search">
                 <input type="date">
@@ -34,6 +40,7 @@
                 <button 
                     class="btn-modify"
                     id="modify"
+                    @click="showModal"
                 >
                     <i class="fa-solid fa-pen"></i>
                 </button>
@@ -63,11 +70,13 @@
 
 <script>
 import ModalAdd from "@/components/BudgetModalAdd.vue";
+import ModalModify from "@/components/BudgetModalModify.vue";
 import BudgetTable from "@/components/BudgetTable.vue";
 
 export default {
     components: {
         ModalAdd,
+        ModalModify,
         BudgetTable
     },
     data() {
@@ -85,252 +94,252 @@ export default {
                     title: "배달의 민족",
                     value: "320000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-01",
                     title: "가달의 민족",
                     value: "10000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-02",
                     title: "마달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-03",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "5",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-04",
                     title: "사달의 민족",
                     value: "500000",
                     amount: "1",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-05",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "8",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "10",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
@@ -344,18 +353,20 @@ export default {
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
                 {
                     date: "2023-02-06",
                     title: "배달의 민족",
                     value: "300000",
                     amount: "3",
-                    cate: "배달"
+                    cate: "배민"
                 },
             ],
+            checkList: [],
             isShowModal: {
-                add: false
+                add: false,
+                modify: false
             },
             addItem: {
                 date: "",
@@ -367,14 +378,14 @@ export default {
         }
     },
     computed: {
-        isAddingItem() {
-            return this.isShowModal["add"]
-                && this.pageIndex === this.pageCount - 1
-                && this.pageItems.length < this.pageSize
-        },
+        checkItems() {
+            return [...this.checkList];
+        }
     },
     methods: {
         showModal({target}) {
+            this.checkList = this.budgetList.filter(i => i.check);
+
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
         },

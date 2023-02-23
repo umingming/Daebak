@@ -71,18 +71,12 @@ body {
 #budget-table table td{
     padding: 2px 20px;
 }
-#budget-table table th:nth-child(1),
-#budget-table table td:nth-child(1){
-    padding: 0;
-    width: 40px;
+#budget-table table .check {
+    width: 0px;
+    padding: 2px 0px 2px 10px;
 }
-#budget-table table th:nth-child(2),
-#budget-table table td:nth-child(2){
-    padding: 0;
-    width: 130px;
-}
-#budget-table table td:nth-child(4),
-#budget-table table td:nth-child(5){
+#budget-table table td#amount,
+#budget-table table td#value {
     text-align: right;
 }
 

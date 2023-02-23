@@ -67,9 +67,12 @@
 
 <script>
 export default {
+    props: {
+        checkItem: { type: Object },
+    },
     data() {
         return {
-            item: {},
+            item: {...this.checkItem},
         }
     },
     methods: {

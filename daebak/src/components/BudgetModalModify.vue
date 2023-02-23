@@ -2,16 +2,14 @@
     <div class="budget-add">
         <div class="add-item">
             <budget-item
-                :checkItem="checkItem"
                 @add="addItem"
             >
             </budget-item>
         </div>
         <div class="add-list">
-            <budget-table
-                :items="listItems"
+            <budget-table 
+                :items="checkItems"
                 :isModal="true"
-                @delete="deleteItem"
             >
             </budget-table>
         </div>
@@ -28,7 +26,7 @@ import BudgetItem from "@/components/BudgetItem.vue";
 
 export default {
     props: {
-        checkItem: { type: Object },
+        checkItems: { type: Array },
     },
     components: {
         BudgetTable,
@@ -39,19 +37,9 @@ export default {
             addItems: [],
         }
     },
-    computed: {
-        listItems() {
-            let items = [...this.addItems];
-            items.forEach(i => i.check = true);
-            return items;
-        },
-    },
     methods: {
         addItem(item) {
             this.addItems = [...this.addItems, item];
-        },
-        deleteItem(index) {
-            this.addItems.splice(index, 1);
         }
     }
 };
@@ -97,7 +85,6 @@ export default {
     height: 90%;
     transform: translateX(15px);
     margin-left: 10px;
-    overflow: scroll;
 }
 .add-list #budget-table table th,
 .add-list #budget-table table td{

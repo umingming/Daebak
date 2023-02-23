@@ -2,8 +2,9 @@
     <div id="budget-table">
         <table>
             <tr>
-                <th>
+                <th class="check">
                     <input 
+                        v-if="!isModal" 
                         type="checkbox" 
                         @click="checkAll"
                         v-model="isCheckedAll"
@@ -12,6 +13,7 @@
                 <th 
                     v-for="(value, key) in header"
                     :key="key"
+                    :id="key"
                     @click="sortTableItems(key)"
                 >
                     <span>{{ value }}</span>
@@ -27,19 +29,27 @@
                 </th>
             </tr>
             <tr v-for="(item, index) in pageItems" :key="index">
-                <td>
+                <td class="check">
                     <input 
+                        v-if="!isModal"
                         type="checkbox"
-                        :value="index"
-                        v-model="item.check"
-                        @click="isCheckedAll = false"
+                        :id="itemIndex(index)"
+                        :value="item.check"
+                        @input="checkItem"
                     >
+                    <button 
+                        v-else
+                        class="btn-delete"
+                        @click="deleteItem(index)"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </td>
-                <td>{{ item.date }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ itemPrice(item.value) }}</td>
-                <td>{{ item.amount }}건</td>
-                <td>{{ item.cate }}</td>
+                <td id="date">{{ item.date }}</td>
+                <td id="title">{{ item.title }}</td>
+                <td id="value">{{ itemPrice(item.value) }}</td>
+                <td id="amount">{{ item.amount }}건</td>
+                <td id="cate">{{ item.cate }}</td>
             </tr>
         </table>
         <div class="pagination" v-if="hasPagination">
@@ -73,7 +83,8 @@
 export default {
     props: {
         items: { type: Array },
-        hasPagination: { type: Boolean, default: false}
+        hasPagination: { type: Boolean, default: false},
+        isModal: { type: Boolean, default: false},
     },
     data() {
         return {
@@ -97,9 +108,7 @@ export default {
             return Math.ceil(this.tableItems.length / this.pageSize);
         },
         pageItems() {
-            let start = this.pageIndex * this.pageSize;
-            let end = start + this.pageSize;
-            return this.tableItems.slice(start, end);
+            return this.tableItems.slice(this.pageStartIndex, this.pageEndIndex);
         },
         itemPrice() {
             return (value) => {
@@ -107,16 +116,27 @@ export default {
                 return `${price}원`;
             }
         },
+        pageStartIndex() {
+            return this.pageIndex * this.pageSize;
+        },
+        pageEndIndex() {
+            return this.pageStartIndex + this.pageSize;
+        },
         itemIndex() {
             return(index) => {
                 return this.pageIndex * this.pageSize + index;
             }
         },
         tableItems() {
-            let items = [ ...this.items ];
+            let items = this.items;
             items.filter(i => !i.check).forEach(i => i.check = false);
             
             return items;
+        }
+    },
+    watch: {
+        pageIndex() {
+            this.isCheckedAll = false;
         }
     },
     methods: {
@@ -155,11 +175,32 @@ export default {
         },
         checkAll() {
             this.isCheckedAll = !this.isCheckedAll;
-            this.tableItems.forEach(i => i.check = this.isCheckedAll);
+            this.tableItems
+                .filter((i, index) => index >= this.pageStartIndex && index <= this.pageEndIndex)
+                .forEach(i => i.check = this.isCheckedAll);
+        },
+        checkItem({target}) {
+            this.isCheckedAll = false;
+            let {id, checked} = target;
+            this.tableItems[id].check = checked;
+        },
+        deleteItem(index) {
+            this.$emit("delete", index);
         }
     }
 };
 </script>
 
-<style>
+<style scoped>
+#budget-table .btn-delete {
+    width: 0;
+    background-color: none;
+    border: none;
+    color: #F94144;
+    cursor: pointer;
+}
+
+#budget-table .btn-delete i {
+    font-size: 17px;
+}
 </style>
