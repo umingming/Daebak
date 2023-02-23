@@ -1,52 +1,25 @@
 <template>
     <div class="budget-add">
         <div class="add-item">
-            <div>
-                <span>날짜</span>
-                <input
-                    type="date"
-                    id="date"
-                    @input="updateItem"
+            <budget-item
+                v-model="item"
+                @updateItem="updateItem"
+            >
+            </budget-item>
+            <div class="btn-icon">
+                <button class="btn-refresh">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+                <button 
+                    class="btn-add"
+                    @click="addItem"
                 >
-            </div>
-            <div>
-                <span>내용</span>
-                <input
-                    type="text"
-                    id="title"
-                    @input="updateItem"
-                >
-            </div>
-            <div>
-                <span>금액</span>
-                <input
-                    type="price"
-                    id="value"
-                    @input="updateItem"
-                >
-            </div>
-            <div>
-                <span>주문</span>
-                <input 
-                    type="number"
-                    id="amount"
-                    @input="updateItem"
-                >
-            </div>
-            <div>
-                <span>분류</span>
-                <select 
-                    name="type"
-                    id="cate"
-                    @input="updateItem"
-                >
-                    <option value="배민">배민</option>
-                    <option value="매장">매장</option>
-                </select>
+                    <i class="fa-solid fa-square-plus"></i>
+                </button>
             </div>
         </div>
         <div class="add-list">
-            <budget-table :items="addItems"></budget-table>
+            <budget-table :items="listItems"></budget-table>
         </div>
         <div class="btn">
             <button @click="$emit('close')">취소</button>
@@ -57,28 +30,34 @@
 
 <script>
 import BudgetTable from "@/components/BudgetTable.vue";
+import BudgetItem from "@/components/BudgetItem.vue";
 
 export default {
     components: {
-        BudgetTable
+        BudgetTable,
+        BudgetItem
     },
     data() {
         return {
-            header: {
-                date: "날짜",
-                title: "내용",
-                value: "금액",
-                amount: "주문",
-                cate: "분류"
-            },
-            sortKey: "",
-            isAscending: false,
             addItems: [],
+            item: {
+                title: "test",
+            },
+        }
+    },
+    computed: {
+        listItems() {
+            let items = [...this.addItems];
+            items.forEach(i => i.check = true);
+            return items;
         }
     },
     methods: {
-        updateItem({target}) {
-            this.$emit("updateItem", target.id, target.value);
+        updateItem(key, value) {
+            this.item[key] = value;
+        },
+        addItem() {
+            this.addItems = [...this.addItems, this.item];
         }
     }
 };
@@ -99,58 +78,32 @@ export default {
     font-size: 15px;
     z-index: 1;
 }
+.budget-add .btn-icon {
+    transform: translateX(110px) translateY(20px);
+    width: 80px;
+}
+.budget-add .btn-icon button {
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+}
+.budget-add .btn-icon button i {
+    font-size: 16px;
+}
 .budget-add .add-item {
     float: left;
     width: 200px;
-    height: 80%;
-    padding-top: 30px;
+    height: 70%;
+    margin-top: 10px;
     border-right: 1px solid #7575753e;
-}
-.budget-add .add-item div {
-    height: 34px;
-}
-.budget-add .add-item span {
-    font-weight: bolder;
-    letter-spacing: 10px;
-}
-.budget-add .add-item input::-webkit-calendar-picker-indicator {
-    background: #000;
-    width: 10%;
-    height: 60%;
-    transform: translateX(-3px);
-    background: url(../../public/img/btnCalendar.png) center/cover;
-}
-.budget-add .add-item input {
-    position: relative;
-    margin-left: 5px;
-    line-height: 10px;
-    height: 20px;
-    width: 120px;
-    top: -2px;
-    padding-left: 5px;
-    font-family: 'Noto Sans KR', sans-serif;
-    border: 1px solid #b4b4b4;
-    border-radius: 3px;
-}
-.budget-add .add-item input:focus {
-    outline: 0px;
-}
-.budget-add .add-item select {
-    font-family: 'Noto Sans KR', sans-serif;
-    position: relative;
-    margin-left: 4px;
-    height: 23px;
-    width: 128px;
-    top: -2px;
-    font-size: 13px;
-    border: 1px solid #b4b4b4;
-    border-radius: 3px;
 }
 .budget-add .add-list {
     float: left;
     width: 560px;
+    height: 90%;
     transform: translateX(15px);
     margin-left: 10px;
+    overflow: scroll;
 }
 .add-list #budget-table table th,
 .add-list #budget-table table td{

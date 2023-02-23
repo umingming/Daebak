@@ -88,7 +88,6 @@ export default {
             isAscending: false,
             pageIndex: 0,
             pageSize: 15,
-            tableItems: [],
             isCheckedAll: false,
             checkItems: [],
         }
@@ -113,10 +112,12 @@ export default {
                 return this.pageIndex * this.pageSize + index;
             }
         },
-    },
-    created() {
-        this.tableItems = [ ...this.items ]
-        this.tableItems.forEach(i => i.check = false);
+        tableItems() {
+            let items = [ ...this.items ];
+            items.filter(i => !i.check).forEach(i => i.check = false);
+            
+            return items;
+        }
     },
     methods: {
         applyCheckItems() {

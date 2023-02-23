@@ -20,24 +20,31 @@
                 </select>
                 <input type="text" id="keyword">
             </div>
-            <div class="btn">
-                <button id="refresh">
+            <div class="btn-icon">
+                <button class="btn-refresh">
                     <i class="fa-solid fa-arrow-rotate-right"></i>
                 </button>
                 <button 
+                    class="btn-add"
                     id="add"
                     @click="showModal"
                 >
                     <i class="fa-solid fa-square-plus"></i>
                 </button>
-                <button id="modify">
+                <button 
+                    class="btn-modify"
+                    id="modify"
+                >
                     <i class="fa-solid fa-pen"></i>
                 </button>
-                <button id="delete">
+                <button 
+                    class="btn-delete"
+                    id="delete"
+                >
                     <i class="fa-solid fa-trash"></i>
                 </button>
                 <export-excel
-                    id="excel"
+                    class="btn-excel"
                     :data="budgetList"
                     :fields="excelField"
                     name="excel.xls"

@@ -137,7 +137,7 @@ body {
     background: #ff7b00a8;
 }
 
-.budget-box .btn {
+.budget-box .btn-icon {
     position: absolute;
     right: 50px;
     top: 20px;
@@ -145,8 +145,8 @@ body {
     height: 40px;
     z-index: 1;
 }
-.budget-box .btn button,
-.budget-box .btn #excel {
+.btn-icon button,
+.btn-icon .btn-excel {
     position: relative;
     float: left;
     width: 35px;
@@ -159,11 +159,11 @@ body {
     cursor: pointer;
     z-index: 1;
 }
-.budget-box .btn #refresh {
+.btn-icon .btn-refresh {
     margin-right: 10px;
     background: #277DA1;
 }
-.budget-box .btn::before {
+.budget-box .btn-icon::before {
     content: '';
     position: absolute;
     top: 2px;
@@ -174,28 +174,28 @@ body {
     border-right: 1px solid #7575753e;
     z-index: 0;
 }
-.budget-box .btn #add {
+.btn-icon .btn-add {
     background: #F9C74F;
 }
-.budget-box .btn #modify {
+.btn-icon .btn-modify {
     background: #F9844A;
 }
-.budget-box .btn #delete {
+.btn-icon .btn-delete {
     background: #F94144;
 }
-.budget-box .btn #excel {
+.btn-icon .btn-excel {
     text-align: center;
     line-height: 25px;
     margin-left: 5px;
     background: #43AA8B;
 }
-.budget-box .btn i {
+.btn-icon i {
     position: relative;
     top: 1px;
     font-size: 20px;
     z-index: 0;
 }
-.budget-box .btn #modify i,
-.budget-box .btn #delete i {
+.btn-icon .btn-modify i,
+.btn-icon .btn-delete i {
     font-size: 18px;
 }
