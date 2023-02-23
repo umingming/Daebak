@@ -62,6 +62,7 @@
             <budget-table
                 :items="budgetList"
                 :hasPagination="true"
+                @check="checkItem"
             >
             </budget-table>
         </div>
@@ -389,8 +390,8 @@ export default {
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
         },
-        updateItem(key, value) {
-            this.addItem[key] = value;
+        checkItem(index, isChecked) {
+            this.budgetList[index].check = isChecked;
         }
     }
 };

@@ -34,7 +34,8 @@
                         ref="checkBox"
                         v-if="!isModal"
                         type="checkbox"
-                        v-model="item.check"
+                        :id="itemIndex(index)"
+                        @input="checkItem"
                     >
                     <button 
                         v-else
@@ -141,6 +142,7 @@ export default {
             let inputList = this.$el.querySelectorAll('.check > input');
             inputList.forEach(i => i.checked = false);
             this.isCheckedAll = false;
+            console.log(inputList);
         }
     },
     methods: {
@@ -176,6 +178,7 @@ export default {
         },
         setIndex(value) {
             this.pageIndex = value - 1;
+            console.log(this.pageIndex);
         },
         checkAll() {
             this.isCheckedAll = !this.isCheckedAll;
@@ -183,7 +186,11 @@ export default {
         },
         deleteItem(index) {
             this.$emit("delete", index);
+        },
+        checkItem({target}) {
+            this.$emit("check", target.id, target.checked);
         }
+
     }
 };
 </script>
