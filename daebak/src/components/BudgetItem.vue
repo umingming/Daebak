@@ -5,8 +5,7 @@
             <input
                 type="date"
                 id="date"
-                :value="value.date"
-                @change="updateItem"
+                v-model="item.date"
             >
         </div>
         <div>
@@ -14,8 +13,7 @@
             <input
                 type="text"
                 id="title"
-                :value="value.title"
-                @change="updateItem"
+                v-model="item.title"
             >
         </div>
         <div>
@@ -23,12 +21,10 @@
             <input
                 type="number"
                 id="value"
-                pattern="[0-9]+"
                 step="1000"
-                min="1"
-                :value="value.value"
-                @input="isNumber"
-                @change="updateItem"
+                min="0"
+                :value="item.value"
+                @input="checkNumber"
             >
         </div>
         <div>
@@ -36,11 +32,9 @@
             <input 
                 type="number"
                 id="amount"
-                pattern="[0-9]+"
                 min="1"
-                :value="value.amount"
-                @input="isNumber"
-                @change="updateItem"
+                :value="item.amount"
+                @input="checkNumber"
             >
         </div>
         <div>
@@ -48,27 +42,52 @@
             <select 
                 name="type"
                 id="cate"
-                :value="value.cate"
-                @change="updateItem"
+                v-model="item.cate"
             >
                 <option value="배민">배민</option>
                 <option value="매장">매장</option>
             </select>
+        </div>
+        <div class="btn-icon">
+            <button 
+                class="btn-refresh"
+                @click="resetItem"
+            >
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+            </button>
+            <button 
+                class="btn-add"
+                @click="addItem"
+            >
+                <i class="fa-solid fa-square-plus"></i>
+            </button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['value'],
-    methods: {
-        updateItem({target}) {
-            this.$emit("updateItem", target.id, target.value);
-        },
-        isNumber(e) {
-            console.log(e);
-            return true;
+    data() {
+        return {
+            item: {},
         }
+    },
+    methods: {
+        checkNumber({data, target}) {
+            let {id, value} = target;
+
+            if (data === "-") {
+                target.value = this.item[id];
+            } else {
+                this.item[id] = +value;
+            }
+        },
+        resetItem() {
+            this.item = {};
+        },
+        addItem() {
+            this.$emit('add', {...this.item});
+        },
     }
 };
 </script>

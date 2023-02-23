@@ -3,20 +3,9 @@
         <div class="add-item">
             <budget-item
                 v-model="item"
-                @updateItem="updateItem"
+                @add="addItem"
             >
             </budget-item>
-            <div class="btn-icon">
-                <button class="btn-refresh">
-                    <i class="fa-solid fa-arrow-rotate-right"></i>
-                </button>
-                <button 
-                    class="btn-add"
-                    @click="addItem"
-                >
-                    <i class="fa-solid fa-square-plus"></i>
-                </button>
-            </div>
         </div>
         <div class="add-list">
             <budget-table :items="listItems"></budget-table>
@@ -53,11 +42,8 @@ export default {
         }
     },
     methods: {
-        updateItem(key, value) {
-            this.item[key] = value;
-        },
-        addItem() {
-            this.addItems = [...this.addItems, this.item];
+        addItem(item) {
+            this.addItems = [...this.addItems, item];
         }
     }
 };
