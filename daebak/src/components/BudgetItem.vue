@@ -87,6 +87,7 @@ export default {
         },
         resetItem() {
             this.item = {};
+            this.$emit('reset');
         },
         applyItem() {
             this.$emit('apply', {...this.item});

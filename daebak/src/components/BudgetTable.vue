@@ -31,11 +31,10 @@
             <tr v-for="(item, index) in pageItems" :key="index">
                 <td class="check">
                     <input 
+                        ref="checkBox"
                         v-if="!isModal"
                         type="checkbox"
-                        :value="index"
                         v-model="item.check"
-                        @click="isCheckedAll = false"
                     >
                     <button 
                         v-else
@@ -134,10 +133,14 @@ export default {
             }
         },
         tableItems() {
-            let items = this.items;
-            items.filter(i => !i.check).forEach(i => i.check = false);
-            
-            return items;
+            return [...this.items];
+        }
+    },
+    watch: {
+        pageIndex() {
+            let inputList = this.$el.querySelectorAll('.check > input');
+            inputList.forEach(i => i.checked = false);
+            this.isCheckedAll = false;
         }
     },
     methods: {

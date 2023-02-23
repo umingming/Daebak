@@ -2,15 +2,16 @@
     <div class="budget-add">
         <div class="add-item">
             <budget-item
+                @reset="resetList"
                 @apply="modifyList"
             >
             </budget-item>
         </div>
         <div class="add-list">
             <budget-table 
-                ref="table"
-                :items="checkItems"
+                :items="listItems"
                 :isModal="true"
+                @delete="deleteItem"
             >
             </budget-table>
         </div>
@@ -35,21 +36,30 @@ export default {
     },
     data() {
         return {
-            modifyItems: [...this.checkItems],
+            modifyItems: JSON.parse(JSON.stringify(this.checkItems)),
             index: 0,
         }
     },
     computed: {
         listItems() {
             let items = [...this.modifyItems];
+            items.forEach(i => i.check = true);
             return items;
         },
     },
     methods: {
-        modifyList() {
-            console.log(this.$refs.table.$refs.cate);
-            // console.log(this.$refs.table.$el.querySelectorAll("td#value"));
-            // this.$refs.table.$el.querySelectorAll("td#value > span").forEach(i => i.textContent = 'test');
+        modifyList(item) {
+            let items = [...this.modifyItems];
+            for (const [key, value] of Object.entries(item)) {
+                items.forEach(i => i[key] = value);
+            }
+            this.modifyItems = items;
+        },
+        resetList() {
+            this.modifyItems = [...this.checkItems];
+        }, 
+        deleteItem(index) {
+            this.modifyItems.splice(index, 1);
         }
     }
 };
