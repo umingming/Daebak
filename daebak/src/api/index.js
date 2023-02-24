@@ -64,63 +64,63 @@ function fetchList() {
             cate: "배민"
         },
         {
-            date: "2023-02-1",
+            date: "2023-02-01",
             title: "배달의 민족",
             value: "80000",
             amount: "15",
             cate: "배민"
         },
         {
-            date: "2023-02-2",
+            date: "2023-02-02",
             title: "배달의 민족",
             value: "10000",
             amount: "5",
             cate: "배민"
         },
         {
-            date: "2023-02-3",
+            date: "2023-02-03",
             title: "배달의 민족",
             value: "10000",
             amount: "10",
             cate: "배민"
         },
         {
-            date: "2023-02-4",
+            date: "2023-02-04",
             title: "배달의 민족",
             value: "100000",
             amount: "6",
             cate: "배민"
         },
         {
-            date: "2023-02-5",
+            date: "2023-02-05",
             title: "배달의 민족",
             value: "10000",
             amount: "10",
             cate: "배민"
         },
         {
-            date: "2023-02-6",
+            date: "2023-02-06",
             title: "배달의 민족",
             value: "140000",
             amount: "20",
             cate: "배민"
         },
         {
-            date: "2023-02-7",
+            date: "2023-02-07",
             title: "배달의 민족",
             value: "30000",
             amount: "13",
             cate: "배민"
         },
         {
-            date: "2023-02-8",
+            date: "2023-02-08",
             title: "배달의 민족",
-            value: "0",
+            value: "3",
             amount: "12",
             cate: "배민"
         },
         {
-            date: "2023-02-9",
+            date: "2023-02-09",
             title: "배달의 민족",
             value: "80000",
             amount: "1",
@@ -229,6 +229,13 @@ function fetchList() {
             title: "배달의 민족",
             value: "50000",
             amount: "16",
+            cate: "배민"
+        },
+        {
+            date: "2023-02-25",
+            title: "배달의 민족",
+            value: "80000",
+            amount: "7",
             cate: "배민"
         },
         {
