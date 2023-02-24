@@ -48,7 +48,6 @@ export default {
     },
     methods: {
         addItem(item) {
-            console.log(item);
             this.addItems = [...this.addItems, item];
         },
         deleteItem(index) {

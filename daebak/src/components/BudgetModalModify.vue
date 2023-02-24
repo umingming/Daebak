@@ -2,7 +2,6 @@
     <div class="budget-add">
         <div class="add-item">
             <budget-item
-                @reset="resetList"
                 @apply="modifyList"
             >
             </budget-item>
@@ -55,9 +54,6 @@ export default {
             }
             this.modifyItems = items;
         },
-        resetList() {
-            this.modifyItems = [...this.checkItems];
-        }, 
         deleteItem(index) {
             this.modifyItems.splice(index, 1);
         }

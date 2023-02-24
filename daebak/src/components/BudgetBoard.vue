@@ -60,7 +60,7 @@
                 </export-excel>
             </div>
             <budget-table
-                :items="budgetList"
+                :items="fetchedList"
                 :hasPagination="true"
                 @check="checkItem"
             >
@@ -73,6 +73,8 @@
 import ModalAdd from "@/components/BudgetModalAdd.vue";
 import ModalModify from "@/components/BudgetModalModify.vue";
 import BudgetTable from "@/components/BudgetTable.vue";
+
+import { mapGetters } from "vuex";
 
 export default {
     components: {
@@ -379,9 +381,13 @@ export default {
         }
     },
     computed: {
+        ...mapGetters(["fetchedList"]),
         checkItems() {
             return [...this.checkList];
         }
+    },
+    created() {
+        this.$store.dispatch("FETCH_LIST");
     },
     methods: {
         showModal({target}) {
