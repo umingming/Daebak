@@ -134,10 +134,10 @@ export default {
                             position: 'right'
                         }],
                     },
-                    onClick(e, el) {
-                        console.log(e, el);
-                        const index = el[0]._index;
-                        console.log(index);
+                    onClick() {
+                        return (e, el) => {
+                            console.log(e, el);
+                        }
                     }
                 }
             });

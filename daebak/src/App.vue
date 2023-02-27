@@ -23,6 +23,8 @@ export default {
 <style scoped>
 #app {
     width: 1200px;
+    height: 97vh;
+    overflow: hidden;
     margin: 0 auto;
 }
 .fade-enter-active,
