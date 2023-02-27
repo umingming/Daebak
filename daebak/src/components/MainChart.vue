@@ -1,6 +1,11 @@
 <template>
     <div class="chart-box">
-        <canvas id="myChart"></canvas>
+        <canvas 
+            id="myChart"
+            height="70"
+            width="320"
+        >
+        </canvas>
     </div>
 </template>
 
@@ -90,7 +95,7 @@ export default {
                                 callback(data) {
                                     return +data.slice(-2)
                                 },
-                                fontSize: 15,
+                                fontSize: 14,
                                 stepSize: 1,
                             },
                             gridLines: {
@@ -104,9 +109,9 @@ export default {
                             ticks: {
                                 callback(data) {
                                     let value = (data + "").slice(0, -4);
-                                    return `${value || 0}만원`
+                                    return value || 0;
                                 },
-                                fontSize: 15,
+                                fontSize: 14,
                                 stepSize: 200000,
                                 max: 1000000
                             },
@@ -117,10 +122,7 @@ export default {
                         }, {
                             id: 'amount',
                             ticks: {
-                                callback(data) {
-                                    return `${data}건`
-                                },
-                                fontSize: 15,
+                                fontSize: 14,
                                 stepSize: 5,
                                 min: 0,
                                 max: 25
@@ -132,6 +134,11 @@ export default {
                             position: 'right'
                         }],
                     },
+                    onClick(e, el) {
+                        console.log(e, el);
+                        const index = el[0]._index;
+                        console.log(index);
+                    }
                 }
             });
         },
@@ -157,15 +164,11 @@ export default {
     margin: 20px auto;
     background: white;
     border-radius: 5px;
-    height: 430px;
-    width: 910px;
+    width: 1000px; 
+    padding: 10px 20px;
 }
 #myChart {
-    position: relative;
-    top: 5px;
-    margin: 20px auto !important;
-    height: 400px !important;
-    width: 900px !important;
+    top: 0px;
     font-size: 25px !important;
 }
 </style>

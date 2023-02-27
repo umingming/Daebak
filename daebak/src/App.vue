@@ -21,6 +21,10 @@ export default {
 };
 </script>
 <style scoped>
+#app {
+    width: 1200px;
+    margin: 0 auto;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

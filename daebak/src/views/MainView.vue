@@ -1,19 +1,20 @@
 <template>
     <div>
         <div class="title">💸대박나라💸</div>
-        <budget-chart></budget-chart>
-        <budget-board></budget-board>
+        <main-chart>
+        </main-chart>
+        <main-board></main-board>
     </div>
 </template>
 
 <script>
-import BudgetChart from "@/components/BudgetChart.vue";
-import BudgetBoard from "@/components/BudgetBoard.vue";
+import MainChart from "@/components/MainChart.vue";
+import MainBoard from "@/components/MainBoard.vue";
 export default {
 	components: {
-        BudgetChart,
-        BudgetBoard,
-    }
+        MainChart,
+        MainBoard,
+    },
 };
 </script>
 
@@ -23,7 +24,6 @@ export default {
     font-weight: bolder;
     color: rgb(255, 123, 0);
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin: 30px auto;
 }
 </style>

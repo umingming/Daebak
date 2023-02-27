@@ -2,9 +2,11 @@
     <div id="budget-table">
         <table>
             <tr>
-                <th class="check">
+                <th 
+                    class="check"
+                    v-if="hasCheckBox" 
+                >
                     <input 
-                        v-if="!isModal" 
                         type="checkbox" 
                         @click="checkAll"
                         v-model="isCheckedAll"
@@ -29,16 +31,19 @@
                 </th>
             </tr>
             <tr v-for="(item, index) in pageItems" :key="index">
-                <td class="check">
+                <td 
+                    class="check"
+                    v-if="hasCheckBox"
+                >
                     <input 
                         ref="checkBox"
-                        v-if="!isModal"
                         type="checkbox"
                         :id="itemIndex(index)"
                         @input="checkItem"
                     >
+                </td>
+                <td v-else-if="isModal">
                     <button 
-                        v-else
                         class="btn-delete"
                         @click="deleteItem(index)"
                     >
@@ -93,8 +98,10 @@
 export default {
     props: {
         items: { type: Array },
-        hasPagination: { type: Boolean, default: false},
-        isModal: { type: Boolean, default: false},
+        hasPagination: { type: Boolean, default: false },
+        isModal: { type: Boolean, default: false },
+        hasCheckBox: { type: Boolean, default: false },
+        pageSize: { type: Number, default: 15 },
     },
     data() {
         return {
@@ -108,7 +115,6 @@ export default {
             sortKey: "",
             isAscending: false,
             pageIndex: 0,
-            pageSize: 15,
             isCheckedAll: false,
             checkItems: [],
             tableItems: [...this.items]
