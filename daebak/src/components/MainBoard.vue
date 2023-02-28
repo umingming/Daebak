@@ -1,22 +1,8 @@
 <template>
     <div class="main-board">
-        <div class="search">
-            <input type="date">
-            <input type="date">
-            <select 
-                name="type"
-            >
-                <option value="title">내용</option>
-                <option value="value">금액</option>
-                <option value="amount">주문</option>
-                <option value="cate">분류</option>
-            </select>
-            <input type="text" id="keyword">
-        </div>
         <budget-table
             :items="fetchedList"
-            :hasPagination="true"
-            :pageSize="5"
+            :hasPagination="false"
         >
         </budget-table>
     </div>
@@ -76,17 +62,26 @@ export default {
 
 <style scoped>
 .main-board {
-    position: relative;
     background: white;
     border-radius: 5px;
-    width: 1000px !important;  
-    padding: 20px 20px 40px 20px;
-    margin: 40px auto;
+    padding: 20px;
+    box-shadow: 5px 5px 0px #fd96364f;
+    margin-right: 5px;
 }
-
 .main-board ::v-deep #budget-table{
-    width: 950px !important;
+    height: 100%;
     margin: 0 auto;
+    overflow: scroll;
+}
+.main-board ::v-deep #budget-table th,
+.main-board ::v-deep #budget-table td {
+    width: 90px !important;
+}
+.main-board ::v-deep #budget-table th:nth-child(1),
+.main-board ::v-deep #budget-table td:nth-child(1),
+.main-board ::v-deep #budget-table th:nth-child(2),
+.main-board ::v-deep #budget-table td:nth-child(2) {
+    display: none;
 }
 .budget-box .search {
     position: absolute;

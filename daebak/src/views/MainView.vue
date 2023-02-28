@@ -94,10 +94,16 @@ export default {
     margin-right: 5px;
 }
 #main-view .middle {
+    position: relative;
     height: 40%;
     margin: 30px auto;
     width: 100%;
     display: flex;
-    background: #000;
+}
+#main-view .middle ::v-deep .chart-box {
+    width: 900px !important;
+    margin-left: 5px;
+    margin-right: 30px;
+    box-shadow: 5px 5px 0px #fd96364f;
 }
 </style>

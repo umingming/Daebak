@@ -125,6 +125,8 @@ export default {
             return Math.ceil(this.tableItems.length / this.pageSize);
         },
         pageItems() {
+            if (!this.hasPagination) return this.tableItems;
+            
             let start = this.pageIndex * this.pageSize;
             let end = start + this.pageSize;
             return this.tableItems.slice(start, end);

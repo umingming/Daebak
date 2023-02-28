@@ -3,7 +3,7 @@
         <canvas 
             id="myChart"
             height="70"
-            width="320"
+            width="190"
         >
         </canvas>
     </div>
@@ -161,14 +161,8 @@ export default {
 
 <style scoped>
 .chart-box {
-    margin: 20px auto;
     background: white;
     border-radius: 5px;
-    width: 1000px; 
-    padding: 10px 20px;
-}
-#myChart {
-    top: 0px;
-    font-size: 25px !important;
+    padding: 0px 5px;
 }
 </style>
