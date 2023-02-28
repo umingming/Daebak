@@ -9,24 +9,20 @@ body {
     background-color: #f9f2d3;
 }
 
-.budget {
+.board-box {
     position: relative;
-    width: 1000px;
-    margin: 150px auto;
-}
-.budget-box {
-    position: relative;
-    margin: 150px auto;
+    margin: 10px auto;
     background: white;
     border-radius: 5px;
     height: 440px;
-    width: 900px;
-    padding: 60px 50px 60px 30px;
+    width: 100%;
+    padding: 60px 0;
     z-index: 0;
 }
 #budget-table table {
     position: relative;
-    width: 100%;
+    margin: 0 auto;
+    width: 95%;
     font-size: 16px;
     border-collapse: collapse;
 }
@@ -131,7 +127,7 @@ body {
     background: #ff7b00a8;
 }
 
-.budget-box .btn-icon {
+.board-box .btn-icon {
     position: absolute;
     right: 50px;
     top: 20px;
@@ -157,7 +153,7 @@ body {
     margin-right: 10px;
     background: #277DA1;
 }
-.budget-box .btn-icon::before {
+.board-box .btn-icon::before {
     content: '';
     position: absolute;
     top: 2px;

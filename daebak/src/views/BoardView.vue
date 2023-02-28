@@ -1,5 +1,5 @@
 <template>
-    <div class="budget">
+    <div class="board">
         <modal-add 
             v-if="isShowModal.add"
             :checkItem="checkItems[0]"
@@ -12,7 +12,7 @@
             @close="isShowModal['modify'] = false"
         >
         </modal-modify>
-        <div class="budget-box">
+        <div class="board-box">
             <div class="search">
                 <input type="date">
                 <input type="date">
@@ -62,6 +62,7 @@
             <budget-table
                 :items="fetchedList"
                 :hasPagination="true"
+                :hasCheckBox="true"
                 @check="checkItem"
             >
             </budget-table>
@@ -129,7 +130,7 @@ export default {
 </script>
 
 <style scoped>
-.budget-box .search {
+.board-box .search {
     position: absolute;
     left: 50px;
     top: 19px;
@@ -137,18 +138,18 @@ export default {
     height: 30px;
     line-height: 25px;
 }
-.budget-box .search input {
+.board-box .search input {
     height: 22px;
     margin-right: 10px;
 }
-.budget-box .search input:focus,
-.budget-box .search select:focus {
+.board-box .search input:focus,
+.board-box .search select:focus {
     outline: none;
 }
-.budget-box .search select {
+.board-box .search select {
     height: 26px;
 }
-.budget-box .search #keyword {
+.board-box .search #keyword {
     width: 120px;
 }
 </style>

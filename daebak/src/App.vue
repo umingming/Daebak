@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <div class="title">💸대박나라💸</div>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -10,14 +11,6 @@
 
 export default {
     name: "App",
-    created() {
-        this.initKakao();
-    },
-    methods: {
-        initKakao() {
-            window.Kakao.init('ddd04c05d8377d46d25230329657ea11');
-        }
-    }
 };
 </script>
 <style scoped>
@@ -26,6 +19,14 @@ export default {
     height: 97vh;
     overflow: hidden;
     margin: 0 auto;
+    background: rgba(194, 194, 194, 0.295);
+}
+.title {
+    font-size: 50px;
+    font-weight: bolder;
+    color: rgb(255, 123, 0);
+    text-align: center;
+    margin: 30px auto;
 }
 .fade-enter-active,
 .fade-leave-active {

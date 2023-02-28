@@ -29,6 +29,9 @@
 
 <script>
 export default {
+    created() {
+        this.initKakao();
+    },
     mounted() {
         this.initNaver();
     },
@@ -40,6 +43,9 @@ export default {
             naver_id_login.setState(state);
             naver_id_login.setPopup();
             naver_id_login.init_naver_id_login();
+        },
+        initKakao() {
+            window.Kakao.init('ddd04c05d8377d46d25230329657ea11');
         },
         kakaoLogin() {
             window.Kakao.Auth.login({
