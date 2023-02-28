@@ -1,8 +1,5 @@
 <template>
     <div>
-        <header>
-            <div class="title">💸대박나라💸</div>
-        </header>
         <section id="login">
             <div class="input">
                 <i class="fa-solid fa-user"></i>
@@ -29,9 +26,6 @@
 
 <script>
 export default {
-    created() {
-        this.initKakao();
-    },
     mounted() {
         this.initNaver();
     },
@@ -43,9 +37,6 @@ export default {
             naver_id_login.setState(state);
             naver_id_login.setPopup();
             naver_id_login.init_naver_id_login();
-        },
-        initKakao() {
-            window.Kakao.init('ddd04c05d8377d46d25230329657ea11');
         },
         kakaoLogin() {
             window.Kakao.Auth.login({
@@ -70,14 +61,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    font-size: 50px;
-    font-weight: bolder;
-    color: rgb(255, 123, 0);
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 40px;
-}
 .input {
     background: white;
     width: 300px;
