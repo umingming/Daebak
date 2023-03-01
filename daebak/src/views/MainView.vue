@@ -1,25 +1,33 @@
 <template>
     <div id="main-view">
         <div class="top">
-            <div>
-                <h3>2월 총 매출</h3>
-                <span>{{ totalRevenue }}원</span>
-            </div>
-            <div>
-                <h3>2월 총 주문 수</h3>
-                <span>{{ totalOrder }}건</span>
-            </div>
-            <div>
-                <h3>2월 평균 매출</h3>
-                <span>{{ averageRevenue }}원</span>
-            </div>
-            <div>
-                <h3>2월 평균 주문</h3>
-                <span>{{ averageOrder }}건</span>
-            </div>
+            <main-banner
+                title="2월 총 매출"
+                :value="totalRevenue"
+            >
+                <i slot="icon" class="fa-solid fa-user"></i>
+            </main-banner>
+            <main-banner
+                title="2월 총 주문 수"
+                :value="totalOrder"
+            >
+                <i slot="icon" class="fa-solid fa-user"></i>
+            </main-banner>
+            <main-banner
+                title="2월 평균 매출"
+                :value="averageRevenue"
+            >
+                <i slot="icon" class="fa-solid fa-user"></i>
+            </main-banner>
+            <main-banner
+                title="2월 평균 주문 수"
+                :value="averageOrder"
+            >
+                <i slot="icon" class="fa-solid fa-user"></i>
+            </main-banner>
         </div>
         <div class="middle">
-            <main-chart></main-chart>
+            <main-chart-month></main-chart-month>
             <main-board></main-board>
         </div>
         <div class="bottom"></div>
@@ -27,32 +35,30 @@
 </template>
 
 <script>
-import MainChart from "@/components/MainChart.vue";
+import MainChartMonth from "@/components/MainChartMonth.vue";
 import MainBoard from "@/components/MainBoard.vue";
+import MainBanner from "@/components/MainBanner.vue";
 import { mapGetters } from "vuex";
 
 export default {
 	components: {
-        MainChart,
+        MainChartMonth,
+        MainBanner,
         MainBoard,
     },
     computed: {
         ...mapGetters(["fetchedList"]),
         totalRevenue() {
-            let total = this.fetchedList.map(i => +i.value).reduce((sum, i) => sum + i);
-            return total.toLocaleString();
+            return this.fetchedList.map(i => +i.value).reduce((sum, i) => sum + i);
         },
         totalOrder() {
-            let total = this.fetchedList.map(i => +i.amount).reduce((sum, i) => sum + i);
-            return total.toLocaleString();
+            return this.fetchedList.map(i => +i.amount).reduce((sum, i) => sum + i);
         },
         averageRevenue() {
-            let average = this.totalRevenue.replaceAll(",", "") / this.totalDays;
-            return Math.floor(average).toLocaleString(); 
+            return this.totalRevenue / this.totalDays; 
         },
         averageOrder() {
-            let average = this.totalOrder.replaceAll(",", "") / this.totalDays;
-            return Math.floor(average).toLocaleString(); 
+            return this.totalOrder / this.totalDays; 
         },
         totalDays() {
             return new Date().getDate();
@@ -64,7 +70,7 @@ export default {
     methods: {
         setDate(date) {
             console.log(date);
-        }
+        },
     }
 };
 </script>
@@ -75,17 +81,17 @@ export default {
     height: 100%;
 }
 #main-view .top {
-    height: 15%;
+    height: 80px;
     width: 100%;
     display: flex;
 }
 #main-view .top div {
     margin: 0 auto;
-    width: 270px;    
-    height: 100%;
+    width: 260px;    
     background: white;
-    border-radius: 5px;
-    box-shadow: 5px 5px 0px #fd96364f;
+    box-shadow: 3px 3px 0px #fd96364f;
+    padding: 13px 5px;
+    color: #FF9F40;
 }
 #main-view .top div:first-child {
     margin-left: 5px;
@@ -93,9 +99,31 @@ export default {
 #main-view .top div:last-child {
     margin-right: 5px;
 }
+#main-view .top div:nth-child(even) {
+    color: #4BC0C0;
+}
+#main-view .top div ::v-deep i {
+    font-size: 50px;
+    float: left;
+    margin: 5px 15px;
+    opacity: 0.5;
+}
+#main-view .top div ::v-deep h3 {
+    color: #666;
+}
+#main-view .top div ::v-deep span {
+    font-size: 24px;
+    font-weight: bolder;
+}
+#main-view .top div ::v-deep small {
+    position: relative;
+    color: #666;
+    top: -1px;
+    left: 5px;
+}
 #main-view .middle {
     position: relative;
-    height: 40%;
+    height: 320px;
     margin: 30px auto;
     width: 100%;
     display: flex;
@@ -104,6 +132,6 @@ export default {
     width: 900px !important;
     margin-left: 5px;
     margin-right: 30px;
-    box-shadow: 5px 5px 0px #fd96364f;
+    box-shadow: 3px 3px 0px #fd96364f;
 }
 </style>
