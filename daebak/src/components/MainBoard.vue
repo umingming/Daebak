@@ -63,9 +63,8 @@ export default {
 <style scoped>
 .main-board {
     background: white;
-    border-radius: 5px;
     padding: 20px;
-    box-shadow: 5px 5px 0px #fd96364f;
+    box-shadow: 3px 3px 0px #fd96364f;
     margin-right: 5px;
 }
 .main-board ::v-deep #budget-table{
