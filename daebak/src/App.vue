@@ -38,7 +38,8 @@ export default {
     font-weight: bolder;
     color: rgb(255, 123, 0);
     text-align: center;
-    margin: 30px auto;
+    margin: 25px auto;
+    transform: translateY(-5px);
 }
 .title.login {
     margin-top: 100px;
