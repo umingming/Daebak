@@ -17,7 +17,7 @@ function fetchList() {
         {
             date: "2023-02-01",
             title: "가달의 민족",
-            value: "10000",
+            value: "100000",
             amount: "3",
             cate: "배민"
         },
@@ -31,7 +31,7 @@ function fetchList() {
         {
             date: "2023-02-03",
             title: "배달의 민족",
-            value: "30000",
+            value: "300000",
             amount: "5",
             cate: "배민"
         },
@@ -73,14 +73,14 @@ function fetchList() {
         {
             date: "2023-02-02",
             title: "배달의 민족",
-            value: "10000",
+            value: "100000",
             amount: "5",
             cate: "배민"
         },
         {
             date: "2023-02-03",
             title: "배달의 민족",
-            value: "10000",
+            value: "100000",
             amount: "10",
             cate: "배민"
         },
@@ -94,7 +94,7 @@ function fetchList() {
         {
             date: "2023-02-05",
             title: "배달의 민족",
-            value: "10000",
+            value: "100000",
             amount: "10",
             cate: "배민"
         },
@@ -108,14 +108,14 @@ function fetchList() {
         {
             date: "2023-02-07",
             title: "배달의 민족",
-            value: "30000",
+            value: "300000",
             amount: "13",
             cate: "배민"
         },
         {
             date: "2023-02-08",
             title: "배달의 민족",
-            value: "3",
+            value: "30000",
             amount: "12",
             cate: "배민"
         },
@@ -143,14 +143,14 @@ function fetchList() {
         {
             date: "2023-02-12",
             title: "배달의 민족",
-            value: "20000",
+            value: "200000",
             amount: "6",
             cate: "배민"
         },
         {
             date: "2023-02-13",
             title: "배달의 민족",
-            value: "80000",
+            value: "800000",
             amount: "17",
             cate: "배민"
         },
@@ -185,28 +185,28 @@ function fetchList() {
         {
             date: "2023-02-18",
             title: "배달의 민족",
-            value: "30000",
+            value: "300000",
             amount: "7",
             cate: "배민"
         },
         {
             date: "2023-02-19",
             title: "배달의 민족",
-            value: "70000",
+            value: "700000",
             amount: "5",
             cate: "배민"
         },
         {
             date: "2023-02-20",
             title: "배달의 민족",
-            value: "90000",
+            value: "900000",
             amount: "18",
             cate: "배민"
         },
         {
             date: "2023-02-21",
             title: "배달의 민족",
-            value: "60000",
+            value: "600000",
             amount: "1",
             cate: "배민"
         },
@@ -227,7 +227,7 @@ function fetchList() {
         {
             date: "2023-02-24",
             title: "배달의 민족",
-            value: "50000",
+            value: "500000",
             amount: "16",
             cate: "배민"
         },
@@ -248,7 +248,7 @@ function fetchList() {
         {
             date: "2023-02-26",
             title: "배달의 민족",
-            value: "20000",
+            value: "200000",
             amount: "20",
             cate: "배민"
         },
