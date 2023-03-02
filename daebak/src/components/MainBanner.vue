@@ -16,12 +16,17 @@
 import AnimatedNumber from "animated-number-vue";
 
 export default {
+    components: {
+        AnimatedNumber
+    },
     props: {
         value: { type: Number, default: 0 },
-        title: { type: String, default: "" },
+        type: { type: String, default: "" },
     },
-	components: {
-        AnimatedNumber
+    computed: {
+        title() {
+            return `${new Date().getMonth() + 1}월 ${this.type}`;
+        }
     },
     methods: {
         toPrice(value) {

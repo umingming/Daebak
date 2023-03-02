@@ -24,7 +24,8 @@ body {
     margin: 0 auto;
     width: 95%;
     font-size: 16px;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 #budget-table table tr {
     width: 100%;
@@ -42,7 +43,10 @@ body {
     text-align: center;
 }
 #budget-table table th {
+    position: sticky;
+    top: 0px;
     cursor: pointer;
+    background: white !important;
     border-top: 3px solid #E8E8E8;
     border-bottom: 2px solid #E8E8E8;
 }

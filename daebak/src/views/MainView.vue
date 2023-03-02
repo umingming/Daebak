@@ -2,25 +2,25 @@
     <div id="main-view">
         <div class="top">
             <main-banner
-                title="2월 총 매출"
+                type="총 매출"
                 :value="totalRevenue"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
             <main-banner
-                title="2월 총 주문 수"
+                type="총 주문 수"
                 :value="totalOrder"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
             <main-banner
-                title="2월 평균 매출"
+                type="평균 매출"
                 :value="averageRevenue"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
             <main-banner
-                title="2월 평균 주문 수"
+                type="평균 주문 수"
                 :value="averageOrder"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
@@ -90,7 +90,7 @@ export default {
     width: 260px;    
     background: white;
     box-shadow: 3px 3px 0px #fd96364f;
-    padding: 13px 5px;
+    padding: 11px 5px;
     color: #FF9F40;
 }
 #main-view .top div:first-child {
@@ -105,7 +105,7 @@ export default {
 #main-view .top div ::v-deep i {
     font-size: 50px;
     float: left;
-    margin: 5px 15px;
+    margin: 5px 15px 5px 10px;
     opacity: 0.5;
 }
 #main-view .top div ::v-deep h3 {
@@ -123,13 +123,14 @@ export default {
 }
 #main-view .middle {
     position: relative;
-    height: 320px;
+    height: 300px;
     margin: 30px auto;
     width: 100%;
     display: flex;
 }
 #main-view .middle ::v-deep .chart-box {
     width: 900px !important;
+    padding-top: 5px;
     margin-left: 5px;
     margin-right: 30px;
     box-shadow: 3px 3px 0px #fd96364f;
