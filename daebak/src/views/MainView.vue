@@ -2,26 +2,24 @@
     <div id="main-view">
         <div class="top">
             <main-banner
-                type="총 매출"
-                :value="totalRevenue"
+                key-type="value"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
             <main-banner
-                type="총 주문 수"
-                :value="totalOrder"
+                key-type="amount"
+            >
+                <i slot="icon" class="fa-solid fa-mobile"></i>
+            </main-banner>
+            <main-banner
+                key-type="value"
+                :average-flag="true"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
             <main-banner
-                type="평균 매출"
-                :value="averageRevenue"
-            >
-                <i slot="icon" class="fa-solid fa-user"></i>
-            </main-banner>
-            <main-banner
-                type="평균 주문 수"
-                :value="averageOrder"
+                key-type="amount"
+                :average-flag="true"
             >
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
@@ -86,12 +84,14 @@ export default {
     display: flex;
 }
 #main-view .top div {
+    position: relative;
     margin: 0 auto;
     width: 260px;    
     background: white;
     box-shadow: 3px 3px 0px #fd96364f;
     padding: 11px 5px;
     color: #FF9F40;
+    overflow: hidden !important;
 }
 #main-view .top div:first-child {
     margin-left: 5px;
@@ -102,24 +102,46 @@ export default {
 #main-view .top div:nth-child(even) {
     color: #4BC0C0;
 }
-#main-view .top div ::v-deep i {
-    font-size: 50px;
-    float: left;
-    margin: 5px 15px 5px 10px;
-    opacity: 0.5;
+#main-view .top div > ::v-deep i {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.3;
+    transform: translateX(200px) translateY(-5px);
 }
 #main-view .top div ::v-deep h3 {
+    transform: translateX(17px);
     color: #666;
 }
 #main-view .top div ::v-deep span {
-    font-size: 24px;
+    position: relative;
+    font-size: 22px;
     font-weight: bolder;
+    left: 20px;
 }
 #main-view .top div ::v-deep small {
     position: relative;
-    color: #666;
+    color: #666 !important;
     top: -1px;
-    left: 5px;
+    left: 31px;
+    animation-name: change-rate;
+    animation-duration: 1.4s;
+}
+@keyframes change-rate {
+   0% {opacity: 0;}
+   50% {opacity: 0;}
+   100% {opacity: 1;}
+}
+#main-view .top div ::v-deep small i {
+    position: absolute;
+    font-size: 10px;
+    top: 5px;
+    left: -5px;
+    opacity: 1;
+    color: #FF6384;
+}
+#main-view .top div ::v-deep small i.fa-arrow-down-long {
+    top: 6px;
+    color: #36A2EB;
 }
 #main-view .middle {
     position: relative;
