@@ -108,6 +108,10 @@ export default {
     opacity: 0.3;
     transform: translateX(200px) translateY(-5px);
 }
+#main-view .top div ::v-deep svg {
+    position: absolute;
+    right: 0;
+}
 #main-view .top div ::v-deep h3 {
     transform: translateX(17px);
     color: #666;

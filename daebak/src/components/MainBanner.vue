@@ -25,7 +25,7 @@ import * as MAIN from "@/constants/main.js"
 
 export default {
     components: {
-        AnimatedNumber
+        AnimatedNumber,
     },
     props: {
         keyType: { type: String, default: "" },
