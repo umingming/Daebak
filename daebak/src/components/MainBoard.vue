@@ -1,5 +1,6 @@
 <template>
     <div class="main-board">
+        <h3>{{ title }}</h3>
         <budget-table
             :items="fetchedList"
             :hasPagination="false"
@@ -42,12 +43,16 @@ export default {
     },
     computed: {
         ...mapGetters(["fetchedList"]),
-        checkItems() {
-            return [...this.checkList];
-        }
-    },
-    created() {
-        this.$store.dispatch("FETCH_LIST");
+        itemsByDate() {
+            let items = this.fetchedList.filter(i => i.date === this.today);
+            return items;
+        },
+        title() {
+            return `${new Date().getMonth() + 1}월 주문 내역`;
+        },
+        today() {
+            return new Date().toISOString().slice(0, 10);
+        },
     },
     methods: {
         showModal({target}) {
@@ -62,15 +67,18 @@ export default {
 
 <style scoped>
 .main-board {
+    position: relative;
     background: white;
     padding: 20px;
     box-shadow: 3px 3px 0px #fd96364f;
     margin-right: 5px;
 }
 .main-board ::v-deep #budget-table{
-    height: 100%;
-    margin: 0 auto;
-    overflow: scroll;
+    position: relative;
+    height: 230px;
+    margin: 2px auto;
+    overflow-x: visible;
+    overflow-y: scroll;
 }
 .main-board ::v-deep #budget-table th,
 .main-board ::v-deep #budget-table td {
@@ -103,5 +111,10 @@ export default {
 }
 .budget-box .search #keyword {
     width: 120px;
+}
+h3 {
+    font-size: 18px;
+    color: #666;
+    transform: translateX(10px) translateY(-7px);
 }
 </style>
