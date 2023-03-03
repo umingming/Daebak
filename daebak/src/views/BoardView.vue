@@ -117,13 +117,13 @@ export default {
     },
     methods: {
         showModal({target}) {
-            this.checkList = this.budgetList.filter(i => i.check);
+            this.checkList = this.fetchedList.filter(i => i.check);
 
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
         },
         checkItem(index, isChecked) {
-            this.budgetList[index].check = isChecked;
+            this.fetchedList[index].check = isChecked;
         }
     }
 };

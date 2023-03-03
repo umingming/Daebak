@@ -60,9 +60,9 @@ export default {
 <style scoped>
 .budget-add {
     position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 250px;
+    left:50%;
+    /* transform: translateX(50%); */
     width: 900px;
     height: 300px;
     padding: 20px 20px;

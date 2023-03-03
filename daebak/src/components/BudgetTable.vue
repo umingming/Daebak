@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <th 
-                    class="check"
+                    class="col-check"
                     v-if="hasCheckBox" 
                 >
                     <input 
@@ -11,6 +11,10 @@
                         @click="checkAll"
                         v-model="isCheckedAll"
                     >
+                </th>
+                <th 
+                    v-else-if="isModal" 
+                    class="col-delete">
                 </th>
                 <th 
                     v-for="(value, key) in header"
@@ -32,7 +36,7 @@
             </tr>
             <tr v-for="(item, index) in pageItems" :key="index">
                 <td 
-                    class="check"
+                    class="col-check"
                     v-if="hasCheckBox"
                 >
                     <input 
@@ -42,7 +46,7 @@
                         @input="checkItem"
                     >
                 </td>
-                <td v-else-if="isModal">
+                <td v-else-if="isModal" class="col-delete">
                     <button 
                         class="btn-delete"
                         @click="deleteItem(index)"
