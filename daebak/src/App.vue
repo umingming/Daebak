@@ -1,11 +1,6 @@
 <template>
     <div id="app">
-        <header
-            class="title"
-            :class="$route.name"
-        >
-            💸대박나라💸
-        </header>
+        <header class="title" :class="$route.name">💸대박나라💸</header>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -13,7 +8,6 @@
 </template>
 
 <script>
-
 export default {
     name: "App",
     created() {
@@ -21,9 +15,9 @@ export default {
     },
     methods: {
         initKakao() {
-            window.Kakao.init('ddd04c05d8377d46d25230329657ea11');
+            window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
         },
-    }
+    },
 };
 </script>
 <style scoped>
@@ -34,22 +28,22 @@ export default {
     margin: 0 auto;
 }
 .title {
-    font-size: 50px;
-    font-weight: bolder;
+    font-size: 55px;
     color: rgb(255, 123, 0);
     text-align: center;
     margin: 25px auto;
     transform: translateY(-5px);
+    font-family: "Black Han Sans", sans-serif;
 }
 .title.login {
     margin-top: 100px;
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 </style>

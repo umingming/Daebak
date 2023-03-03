@@ -1,6 +1,9 @@
 <template>
     <div class="main-board">
         <h3>{{ title }}</h3>
+        <router-link to="/board" class="all-board">
+            <i class="fa-solid fa-bars"></i>
+        </router-link>
         <budget-table
             :items="fetchedList"
             :hasPagination="false"
@@ -113,8 +116,23 @@ export default {
     width: 120px;
 }
 h3 {
+    display: inline;
     font-size: 18px;
     color: #666;
-    transform: translateX(10px) translateY(-7px);
+    padding: 0 10px 0 15px;
+}
+.main-board .all-board {
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.main-board .all-board i {
+    color: #b4b4b4;
+    font-size: 17px;
+    line-height: 25px;
+}
+.main-board .all-board i:hover {
+    color: #FF7B00
 }
 </style>

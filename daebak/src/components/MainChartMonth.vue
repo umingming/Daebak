@@ -134,10 +134,8 @@ export default {
                             position: 'right'
                         }],
                     },
-                    onClick() {
-                        return (e, el) => {
-                            console.log(e, el);
-                        }
+                    onClick(e, el) {
+                        console.log(e, el);
                     }
                 }
             });

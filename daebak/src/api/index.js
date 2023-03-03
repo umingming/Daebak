@@ -1,3 +1,9 @@
+import axios from 'axios';
+
+const config = {
+    baseUrl: 'http://192.168.101.113:5959/api/v1/daebak' 
+};
+
 function fetchUserInfo() {
     return {
         id: "ymlee",
@@ -255,7 +261,13 @@ function fetchList() {
     ]
 }
 
+function createOrder(list) {
+    return axios.post(config.baseUrl, list);
+
+}
+
 export {
     fetchUserInfo,
-    fetchList
+    fetchList,
+    createOrder
 }
