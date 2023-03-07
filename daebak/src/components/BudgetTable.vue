@@ -174,7 +174,6 @@ export default {
             } else {
                 this.tableItems = this.tableItems.reverse();
             }
-
             this.isAscending = !this.isAscending;
         },
         increaseIndex() {
