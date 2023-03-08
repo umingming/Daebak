@@ -69,7 +69,6 @@ export default {
         },
         addUpValue(list) {
             return list.map(i => +i[this.keyType]).reduce((sum, i) => sum + i);
-
         },
     }
 };

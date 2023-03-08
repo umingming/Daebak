@@ -28,7 +28,7 @@ export default {
                 내용: "title",
                 금액: "value",
                 주문: "amount",
-                분류: "cate"
+                분류: "cate",
             },
             checkList: [],
             isShowModal: {
@@ -63,7 +63,7 @@ export default {
 
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
-        },
+        }
     }
 };
 </script>
