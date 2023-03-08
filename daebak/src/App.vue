@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <header class="title" :class="$route.name">💸대박나라💸</header>
+        <div class="header" :class="$route.name">💸대박나라💸</div>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -27,7 +27,7 @@ export default {
     overflow: hidden;
     margin: 0 auto;
 }
-.title {
+.header {
     font-size: 55px;
     color: rgb(255, 123, 0);
     text-align: center;
@@ -35,7 +35,7 @@ export default {
     transform: translateY(-5px);
     font-family: "Black Han Sans", sans-serif;
 }
-.title.login {
+.header.login {
     margin-top: 100px;
 }
 .fade-enter-active,

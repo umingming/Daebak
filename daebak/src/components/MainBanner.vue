@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <slot name="icon"></slot>
+    <div class="main-banner">
         <h3>{{ title }}</h3>
         <AnimatedNumber
             :duration="1000"
@@ -15,6 +14,7 @@
             ></i>
             {{ valueIncrement }}
         </small>
+        <slot name="icon"></slot>
     </div>
 </template>
 
@@ -74,3 +74,5 @@ export default {
     }
 };
 </script>
+<style scoped>
+</style>

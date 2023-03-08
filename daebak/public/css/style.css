@@ -10,6 +10,74 @@ body {
     background-color: #f9f2d3;
 }
 
+/* Main */
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 120px);
+    grid-gap: 20px;
+}
+.wrapper > div {
+    position: relative;
+    background: white;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+.wrapper > div > h3 {
+    margin: 0 auto;
+    font-size: 20px;
+}
+#main-view .main-banner:nth-child(1) {
+    grid-area: 1 / 1 / 2 / 5;
+}
+#main-view .main-banner:nth-child(2) {
+    grid-area: 2 / 1 / 3 / 5;
+}
+#main-view .main-banner span {
+    font-size: 35px;
+    font-weight: bolder;
+}
+#main-view .main-banner small {
+    display: block;
+    font-size: 15px;
+    color: #666 !important;
+    transform: translateX(5px);
+    animation-name: change-rate;
+    animation-duration: 1.4s;
+}
+@keyframes change-rate {
+   0% {opacity: 0;}
+   50% {opacity: 0;}
+   100% {opacity: 1;}
+}
+#main-view .main-banner small i {
+    color: #FF6384;
+}
+#main-view .main-banner small i.fa-arrow-down-long {
+    color: #36A2EB;
+}
+#main-view .main-banner > i {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.3;
+    top: 20px;
+    right: 20px;
+    color: #FF9F40;
+}
+#main-view .main-chart-weekly-quantity {
+    grid-area: 3 / 1 / 5 / 5;
+}
+#main-view .main-chart-monthly-price {
+    grid-area: 1 / 5 / 3 / 13;
+}
+#main-view .main-chart-monthly-quantity {
+    grid-area: 3 / 5 / 5 / 10;
+}
+#main-view .main-board {
+    grid-area: 3 / 10 / 5 / 13;
+}
 .board-box {
     position: relative;
     margin: 10px auto;
@@ -197,3 +265,4 @@ body {
 .btn-icon .btn-delete i {
     font-size: 18px;
 }
+
