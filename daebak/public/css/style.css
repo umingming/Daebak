@@ -30,10 +30,10 @@ body {
     font-size: 20px;
 }
 #main-view .main-banner:nth-child(1) {
-    grid-area: 1 / 1 / 2 / 5;
+    grid-area: 1 / 1 / 2 / 4;
 }
 #main-view .main-banner:nth-child(2) {
-    grid-area: 2 / 1 / 3 / 5;
+    grid-area: 2 / 1 / 3 / 4;
 }
 #main-view .main-banner span {
     font-size: 35px;
@@ -70,7 +70,7 @@ body {
     grid-area: 3 / 1 / 5 / 5;
 }
 #main-view .main-chart-monthly-price {
-    grid-area: 1 / 5 / 3 / 13;
+    grid-area: 1 / 4 / 3 / 13;
 }
 #main-view .main-chart-monthly-quantity {
     grid-area: 3 / 5 / 5 / 10;

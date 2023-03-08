@@ -41,11 +41,11 @@ export default {
                 labels: [],
                 datasets: [
                     {
-                        label: "2월",
+                        label: "",
                         data: [],
                     },
                     {
-                        label: "3월",
+                        label: "",
                         data: [],
                     },
                 ],
@@ -92,15 +92,18 @@ export default {
             this.setChartDatas();
         },
         setChartLabels() {
-            const daysInMonth = new Date().getDate();
-            const currentMonth = new Date().toISOString().slice(0, 7);
-            const dayFormat = (day) =>
-                `${currentMonth}-${day.toString().padStart(2, "0")}`;
+            const year = new Date().getFullYear();
+            const month = new Date().getMonth();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+            const dayFormat = (index) =>
+                new Date(year, month, index + 2).toISOString().slice(0, 10);
 
-            const labels = Array.from({ length: daysInMonth }, (_, index) =>
-                dayFormat(++index)
+            const labels = Array.from({ length: lastDay }, (_, index) =>
+                dayFormat(index)
             );
             this.chartData.labels = labels;
+            this.chartData.datasets[0].label = `${month}월`;
+            this.chartData.datasets[1].label = `${month + 1}월`;
         },
         setChartDatas() {
             this.chartData.datasets.forEach(
