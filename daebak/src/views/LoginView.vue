@@ -3,11 +3,11 @@
         <section id="login">
             <div class="input">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" placeholder="아이디">
+                <input type="text" placeholder="아이디" />
             </div>
             <div class="input">
                 <i class="fa-solid fa-key"></i>
-                <input type="password" placeholder="비밀번호">
+                <input type="password" placeholder="비밀번호" />
             </div>
             <div class="oval login">
                 <router-link to="/main">로그인</router-link>
@@ -31,7 +31,10 @@ export default {
     },
     methods: {
         initNaver() {
-            const naver_id_login = new window.naver_id_login("ZEBr31RYP_YsPp4wMrLq", "http://localhost:8080/login/naver");
+            const naver_id_login = new window.naver_id_login(
+                "ZEBr31RYP_YsPp4wMrLq",
+                "http://localhost:8080/login/naver"
+            );
             const state = naver_id_login.getUniqState();
             naver_id_login.setButton("green", 1, 45);
             naver_id_login.setState(state);
@@ -42,21 +45,21 @@ export default {
             window.Kakao.Auth.login({
                 success: () => {
                     window.Kakao.API.request({
-                        url: '/v2/user/me',
+                        url: "/v2/user/me",
                         success: () => {
                             this.$router.push("/main").catch(() => {});
                         },
                         fail: function (error) {
-                            console.log(error)
+                            console.log(error);
                         },
-                    })
+                    });
                 },
                 fail: function (error) {
-                    console.log(error)
+                    console.log(error);
                 },
-            })
+            });
         },
-    }
+    },
 };
 </script>
 
@@ -74,7 +77,7 @@ export default {
     line-height: 40px;
     margin: auto 20px;
     width: 30px;
-    color: #757575
+    color: #757575;
 }
 .input:hover i {
     color: rgb(255, 123, 0);
@@ -99,7 +102,7 @@ export default {
     border-radius: 23px;
     margin: 15px auto;
     margin-top: 30px;
-    background: #FF7B00;
+    background: #ff7b00;
     cursor: pointer;
 }
 .login a {
