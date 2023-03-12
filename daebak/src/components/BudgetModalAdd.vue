@@ -17,7 +17,7 @@
         </div>
         <div class="btn">
             <button @click="$emit('close')">취소</button>
-            <button @click="$emit('ok')">확인</button>
+            <button @click="addBudget">확인</button>
         </div>
     </div>
 </template>
@@ -25,6 +25,7 @@
 <script>
 import BudgetTable from "@/components/BudgetTable.vue";
 import BudgetItem from "@/components/BudgetItem.vue";
+import API from "@/api/index.js";
 
 export default {
     props: {
@@ -52,6 +53,19 @@ export default {
         },
         deleteItem(index) {
             this.addItems.splice(index, 1);
+        },
+        addBudget() {
+            const param = this.addItems.map(i => {
+                return {
+                    quantity: i.amount,
+                    type: i.cate,
+                    orderDate: i.date,
+                    price: i.value,
+                    content: i.title
+                }
+            });
+
+            API.createOrder(param);
         }
     }
 };
@@ -61,8 +75,8 @@ export default {
 .budget-add {
     position: absolute;
     top: 250px;
-    left:50%;
-    /* transform: translateX(50%); */
+    left: 50%;
+    transform: translateX(-50%);
     width: 900px;
     height: 300px;
     padding: 20px 20px;
