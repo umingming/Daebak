@@ -10,7 +10,7 @@
         >
             <i slot="icon" class="fa-solid fa-mobile"></i>
         </main-banner>
-        <div class="main-chart-weekly-quantity"></div>
+        <main-chart-order-avg></main-chart-order-avg>
         <main-chart-month></main-chart-month>
         <div class="main-chart-monthly-quantity"></div>
         <div class="main-board"></div>
@@ -20,15 +20,17 @@
 </template>
 
 <script>
-import MainChartMonth from "@/components/MainChartMonth.vue";
+import MainChartMonth from "@/components/main/MainChartMonth.vue";
+import MainChartOrderAvg from "@/components/main/MainChartOrderAvg.vue";
 // import MainBoard from "@/components/MainBoard.vue";
-import MainBanner from "@/components/MainBanner.vue";
+import MainBanner from "@/components/main/MainBanner.vue";
 import { mapGetters } from "vuex";
 
 export default {
 	components: {
         MainChartMonth,
         MainBanner,
+        MainChartOrderAvg
         // MainBoard,
     },
     computed: {

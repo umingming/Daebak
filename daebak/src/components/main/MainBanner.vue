@@ -1,6 +1,9 @@
 <template>
     <div class="main-banner">
         <h3>{{ title }}</h3>
+        <div class="icon">
+            <slot name="icon"></slot>
+        </div>
         <div class="number">
             <AnimatedNumber
                 :duration="1000"
@@ -16,10 +19,6 @@
                 {{ valueIncrement }}
             </small>
         </div>
-        <div class="chart">
-            <LineChart :chart-data="chartData" :chart-options="chartOptions" />
-        </div>
-        <slot name="icon"></slot>
     </div>
 </template>
 
@@ -66,38 +65,6 @@ export default {
             keyList: [],
             conditions: {},
             combos: {},
-            chartData: {
-                labels: [],
-                datasets: [
-                    {
-                        label: "",
-                        data: [
-                            1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 16, 19, 21, 25,
-                            29, 31, 32, 35, 36, 30, 39, 40, 42,
-                        ],
-                        backgroundColor: "#FFA200",
-                        borderColor: "#FFA200",
-                        pointRadius: 0,
-                    },
-                ],
-            },
-            chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                },
-                scales: {
-                    x: {
-                        display: false,
-                    },
-                    y: {
-                        display: false,
-                    },
-                },
-            },
         };
     },
     computed: {
@@ -127,33 +94,7 @@ export default {
             );
         },
     },
-    created() {
-        this.init();
-    },
     methods: {
-        init() {
-            this.setChartLabels();
-            this.setChartDatas();
-        },
-        setChartLabels() {
-            const year = new Date().getFullYear();
-            const month = new Date().getMonth();
-            const lastDay = new Date(year, month + 1, 0).getDate();
-            const dayFormat = (index) =>
-                new Date(year, month, index + 2).toISOString().slice(0, 10);
-
-            const labels = Array.from({ length: lastDay }, (_, index) =>
-                dayFormat(index)
-            );
-            this.chartData.labels = labels;
-            this.chartData.datasets[0].label = `${month}월`;
-            this.chartData.datasets[1].label = `${month + 1}월`;
-        },
-        setChartDatas() {
-            this.chartData.datasets.forEach(
-                (i) => (i.data = this.getPriceListByMonth(i.label))
-            );
-        },
         toPrice(value) {
             return (+value.toFixed()).toLocaleString();
         },
@@ -174,26 +115,5 @@ export default {
     position: relative;
     z-index: 1;
     width: 200px !important;
-}
-/* .chart::before {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 70px;
-    z-index: 10;
-    width: 100%;
-    height: 100px;
-    background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0)
-    );
-} */
-::v-deep #line-chart {
-    position: absolute;
-    z-index: 1;
-    left: 70px;
-    bottom: 0px;
-    opacity: 0;
 }
 </style>
