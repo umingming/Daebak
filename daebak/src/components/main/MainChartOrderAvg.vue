@@ -45,11 +45,15 @@ export default {
                     {
                         label: "",
                         data: [],
+                        backgroundColor: "white",
+                        pointBorderWidth: 3
                     },
                     {
                         label: "",
                         data: [],
-                        backgroundColor: "#FFA200",
+                        backgroundColor: "white",
+                        borderColor: "#FFA200",
+                        pointBorderWidth: 3,
                     },
                 ],
             },
@@ -87,15 +91,11 @@ export default {
                     y: {
                         display: true,
                         ticks: {
-                            callback(data) {
-                                let value = (data + "").slice(0, -4);
-                                return value || 0;
-                            },
                             font: {
                                 size: 14,
                             },
-                            stepSize: 200000,
-                            max: 1000000,
+                            stepSize: 10,
+                            max: 50,
                         },
                         grid: {
                             borderWidth: 0,

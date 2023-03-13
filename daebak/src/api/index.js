@@ -18,7 +18,7 @@ function fetchList() {
             date: "2023-02-01",
             title: "배달의 민족",
             value: "320000",
-            amount: "3",
+            amount: "10",
             cate: "배민"
         },
         {
@@ -32,7 +32,7 @@ function fetchList() {
             date: "2023-02-02",
             title: "마달의 민족",
             value: "300000",
-            amount: "3",
+            amount: "1",
             cate: "배민"
         },
         {
@@ -53,7 +53,7 @@ function fetchList() {
             date: "2023-02-05",
             title: "배달의 민족",
             value: "300000",
-            amount: "3",
+            amount: "8",
             cate: "배민"
         },
         {
