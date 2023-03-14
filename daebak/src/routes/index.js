@@ -1,38 +1,38 @@
-import Vue from 'vue'; 
-import VueRouter from 'vue-router';
-import MainView from '../views/MainView.vue';
-import LoginView from '../views/LoginView.vue';
-import BoardView from '../views/BoardView.vue';
-import LoginNaverView from '../views/LoginNaverView.vue';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import MainView from "../views/MainView.vue";
+import LoginView from "../views/LoginView.vue";
+import BoardView from "../views/BoardView.vue";
+import LoginNaverView from "../views/LoginNaverView.vue";
 
 Vue.use(VueRouter);
 
-export const router = new VueRouter({  
-    mode: 'history',
+export const router = new VueRouter({
+    mode: "history",
     routes: [
         {
-            path: '/',
-            redirect: '/login',
+            path: "/",
+            redirect: "/login",
         },
         {
-            path: '/login', 
+            path: "/login",
             name: "login",
-            component: LoginView, 
+            component: LoginView,
         },
         {
-            path: '/login/naver', 
+            path: "/login/naver",
             name: "naver",
-            component: LoginNaverView, 
+            component: LoginNaverView,
         },
         {
-            path: '/main', 
+            path: "/main",
             name: "main",
-            component: MainView, 
+            component: MainView,
         },
         {
-            path: '/board', 
+            path: "/board",
             name: "board",
-            component: BoardView, 
+            component: BoardView,
         },
-    ]
+    ],
 });

@@ -1,11 +1,11 @@
 <template>
     <div class="main-chart-monthly-price chart-box">
         <h3>3월 매출 추이</h3>
-        <BarChart
+        <bar-chart
             :chart-data="chartData"
             :chart-options="chartOptions"
             :height="225"
-        />
+        ></bar-chart>
     </div>
 </template>
 

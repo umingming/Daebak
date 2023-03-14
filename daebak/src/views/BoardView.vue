@@ -168,7 +168,7 @@ export default {
     .cell {
         &:hover {
             color: #ff7b00;
-            background: #ff7b000b;;
+            background: #ff7b000b;
         }
         &:active {
             background: #ff7b0079;
@@ -193,12 +193,11 @@ export default {
     }
 }
 .mx-table-year,
-.mx-table-month { 
+.mx-table-month {
     .cell {
         &.active {
             background: #ff7b0079;
         }
     }
 }
-
 </style>

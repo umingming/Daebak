@@ -1,13 +1,10 @@
 <template>
     <div class="budget-add">
         <div class="add-item">
-            <budget-item
-                @apply="modifyList"
-            >
-            </budget-item>
+            <budget-item @apply="modifyList"> </budget-item>
         </div>
         <div class="add-list">
-            <budget-table 
+            <budget-table
                 :items="listItems"
                 :isModal="true"
                 @delete="deleteItem"
@@ -31,18 +28,18 @@ export default {
     },
     components: {
         BudgetTable,
-        BudgetItem
+        BudgetItem,
     },
     data() {
         return {
             modifyItems: JSON.parse(JSON.stringify(this.checkItems)),
             index: 0,
-        }
+        };
     },
     computed: {
         listItems() {
             let items = [...this.modifyItems];
-            items.forEach(i => i.check = true);
+            items.forEach((i) => (i.check = true));
             return items;
         },
     },
@@ -50,14 +47,14 @@ export default {
         modifyList(item) {
             let items = [...this.modifyItems];
             for (const [key, value] of Object.entries(item)) {
-                items.forEach(i => i[key] = value);
+                items.forEach((i) => (i[key] = value));
             }
             this.modifyItems = items;
         },
         deleteItem(index) {
             this.modifyItems.splice(index, 1);
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -103,7 +100,7 @@ export default {
     margin-left: 10px;
 }
 .add-list #budget-table table th,
-.add-list #budget-table table td{
+.add-list #budget-table table td {
     width: 19% !important;
 }
 

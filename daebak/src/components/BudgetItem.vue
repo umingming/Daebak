@@ -2,19 +2,11 @@
     <div class="budget-item">
         <div>
             <span>날짜</span>
-            <input
-                type="date"
-                id="date"
-                v-model="item.date"
-            >
+            <input type="date" id="date" v-model="item.date" />
         </div>
         <div>
             <span>내용</span>
-            <input
-                type="text"
-                id="title"
-                v-model="item.title"
-            >
+            <input type="text" id="title" v-model="item.title" />
         </div>
         <div>
             <span>금액</span>
@@ -25,40 +17,30 @@
                 min="0"
                 :value="item.value"
                 @input="checkNumber"
-            >
+            />
         </div>
         <div>
             <span>주문</span>
-            <input 
+            <input
                 type="number"
                 id="amount"
                 min="1"
                 :value="item.amount"
                 @input="checkNumber"
-            >
+            />
         </div>
         <div>
             <span>분류</span>
-            <select 
-                name="type"
-                id="cate"
-                v-model="item.cate"
-            >
+            <select name="type" id="cate" v-model="item.cate">
                 <option value="배민">배민</option>
                 <option value="매장">매장</option>
             </select>
         </div>
         <div class="btn-icon">
-            <button 
-                class="btn-refresh"
-                @click="resetItem"
-            >
+            <button class="btn-refresh" @click="resetItem">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
             </button>
-            <button 
-                class="btn-add"
-                @click="applyItem"
-            >
+            <button class="btn-add" @click="applyItem">
                 <i class="fa-solid fa-square-plus"></i>
             </button>
         </div>
@@ -72,12 +54,12 @@ export default {
     },
     data() {
         return {
-            item: {...this.checkItem},
-        }
+            item: { ...this.checkItem },
+        };
     },
     methods: {
-        checkNumber({data, target}) {
-            let {id, value} = target;
+        checkNumber({ data, target }) {
+            let { id, value } = target;
 
             if (data === "-") {
                 target.value = this.item[id];
@@ -87,12 +69,12 @@ export default {
         },
         resetItem() {
             this.item = {};
-            this.$emit('reset');
+            this.$emit("reset");
         },
         applyItem() {
-            this.$emit('apply', {...this.item});
+            this.$emit("apply", { ...this.item });
         },
-    }
+    },
 };
 </script>
 
@@ -122,7 +104,7 @@ export default {
     width: 120px;
     top: -2px;
     padding-left: 5px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     border: 1px solid #b4b4b4;
     border-radius: 3px;
 }
@@ -130,7 +112,7 @@ export default {
     outline: 0px;
 }
 .budget-item select {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     position: relative;
     margin-left: 4px;
     height: 23px;

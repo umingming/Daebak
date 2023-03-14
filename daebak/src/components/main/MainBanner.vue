@@ -5,12 +5,12 @@
             <slot name="icon"></slot>
         </div>
         <div class="number">
-            <AnimatedNumber
+            <animated-number
                 :duration="1000"
                 :delay="10"
                 :value="value"
                 :formatValue="toPrice"
-            />
+            ></animated-number>
             <small>
                 <i
                     class="fa-solid fa-arrow-up-long"
@@ -24,7 +24,6 @@
 
 <script>
 import AnimatedNumber from "animated-number-vue";
-import { Line as LineChart } from "vue-chartjs/legacy";
 
 import { mapGetters } from "vuex";
 import * as MAIN from "@/constants/main.js";
@@ -52,7 +51,6 @@ ChartJS.register(
 export default {
     components: {
         AnimatedNumber,
-        LineChart,
     },
     props: {
         keyType: { type: String, default: "" },

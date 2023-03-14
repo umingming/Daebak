@@ -1,26 +1,16 @@
 <template>
     <div id="main-view">
         <div class="top">
-            <main-banner
-                key-type="value"
-            >
+            <main-banner key-type="value">
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
-            <main-banner
-                key-type="amount"
-            >
+            <main-banner key-type="amount">
                 <i slot="icon" class="fa-solid fa-mobile"></i>
             </main-banner>
-            <main-banner
-                key-type="value"
-                :average-flag="true"
-            >
+            <main-banner key-type="value" :average-flag="true">
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
-            <main-banner
-                key-type="amount"
-                :average-flag="true"
-            >
+            <main-banner key-type="amount" :average-flag="true">
                 <i slot="icon" class="fa-solid fa-user"></i>
             </main-banner>
         </div>
@@ -33,13 +23,13 @@
 </template>
 
 <script>
-import MainChartMonth from "@/components/MainChartMonth.vue";
-import MainBoard from "@/components/MainBoard.vue";
-import MainBanner from "@/components/MainBanner.vue";
+import MainChartMonth from "@/components/main/MainChartMonth.vue";
+import MainBoard from "@/components/main/MainBoard.vue";
+import MainBanner from "@/components/main/MainBanner.vue";
 import { mapGetters } from "vuex";
 
 export default {
-	components: {
+    components: {
         MainChartMonth,
         MainBanner,
         MainBoard,
@@ -47,16 +37,20 @@ export default {
     computed: {
         ...mapGetters(["fetchedList"]),
         totalRevenue() {
-            return this.fetchedList.map(i => +i.value).reduce((sum, i) => sum + i);
+            return this.fetchedList
+                .map((i) => +i.value)
+                .reduce((sum, i) => sum + i);
         },
         totalOrder() {
-            return this.fetchedList.map(i => +i.amount).reduce((sum, i) => sum + i);
+            return this.fetchedList
+                .map((i) => +i.amount)
+                .reduce((sum, i) => sum + i);
         },
         averageRevenue() {
-            return this.totalRevenue / this.totalDays; 
+            return this.totalRevenue / this.totalDays;
         },
         averageOrder() {
-            return this.totalOrder / this.totalDays; 
+            return this.totalOrder / this.totalDays;
         },
         totalDays() {
             return new Date().getDate();
@@ -69,7 +63,7 @@ export default {
         setDate(date) {
             console.log(date);
         },
-    }
+    },
 };
 </script>
 
@@ -86,11 +80,11 @@ export default {
 #main-view .top div {
     position: relative;
     margin: 0 auto;
-    width: 260px;    
+    width: 260px;
     background: white;
     box-shadow: 3px 3px 0px #fd96364f;
     padding: 11px 5px;
-    color: #FF9F40;
+    color: #ff9f40;
     overflow: hidden !important;
 }
 #main-view .top div:first-child {
@@ -100,7 +94,7 @@ export default {
     margin-right: 5px;
 }
 #main-view .top div:nth-child(even) {
-    color: #4BC0C0;
+    color: #4bc0c0;
 }
 #main-view .top div > ::v-deep i {
     position: absolute;
@@ -131,9 +125,15 @@ export default {
     animation-duration: 1.4s;
 }
 @keyframes change-rate {
-   0% {opacity: 0;}
-   50% {opacity: 0;}
-   100% {opacity: 1;}
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 #main-view .top div ::v-deep small i {
     position: absolute;
@@ -141,11 +141,11 @@ export default {
     top: 5px;
     left: -5px;
     opacity: 1;
-    color: #FF6384;
+    color: #ff6384;
 }
 #main-view .top div ::v-deep small i.fa-arrow-down-long {
     top: 6px;
-    color: #36A2EB;
+    color: #36a2eb;
 }
 #main-view .middle {
     position: relative;

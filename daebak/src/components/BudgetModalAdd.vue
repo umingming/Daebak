@@ -1,11 +1,7 @@
 <template>
     <div class="budget-add">
         <div class="add-item">
-            <budget-item
-                :checkItem="checkItem"
-                @apply="addItem"
-            >
-            </budget-item>
+            <budget-item :checkItem="checkItem" @apply="addItem"> </budget-item>
         </div>
         <div class="add-list">
             <budget-table
@@ -25,7 +21,7 @@
 <script>
 import BudgetTable from "@/components/BudgetTable.vue";
 import BudgetItem from "@/components/BudgetItem.vue";
-import API from "@/api/index.js";
+import * as API from "@/api/index.js";
 
 export default {
     props: {
@@ -33,17 +29,17 @@ export default {
     },
     components: {
         BudgetTable,
-        BudgetItem
+        BudgetItem,
     },
     data() {
         return {
             addItems: [],
-        }
+        };
     },
     computed: {
         listItems() {
             let items = [...this.addItems];
-            items.forEach(i => i.check = true);
+            items.forEach((i) => (i.check = true));
             return items;
         },
     },
@@ -55,19 +51,19 @@ export default {
             this.addItems.splice(index, 1);
         },
         addBudget() {
-            const param = this.addItems.map(i => {
+            const param = this.addItems.map((i) => {
                 return {
                     quantity: i.amount,
                     type: i.cate,
                     orderDate: i.date,
                     price: i.value,
-                    content: i.title
-                }
+                    content: i.title,
+                };
             });
 
             API.createOrder(param);
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -114,7 +110,7 @@ export default {
     overflow: scroll;
 }
 .add-list #budget-table table th,
-.add-list #budget-table table td{
+.add-list #budget-table table td {
     width: 19% !important;
 }
 

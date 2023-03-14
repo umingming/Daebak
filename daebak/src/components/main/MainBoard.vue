@@ -4,10 +4,7 @@
         <router-link to="/board" class="all-board">
             <i class="fa-solid fa-bars"></i>
         </router-link>
-        <budget-table
-            :items="fetchedList"
-            :hasPagination="false"
-        >
+        <budget-table :items="fetchedList" :hasPagination="false">
         </budget-table>
     </div>
 </template>
@@ -19,7 +16,7 @@ import { mapGetters } from "vuex";
 
 export default {
     components: {
-        BudgetTable
+        BudgetTable,
     },
     data() {
         return {
@@ -33,21 +30,21 @@ export default {
             checkList: [],
             isShowModal: {
                 add: false,
-                modify: false
+                modify: false,
             },
             addItem: {
                 date: "",
                 title: "",
                 value: "",
                 amount: "",
-                cate: ""
-            }
-        }
+                cate: "",
+            },
+        };
     },
     computed: {
         ...mapGetters(["fetchedList"]),
         itemsByDate() {
-            let items = this.fetchedList.filter(i => i.date === this.today);
+            let items = this.fetchedList.filter((i) => i.date === this.today);
             return items;
         },
         title() {
@@ -58,13 +55,13 @@ export default {
         },
     },
     methods: {
-        showModal({target}) {
-            this.checkList = this.budgetList.filter(i => i.check);
+        showModal({ target }) {
+            this.checkList = this.budgetList.filter((i) => i.check);
 
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -76,7 +73,7 @@ export default {
     box-shadow: 3px 3px 0px #fd96364f;
     margin-right: 5px;
 }
-.main-board ::v-deep #budget-table{
+.main-board ::v-deep #budget-table {
     position: relative;
     height: 230px;
     margin: 2px auto;
@@ -133,6 +130,6 @@ h3 {
     line-height: 25px;
 }
 .main-board .all-board i:hover {
-    color: #FF7B00
+    color: #ff7b00;
 }
 </style>

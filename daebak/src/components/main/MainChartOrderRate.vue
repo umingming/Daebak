@@ -1,60 +1,41 @@
 <template>
-    <div class="main-chart-weekly-quantity chart-box">
+    <div class="main-chart-monthly-quantity">
         <h3>3월 평균 주문 수</h3>
-        <line-chart
+        <doughnut-chart
             :chart-data="chartData"
             :chart-options="chartOptions"
             :height="225"
-        ></line-chart>
+        ></doughnut-chart>
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { Line as LineChart } from "vue-chartjs/legacy";
+import { Doughnut as DoughnutChart } from "vue-chartjs/legacy";
 import {
     Chart as ChartJS,
     Title,
     Tooltip,
     Legend,
-    LineElement,
-    LinearScale,
     CategoryScale,
-    PointElement,
+    ArcElement,
 } from "chart.js";
 
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-);
+ChartJS.register(Title, Tooltip, Legend, CategoryScale, ArcElement);
 
 export default {
     components: {
-        LineChart,
+        DoughnutChart,
     },
     data() {
         return {
             chartData: {
-                labels: ["월", "화", "수", "목", "금", "토", "일"],
+                labels: ["배민", "쿠팡", "요기요", "매장"],
                 datasets: [
                     {
                         label: "",
                         data: [],
-                        backgroundColor: "white",
-                        pointBorderWidth: 3,
-                    },
-                    {
-                        label: "",
-                        data: [],
-                        backgroundColor: "white",
-                        borderColor: "#FFA200",
-                        pointBorderWidth: 3,
-                        pointHitRadius: 10,
+                        backgroundColor: "pink",
                     },
                 ],
             },
@@ -119,12 +100,11 @@ export default {
         },
         setChartLabels() {
             const month = new Date().getMonth();
-            this.chartData.datasets[0].label = `${month}월`;
-            this.chartData.datasets[1].label = `${month + 1}월`;
+            this.chartData.datasets[0].label = `${month + 1}월`;
         },
         setChartDatas() {
             this.chartData.datasets.forEach(
-                (i) => (i.data = this.getQuantityAvgByMonth(i.label))
+                (i) => (i.data = this.getQuantityListByMonth(i.label))
             );
         },
         /*
@@ -135,7 +115,7 @@ export default {
             3. 해당 값에 더함.
 
         */
-        getQuantityAvgByMonth(label) {
+        getQuantityListByMonth(label) {
             const monthFromLabel = +label.slice(0, -1);
             let orderList = this.fetchedList.filter((i) => {
                 const monthFromOrder = +i.date.split("-")[1];
@@ -151,10 +131,10 @@ export default {
             let quantityList = Array(this.chartData.labels.length).fill(0);
             orderList.forEach((i) => {
                 const index = (+i.date.slice(-2) + dayOffset) % 7;
-                const quantity = (quantityList[index] + +i.amount) / 2;
-                quantityList[index] = Math.round(quantity);
+                quantityList[index] += +i.amount;
             });
-            return quantityList.map((i) => Math.round(i));
+
+            return quantityList;
         },
     },
 };
