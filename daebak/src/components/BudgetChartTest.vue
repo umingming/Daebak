@@ -12,12 +12,9 @@
         />
     </div>
 </template>
-  
+
 <script>
-import { 
-    Bar as BarChart,
-    Line as LineChart
-} from "vue-chartjs/legacy";
+import { Bar as BarChart, Line as LineChart } from "vue-chartjs/legacy";
 
 import {
     Chart as ChartJS,
@@ -28,7 +25,7 @@ import {
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
 } from "chart.js";
 
 ChartJS.register(
@@ -45,7 +42,7 @@ ChartJS.register(
 export default {
     components: {
         BarChart,
-        LineChart
+        LineChart,
     },
     props: {
         labels: { type: Array },
@@ -83,7 +80,7 @@ export default {
                                 return +this.getLabelForValue(data).slice(-2);
                             },
                             font: {
-                                size: 15
+                                size: 15,
                             },
                             stepSize: 1,
                         },
@@ -116,11 +113,9 @@ export default {
             },
         };
     },
-    computed: {
-    },
+    computed: {},
     mounted() {
         console.log(this.$refs.line);
-
     },
 };
 </script>
@@ -129,7 +124,7 @@ export default {
     position: relative;
     height: 400px;
 }
-::v-deep #bar-chart, 
+::v-deep #bar-chart,
 ::v-deep #line-chart {
     position: absolute;
     top: 0;

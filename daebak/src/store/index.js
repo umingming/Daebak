@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import mutations from "./mutations.js";
 import actions from "./actions.js";
+import order from "./module/order.js";
+import date from "./module/date.js";
 
 Vue.use(Vuex);
 
@@ -20,4 +22,8 @@ export const store = new Vuex.Store({
         },
     },
     actions,
+    modules: {
+        order,
+        date,
+    },
 });
