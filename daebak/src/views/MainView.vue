@@ -54,11 +54,17 @@ export default {
         },
     },
     created() {
+        this.init();
         this.$store.dispatch("FETCH_LIST");
     },
     methods: {
-        setDate(date) {
-            console.log(date);
+        init() {
+            this.dispatchOrder("FETCH_ORDERS");
+            this.fetchOrdersOfThisMonth();
+            this.fetchOrdersOfLastMonth();
+        },
+        dispatchOrder(action, param = {}) {
+            return this.$store.dispatch(`order/${action}`, param);
         },
     },
 };

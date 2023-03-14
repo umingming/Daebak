@@ -12,10 +12,14 @@ export default {
     name: "App",
     created() {
         this.initKakao();
+        this.fetchToday();
     },
     methods: {
         initKakao() {
             window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
+        },
+        fetchToday() {
+            this.$store.dispatch("date/today");
         },
     },
 };
