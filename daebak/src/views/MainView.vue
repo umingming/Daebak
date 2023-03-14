@@ -33,6 +33,7 @@ export default {
     },
     computed: {
         ...mapGetters(["fetchedList"]),
+        ...mapGetters("date", ["month", "year"]),
         totalRevenue() {
             return this.fetchedList
                 .map((i) => +i.value)
@@ -62,6 +63,20 @@ export default {
             this.dispatchOrder("FETCH_ORDERS");
             this.fetchOrdersOfThisMonth();
             this.fetchOrdersOfLastMonth();
+        },
+        fetchOrdersOfThisMonth() {
+            const param = {
+                year: this.year,
+                month: this.month,
+            };
+            this.dispatchFactory("fetchOrdersOfMonth", param);
+        },
+        fetchOrdersOfLastMonth() {
+            const param = {
+                year: this.month === 1 ? this.year - 1 : this.year,
+                month: this.month === 1 ? 12 : this.month - 1,
+            };
+            this.dispatchFactory("fetchOrdersOfMonth", param);
         },
         dispatchOrder(action, param = {}) {
             return this.$store.dispatch(`order/${action}`, param);
