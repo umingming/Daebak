@@ -61,22 +61,19 @@ export default {
     methods: {
         init() {
             this.dispatchOrder("FETCH_ORDERS");
-            this.fetchOrdersOfThisMonth();
-            this.fetchOrdersOfLastMonth();
+
+            const thisMonth = { year: this.year, month: this.month };
+            const lastMonth = this.getLastMonth();
+            this.fetchOrdersOfMonth(thisMonth);
+            this.fetchOrdersOfMonth(lastMonth);
         },
-        fetchOrdersOfThisMonth() {
-            const param = {
-                year: this.year,
-                month: this.month,
-            };
-            this.dispatchFactory("fetchOrdersOfMonth", param);
+        fetchOrdersOfMonth({ year, month }) {
+            this.dispatchFactory("fetchOrdersOfMonth", { year, month });
         },
-        fetchOrdersOfLastMonth() {
-            const param = {
-                year: this.month === 1 ? this.year - 1 : this.year,
-                month: this.month === 1 ? 12 : this.month - 1,
-            };
-            this.dispatchFactory("fetchOrdersOfMonth", param);
+        getLastMonth() {
+            const year = this.month === 1 ? this.year - 1 : this.year;
+            const month = this.month === 1 ? 12 : this.month - 1;
+            return { year, month };
         },
         dispatchOrder(action, param = {}) {
             return this.$store.dispatch(`order/${action}`, param);
