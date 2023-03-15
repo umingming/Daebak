@@ -8,8 +8,8 @@
             <animated-number
                 :duration="1000"
                 :delay="10"
-                :value="value"
-                :formatValue="toPrice"
+                :value="valueTotal"
+                :formatValue="formatNumber"
             ></animated-number>
             <small>
                 <i
@@ -53,53 +53,27 @@ export default {
         AnimatedNumber,
     },
     props: {
-        keyType: { type: String, default: "" },
-        averageFlag: { type: Boolean, default: false },
-    },
-    data() {
-        return {
-            thisMonth: new Date().getMonth() + 1,
-            thisDate: new Date().getDate(),
-            keyList: [],
-            conditions: {},
-            combos: {},
-        };
+        type: { type: String, default: "" },
+        value: { type: Number, default: 0 },
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
+        ...mapGetters("date", ["month", "year"]),
         title() {
-            let averageType = this.averageFlag ? "평균" : "총";
-            return `${this.thisMonth}월 ${averageType} ${MAIN[this.keyType]}`;
+            return `${this.month} 총 ${MAIN[this.type]}`;
         },
-        value() {
-            return this.averageFlag ? this.valueAverage : this.valueTotal;
+        valuesOfThisMonth() {
+            return this.valuesOfMonth(this.month, this.type);
         },
         valueTotal() {
-            return this.addUpValue(this.valueListForThisMonth);
-        },
-        valueAverage() {
-            return Math.floor(this.valueTotal / this.thisDate);
+            return this.valuesOfThisMonth.reduce((sum, i) => sum + (i ?? 0));
         },
         valueIncrement() {
-            let list = this.valueListForThisMonth.filter(
-                (i) => +i.date.slice(8) === this.thisDate
-            );
-            return this.addUpValue(list).toLocaleString();
-        },
-        valueListForThisMonth() {
-            return this.fetchedList.filter(
-                (i) => +i.date.slice(5, 7) === this.thisMonth
-            );
+            return this.valuesOfThisMonth.slice(-1).toLocaleString();
         },
     },
     methods: {
-        toPrice(value) {
+        formatNumber(value) {
             return (+value.toFixed()).toLocaleString();
-        },
-        addUpValue(list) {
-            return list
-                .map((i) => +i[this.keyType])
-                .reduce((sum, i) => sum + i);
         },
     },
 };

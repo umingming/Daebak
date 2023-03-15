@@ -1,9 +1,9 @@
 <template>
     <div id="main-view" class="wrapper">
-        <main-banner key-type="value">
+        <main-banner type="value" :value="totalPriceOfThisMonth">
             <i slot="icon" class="fa-solid fa-user"></i>
         </main-banner>
-        <main-banner key-type="amount">
+        <main-banner type="amount" :value="totalQuantityOfThisMonth">
             <i slot="icon" class="fa-solid fa-mobile"></i>
         </main-banner>
         <main-chart-order-avg></main-chart-order-avg>
@@ -34,6 +34,27 @@ export default {
     computed: {
         ...mapGetters(["fetchedList"]),
         ...mapGetters("date", ["month", "year"]),
+        ...mapGetters("order", ["valuesOfMonth"]),
+        pricesOfThisMonth() {
+            return this.valuesOfMonth(this.month, "value");
+        },
+        totalPriceOfThisMonth() {
+            return this.pricesOfThisMonth.reduce((sum, i) => sum + (i ?? 0));
+        },
+        pricesOfLastMonth() {
+            return this.valuesOfMonth(this.month - 1 || 12, "value");
+        },
+        quantitiesOfThisMonth() {
+            return this.valuesOfMonth(this.month, "amount");
+        },
+        totalQuantityOfThisMonth() {
+            return this.quantitiesOfThisMonth.reduce(
+                (sum, i) => sum + (i ?? 0)
+            );
+        },
+        quantitiesOfLastMonth() {
+            return this.valuesOfMonth(this.month - 1 || 12, "amount");
+        },
         totalRevenue() {
             return this.fetchedList
                 .map((i) => +i.value)
@@ -68,7 +89,7 @@ export default {
             this.fetchOrdersOfMonth(lastMonth);
         },
         fetchOrdersOfMonth({ year, month }) {
-            this.dispatchFactory("fetchOrdersOfMonth", { year, month });
+            this.dispatchOrder("FETCH_ORDERS_OF_MONTH", { year, month });
         },
         getLastMonth() {
             const year = this.month === 1 ? this.year - 1 : this.year;

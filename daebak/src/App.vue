@@ -19,7 +19,7 @@ export default {
             window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
         },
         fetchToday() {
-            this.$store.dispatch("date/today");
+            this.$store.dispatch("date/FETCH_TODAY");
         },
     },
 };
