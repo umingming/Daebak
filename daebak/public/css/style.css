@@ -136,7 +136,7 @@ body {
 #main-view .main-banner .icon {
   position: absolute;
   top: 38px;
-  right: 20px;
+  right: 15px;
   width: 60px;
   height: 60px;
   border-radius: 30px;
@@ -144,10 +144,14 @@ body {
   text-align: center;
   line-height: 70px;
   margin-right: 5px;
+  box-shadow: 2px 1px 2px 1px #fd96364f;
 }
 #main-view .main-banner .icon i {
   font-size: 35px;
   color: white;
+}
+#main-view .main-banner:nth-child(2) .icon i {
+  transform: rotate(-10deg) translateX(-1px) translateY(1px);
 }
 #main-view .main-chart-weekly-quantity {
   grid-area: 3 / 1 / 5 / 5;
@@ -156,10 +160,10 @@ body {
   grid-area: 1 / 4 / 3 / 13;
 }
 #main-view .main-chart-monthly-quantity {
-  grid-area: 3 / 5 / 5 / 10;
+  grid-area: 3 / 5 / 5 / 9;
 }
 #main-view .main-board {
-  grid-area: 3 / 10 / 5 / 13;
+  grid-area: 3 / 9 / 5 / 13;
 }
 .board-box {
   position: relative;

@@ -1,10 +1,10 @@
 <template>
     <div id="main-view" class="wrapper">
         <main-banner type="value">
-            <i slot="icon" class="fa-solid fa-user"></i>
+            <i slot="icon" class="fa-solid fa-sack-dollar"></i>
         </main-banner>
         <main-banner type="amount">
-            <i slot="icon" class="fa-solid fa-mobile"></i>
+            <i slot="icon" class="fa-solid fa-phone-volume"></i>
         </main-banner>
         <chart-price></chart-price>
         <chart-quantity-avg></chart-quantity-avg>

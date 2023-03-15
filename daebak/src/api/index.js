@@ -516,6 +516,13 @@ function fetchOrders() {
             cate: "배민",
         },
         {
+            date: "2023-02-28",
+            title: "배달의 민족",
+            value: "320000",
+            amount: "10",
+            cate: "배민",
+        },
+        {
             date: "2023-02-01",
             title: "가달의 민족",
             value: "100000",

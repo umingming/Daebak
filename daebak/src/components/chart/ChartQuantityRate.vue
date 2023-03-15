@@ -1,10 +1,10 @@
 <template>
     <div class="main-chart-monthly-quantity">
-        <h3>3월 평균 주문 수</h3>
+        <h3>3월 주문 카테고리 비율</h3>
         <doughnut-chart
             :chart-data="chartData"
             :chart-options="chartOptions"
-            :height="225"
+            :height="200"
         ></doughnut-chart>
     </div>
 </template>
@@ -44,8 +44,7 @@ export default {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: "top",
-                        align: "end",
+                        position: "right",
                         labels: {
                             font: {
                                 size: 15,
@@ -54,33 +53,6 @@ export default {
                             padding: 15,
                             usePointStyle: true,
                             pointStyle: "circle",
-                        },
-                    },
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        ticks: {
-                            font: {
-                                size: 14,
-                            },
-                            stepSize: 1,
-                        },
-                        grid: {
-                            color: "white",
-                        },
-                    },
-                    y: {
-                        display: true,
-                        ticks: {
-                            font: {
-                                size: 14,
-                            },
-                            stepSize: 10,
-                            max: 50,
-                        },
-                        grid: {
-                            borderWidth: 0,
                         },
                     },
                 },
@@ -141,9 +113,9 @@ export default {
 </script>
 
 <style scoped>
-::v-deep #line-chart {
+::v-deep #doughnut-chart {
     position: relative;
     left: -5px;
-    top: -10px;
+    top: 8px;
 }
 </style>
