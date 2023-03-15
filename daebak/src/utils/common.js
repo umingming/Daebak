@@ -9,7 +9,7 @@ function getDayOffsetOfMonth(year, month) {
 }
 
 function formatISODate(year, month, date) {
-    const target = new Date(year, month, date);
+    const target = new Date(year, month - 1, date + 2);
     return target.toISOString().slice(0, 10);
 }
 

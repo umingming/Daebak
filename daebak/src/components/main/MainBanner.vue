@@ -12,10 +12,7 @@
                 :formatValue="formatNumber"
             ></animated-number>
             <small>
-                <i
-                    class="fa-solid fa-arrow-up-long"
-                    :class="{ 'fa-arrow-down-long': averageFlag }"
-                ></i>
+                <i class="fa-solid fa-arrow-up-long"></i>
                 {{ valueIncrement }}
             </small>
         </div>
@@ -54,10 +51,10 @@ export default {
     },
     props: {
         type: { type: String, default: "" },
-        value: { type: Number, default: 0 },
     },
     computed: {
         ...mapGetters("date", ["month", "year"]),
+        ...mapGetters("order", ["valuesOfMonth"]),
         title() {
             return `${this.month} 총 ${MAIN[this.type]}`;
         },
@@ -68,7 +65,8 @@ export default {
             return this.valuesOfThisMonth.reduce((sum, i) => sum + (i ?? 0));
         },
         valueIncrement() {
-            return this.valuesOfThisMonth.slice(-1).toLocaleString();
+            const increment = this.valuesOfThisMonth.at(-1);
+            return this.formatNumber(increment);
         },
     },
     methods: {
