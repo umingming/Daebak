@@ -1,6 +1,6 @@
 <template>
     <div class="main-chart-monthly-price chart-box">
-        <h3>3월 매출 추이</h3>
+        <h3>{{ title }}</h3>
         <bar-chart
             :chart-data="{ labels, datasets }"
             :chart-options="chartOptions"
@@ -96,6 +96,9 @@ export default {
     computed: {
         ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
         ...mapGetters("order", ["valuesOfMonth"]),
+        title() {
+            return `${this.month}월 매출 추이`;
+        },
         labels() {
             return Array.from({ length: this.lastDateOfMonth }, (_, index) =>
                 formatISODate(this.year, this.month, index)
@@ -103,7 +106,7 @@ export default {
         },
         datasets() {
             const datasetOfLastMonth = this.datasetOfMonth(this.month - 1);
-            const datasetOfThisMonth = this.datasetOfMonth(this.month - 1);
+            const datasetOfThisMonth = this.datasetOfMonth(this.month);
             datasetOfThisMonth.backgroundColor = "#FFA200";
 
             return [datasetOfLastMonth, datasetOfThisMonth];

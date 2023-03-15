@@ -5,7 +5,7 @@ function isDateInMonth(year, month, target) {
 
 function getDayOffsetOfMonth(year, month) {
     const target = new Date(year, month - 1);
-    return target.getDay() - 1;
+    return target.getDay();
 }
 
 function formatISODate(year, month, date) {

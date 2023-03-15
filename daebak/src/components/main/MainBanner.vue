@@ -56,7 +56,7 @@ export default {
         ...mapGetters("date", ["month", "year"]),
         ...mapGetters("order", ["valuesOfMonth"]),
         title() {
-            return `${this.month} 총 ${MAIN[this.type]}`;
+            return `${this.month}월 총 ${MAIN[this.type]}`;
         },
         valuesOfThisMonth() {
             return this.valuesOfMonth(this.month, this.type);

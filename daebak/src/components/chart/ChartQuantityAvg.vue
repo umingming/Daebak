@@ -1,8 +1,8 @@
 <template>
     <div class="main-chart-weekly-quantity chart-box">
-        <h3>3월 평균 주문 수</h3>
+        <h3>{{ title }}</h3>
         <line-chart
-            :chart-data="chartData"
+            :chart-data="{ labels, datasets }"
             :chart-options="chartOptions"
             :height="225"
         ></line-chart>
@@ -11,6 +11,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getDayOffsetOfMonth } from "@/utils/common";
 import { Line as LineChart } from "vue-chartjs/legacy";
 import {
     Chart as ChartJS,
@@ -39,31 +40,14 @@ export default {
     },
     data() {
         return {
-            chartData: {
-                labels: ["월", "화", "수", "목", "금", "토", "일"],
-                datasets: [
-                    {
-                        label: "",
-                        data: [],
-                        backgroundColor: "white",
-                        pointBorderWidth: 3,
-                    },
-                    {
-                        label: "",
-                        data: [],
-                        backgroundColor: "white",
-                        borderColor: "#FFA200",
-                        pointBorderWidth: 3,
-                        pointHitRadius: 10,
-                    },
-                ],
-            },
+            labels: ["월", "화", "수", "목", "금", "토", "일"],
             chartOptions: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: "top",
+                        reverse: "true",
                         align: "end",
                         labels: {
                             font: {
@@ -108,9 +92,53 @@ export default {
     },
     computed: {
         ...mapGetters(["fetchedList"]),
-    },
-    created() {
-        this.init();
+        ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
+        ...mapGetters("order", ["valuesOfMonth"]),
+        title() {
+            return `${this.month}월 평균 주문 수`;
+        },
+        datasets() {
+            const datasetOfLastMonth = this.datasetOfMonth(this.month - 1);
+            const datasetOfThisMonth = this.datasetOfMonth(this.month);
+            datasetOfLastMonth.order = 1;
+            datasetOfThisMonth.borderColor = "#FFA200";
+
+            return [datasetOfLastMonth, datasetOfThisMonth];
+        },
+        datasetOfMonth() {
+            return (month) => {
+                const label = `${month || 12}월`;
+                const data = this.quantityAvgOfMonth(month);
+                return {
+                    label,
+                    data,
+                    pointBorderWidth: 3,
+                    pointHitRadius: 10,
+                    backgroundColor: "white",
+                };
+            };
+        },
+        quantityAvgOfMonth() {
+            return (month) => {
+                const dayOffset = getDayOffsetOfMonth(this.year, month);
+                const avgList = [];
+
+                const quantities = this.quantitiesOfMonth(month);
+                for (let i = 0; i < quantities.length; i++) {
+                    const day = (i + dayOffset) % 7;
+                    if (!avgList[day]) avgList[day] = [];
+                    avgList[day].push(quantities[i] ?? 0);
+                }
+                return avgList.map(
+                    (i) => i.reduce((acc, cur) => acc + cur, 0) / i.length
+                );
+            };
+        },
+        quantitiesOfMonth() {
+            return (month) => {
+                return this.valuesOfMonth(month, "amount");
+            };
+        },
     },
     methods: {
         init() {
@@ -119,11 +147,11 @@ export default {
         },
         setChartLabels() {
             const month = new Date().getMonth();
-            this.chartData.datasets[0].label = `${month}월`;
-            this.chartData.datasets[1].label = `${month + 1}월`;
+            this.datasets[0].label = `${month}월`;
+            this.datasets[1].label = `${month + 1}월`;
         },
         setChartDatas() {
-            this.chartData.datasets.forEach(
+            this.datasets.forEach(
                 (i) => (i.data = this.getQuantityAvgByMonth(i.label))
             );
         },
@@ -148,7 +176,7 @@ export default {
                     monthFromLabel - 1
                 ).getDay() - 1;
 
-            let quantityList = Array(this.chartData.labels.length).fill(0);
+            let quantityList = Array(this.labels.length).fill(0);
             orderList.forEach((i) => {
                 const index = (+i.date.slice(-2) + dayOffset) % 7;
                 const quantity = (quantityList[index] + +i.amount) / 2;
