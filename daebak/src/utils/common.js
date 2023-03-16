@@ -8,9 +8,19 @@ function getDayOffsetOfMonth(year, month) {
     return target.getDay();
 }
 
-function formatISODate(year, month, date) {
-    const target = new Date(year, month - 1, date + 2);
-    return target.toISOString().slice(0, 10);
+function formatISODate(txtDate) {
+    const date = new Date(txtDate.slice(0, 13));
+    return date.toISOString().slice(0, 10);
 }
 
-export { isDateInMonth, getDayOffsetOfMonth, formatISODate };
+function formatISODateForChartLabel(year, month, index) {
+    const date = new Date(year, month - 1, index + 2);
+    return date.toISOString().slice(0, 10);
+}
+
+export {
+    isDateInMonth,
+    getDayOffsetOfMonth,
+    formatISODate,
+    formatISODateForChartLabel,
+};

@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { formatISODate } from "@/utils/common";
+import { formatISODateForChartLabel } from "@/utils/common";
 import { Bar as BarChart } from "vue-chartjs/legacy";
 import {
     Chart as ChartJS,
@@ -101,7 +101,7 @@ export default {
         },
         labels() {
             return Array.from({ length: this.lastDateOfMonth }, (_, index) =>
-                formatISODate(this.year, this.month, index)
+                formatISODateForChartLabel(this.year, this.month, index)
             );
         },
         datasets() {

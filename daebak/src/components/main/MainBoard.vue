@@ -9,8 +9,7 @@
                 <i class="fa-solid fa-plus"></i>
             </button>
         </div>
-        <budget-table :items="fetchedList" :hasPagination="false">
-        </budget-table>
+        <budget-table :items="orders" :hasPagination="false"> </budget-table>
     </div>
 </template>
 
@@ -47,9 +46,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
+        ...mapGetters("date", ["month", "year"]),
+        ...mapGetters("order", ["orders"]),
         itemsByDate() {
-            let items = this.fetchedList.filter((i) => i.date === this.today);
+            let items = this.orders.filter((i) => i.date === this.today);
             return items;
         },
         title() {

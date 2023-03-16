@@ -1,5 +1,5 @@
 <template>
-    <div class="board">
+    <div id="board-view" class="wrapper">
         <modal-add
             v-if="isShowModal.add"
             :checkItem="checkItems[0]"
@@ -12,7 +12,7 @@
             @close="isShowModal['modify'] = false"
         >
         </modal-modify>
-        <div class="board-box">
+        <div class="board-table">
             <div class="search">
                 <date-picker
                     v-model="searchDate"
@@ -42,7 +42,7 @@
                 </button>
                 <export-excel
                     class="btn-excel"
-                    :data="fetchedList"
+                    :data="orders"
                     :fields="excelField"
                     name="excel.xls"
                 >
@@ -50,7 +50,7 @@
                 </export-excel>
             </div>
             <budget-table
-                :items="fetchedList"
+                :items="orders"
                 :hasPagination="true"
                 :hasCheckBox="true"
                 @check="checkItem"
@@ -101,23 +101,32 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
+        ...mapGetters("date", ["month", "year"]),
+        ...mapGetters("order", ["orders"]),
         checkItems() {
             return [...this.checkList];
         },
     },
     created() {
-        this.$store.dispatch("FETCH_LIST");
+        this.init();
     },
     methods: {
+        init() {
+            this.dispatchOrder("FETCH_ORDERS");
+        },
         showModal({ target }) {
-            this.checkList = this.fetchedList.filter((i) => i.check);
+            this.checkList = this.orders.filter((i) => i.check);
 
             let key = target.id || target.parentNode.id;
             this.isShowModal[key] = true;
         },
         checkItem(index, isChecked) {
-            this.fetchedList[index].check = isChecked;
+            if (this.orders[index]) {
+                this.orders[index].check = isChecked;
+            }
+        },
+        dispatchOrder(action, param = {}) {
+            return this.$store.dispatch(`order/${action}`, param);
         },
     },
 };

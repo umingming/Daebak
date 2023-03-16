@@ -177,8 +177,11 @@ export default {
         },
         checkAll() {
             this.isCheckedAll = !this.isCheckedAll;
-            let inputList = this.$el.querySelectorAll(".check > input");
-            inputList.forEach((i) => (i.checked = this.isCheckedAll));
+            let inputList = this.$el.querySelectorAll(".col-check > input");
+            inputList.forEach((i) => {
+                i.checked = this.isCheckedAll;
+                this.checkItem({ target: i });
+            });
         },
         deleteItem(index) {
             this.$emit("delete", index);

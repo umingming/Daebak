@@ -165,6 +165,12 @@ body {
 #main-view .main-board {
   grid-area: 3 / 9 / 5 / 13;
 }
+#board-view .board-table {
+  grid-area: 1 / 1 / 5 / 13;
+}
+.board-table {
+  padding: 20px;
+}
 .board-box {
   position: relative;
   margin: 10px auto;
@@ -290,7 +296,7 @@ body {
   background: #ff7b00a8;
 }
 
-.board-box .btn-icon {
+.board-table .btn-icon {
   position: absolute;
   right: 50px;
   top: 20px;

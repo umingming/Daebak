@@ -30,7 +30,6 @@ export default {
         MainBoard,
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
         ...mapGetters("date", ["month", "year"]),
         ...mapGetters("order", ["valuesOfMonth"]),
         pricesOfThisMonth() {
@@ -48,7 +47,6 @@ export default {
     },
     created() {
         this.init();
-        this.$store.dispatch("FETCH_LIST");
     },
     methods: {
         init() {

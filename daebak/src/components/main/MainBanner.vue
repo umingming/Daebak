@@ -62,10 +62,13 @@ export default {
             return this.valuesOfMonth(this.month, this.type);
         },
         valueTotal() {
-            return this.valuesOfThisMonth.reduce((sum, i) => sum + (i ?? 0));
+            const values = this.valuesOfThisMonth;
+            return values.length
+                ? values.reduce((sum, i) => sum + (i ?? 0))
+                : 0;
         },
         valueIncrement() {
-            const increment = this.valuesOfThisMonth.at(-1);
+            const increment = this.valuesOfThisMonth.at(-1) ?? 0;
             return this.formatNumber(increment);
         },
     },
