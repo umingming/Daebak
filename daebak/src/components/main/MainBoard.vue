@@ -132,26 +132,47 @@ export default {
     z-index: 1000;
 }
 .main-board button {
-    background: linear-gradient(to right, #ff7b00, #ff7b00b7);
+    position: relative;
+    background-image: linear-gradient(to right, #ff7b0084, #ff7b00);
     color: white;
     width: 27px !important;
     height: 20px !important;
     margin-left: 7px;
     border: none;
     border-radius: 3px;
+    overflow: hidden;
 }
 .main-board button i {
     font-size: 15px;
     transform: translateY(1px);
 }
 .main-board button:hover {
-    background: linear-gradient(to right, #ff7b00, #ff7b00b7 60%, #ff7b00 90%);
-    animation: slidebg 2s linear infinite;
+    background-color: #ff7b00;
+    transition: background-color 0.5s ease-in-out 0.5s;
 }
-
-@keyframes slidebg {
-    to {
-        background-position: 20vw;
+.main-board button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.1)
+    );
+}
+.main-board button:hover::before {
+    animation: light-up 1s linear 1;
+}
+@keyframes light-up {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 100%;
     }
 }
 </style>

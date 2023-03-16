@@ -1,5 +1,5 @@
 import { fetchOrders } from "@/api/index.js";
-import { formatISODate, isDateInMonth } from "@/utils/common.js";
+import { isDateInMonth } from "@/utils/common.js";
 
 const state = () => ({
     orders: [],
@@ -23,11 +23,11 @@ const getters = {
 };
 
 const actions = {
-    async FETCH_ORDERS({ commit }) {
+    FETCH_ORDERS({ commit }) {
         try {
-            const { data } = await fetchOrders();
-            commit("SET_ORDERS", data.data);
-            return data;
+            const response = fetchOrders();
+            commit("SET_ORDERS", response);
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -39,13 +39,7 @@ const actions = {
 
 const mutations = {
     SET_ORDERS(state, data) {
-        state.orders = data.map((order) => ({
-            date: formatISODate(order.orderDate),
-            content: order.content,
-            value: order.price,
-            amount: order.quantity,
-            cate: order.type,
-        }));
+        state.orders = data;
     },
     SET_ORDERS_OF_MONTH(state, { year, month }) {
         state.ordersOfMonth[month] = state.orders.filter((i) =>
