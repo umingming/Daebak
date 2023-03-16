@@ -1,6 +1,6 @@
 <template>
     <div class="main-chart-monthly-quantity">
-        <h3>3월 주문 카테고리 비율</h3>
+        <h3>{{ title }}</h3>
         <doughnut-chart
             :chart-data="chartData"
             :chart-options="chartOptions"
@@ -30,12 +30,16 @@ export default {
     data() {
         return {
             chartData: {
-                labels: ["배민", "쿠팡", "요기요", "매장"],
+                labels: ["배민", "요기요", "쿠팡", "매장"],
                 datasets: [
                     {
-                        label: "",
-                        data: [],
-                        backgroundColor: "pink",
+                        data: [30, 10, 5, 1],
+                        backgroundColor: [
+                            "#36A2EB",
+                            "#FF6384",
+                            "#FFD166",
+                            "#E5E5E5",
+                        ],
                     },
                 ],
             },
@@ -60,10 +64,11 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
-    },
-    created() {
-        this.init();
+        ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
+        ...mapGetters("order", ["valuesOfMonth"]),
+        title() {
+            return `${this.month}월 주문 카테고리 비율`;
+        },
     },
     methods: {
         init() {

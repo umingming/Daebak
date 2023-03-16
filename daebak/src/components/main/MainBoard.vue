@@ -1,9 +1,14 @@
 <template>
     <div class="main-board">
         <h3>{{ title }}</h3>
-        <router-link to="/board" class="all-board">
-            <i class="fa-solid fa-bars"></i>
-        </router-link>
+        <div class="btn">
+            <router-link to="/board" tag="button">
+                <i class="fa-solid fa-bars"></i>
+            </router-link>
+            <button>
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
         <budget-table :items="fetchedList" :hasPagination="false">
         </budget-table>
     </div>
@@ -66,16 +71,10 @@ export default {
 </script>
 
 <style scoped>
-.main-board {
-    position: relative;
-    background: white;
-    padding: 20px;
-    box-shadow: 3px 3px 0px #fd96364f;
-    margin-right: 5px;
-}
 .main-board ::v-deep #budget-table {
     position: relative;
     height: 230px;
+    top: -15px;
     margin: 2px auto;
     overflow-x: visible;
     overflow-y: scroll;
@@ -112,24 +111,32 @@ export default {
 .budget-box .search #keyword {
     width: 120px;
 }
-h3 {
-    display: inline;
-    font-size: 18px;
-    color: #666;
-    padding: 0 10px 0 15px;
+.main-board .btn {
+    position: relative;
+    transform: translateX(270px) translateY(-27px);
+    z-index: 1000;
 }
-.main-board .all-board {
-    display: inline;
+.main-board button {
+    background: linear-gradient(to right, #ff7b00, #ff7b00b7);
+    color: white;
+    width: 27px !important;
+    height: 20px !important;
+    margin-left: 7px;
     border: none;
-    background: none;
-    cursor: pointer;
+    border-radius: 3px;
 }
-.main-board .all-board i {
-    color: #b4b4b4;
-    font-size: 17px;
-    line-height: 25px;
+.main-board button i {
+    font-size: 15px;
+    transform: translateY(1px);
 }
-.main-board .all-board i:hover {
-    color: #ff7b00;
+.main-board button:hover {
+    background: linear-gradient(to right, #ff7b00, #ff7b00b7 60%, #ff7b00 90%);
+    animation: slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+    to {
+        background-position: 20vw;
+    }
 }
 </style>

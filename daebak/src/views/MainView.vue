@@ -9,7 +9,7 @@
         <chart-price></chart-price>
         <chart-quantity-avg></chart-quantity-avg>
         <chart-quantity-rate></chart-quantity-rate>
-        <div class="main-board"></div>
+        <main-board></main-board>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import MainBanner from "@/components/main/MainBanner.vue";
 import ChartPrice from "@/components/chart/ChartPrice.vue";
 import ChartQuantityAvg from "@/components/chart/ChartQuantityAvg.vue";
 import ChartQuantityRate from "@/components/chart/ChartQuantityRate.vue";
-// import MainBoard from "@/components/MainBoard.vue";
+import MainBoard from "@/components/main/MainBoard.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -27,7 +27,7 @@ export default {
         MainBanner,
         ChartQuantityAvg,
         ChartQuantityRate,
-        // MainBoard,
+        MainBoard,
     },
     computed: {
         ...mapGetters(["fetchedList"]),

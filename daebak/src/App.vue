@@ -28,7 +28,7 @@ export default {
 #app {
     width: 1200px;
     height: 97vh;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0 auto;
 }
 .header {

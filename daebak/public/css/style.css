@@ -163,7 +163,7 @@ body {
   grid-area: 3 / 5 / 5 / 9;
 }
 #main-view .main-board {
-  grid-area: 3 / 9 / 5 / 13;
+  grid-area: 5 / 1 / 7 / 5;
 }
 .board-box {
   position: relative;

@@ -91,7 +91,6 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
         ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
         ...mapGetters("order", ["valuesOfMonth"]),
         title() {
