@@ -73,11 +73,26 @@ export default {
 <style scoped>
 .main-board ::v-deep #budget-table {
     position: relative;
-    height: 230px;
+    height: 190px;
     top: -15px;
     margin: 2px auto;
     overflow-x: visible;
     overflow-y: scroll;
+}
+#budget-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+#budget-table::-webkit-scrollbar-thumb {
+    height: 20%;
+    background: #ff7b00;
+    border-radius: 5px;
+}
+
+#budget-table::-webkit-scrollbar-track {
+    margin-top: 30px;
+    border-radius: 10px;
+    background: #fff;
 }
 .main-board ::v-deep #budget-table th,
 .main-board ::v-deep #budget-table td {
