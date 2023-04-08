@@ -153,6 +153,35 @@ body {
 #main-view .main-banner:nth-child(2) .icon i {
   transform: rotate(-10deg) translateX(-1px) translateY(1px);
 }
+.main-banner .icon:hover {
+  background-color: #ff7b00;
+  transition: background-color 0.5s ease-in-out 0.5s;
+}
+.main-banner .icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.1)
+  );
+}
+.main-banner .icon:hover::before {
+  animation: light-up 1s linear 1;
+}
+@keyframes light-up {
+  0% {
+      left: -50%;
+  }
+  100% {
+      left: 100%;
+  }
+}
 #main-view .main-chart-weekly-quantity {
   grid-area: 3 / 1 / 5 / 5;
 }
