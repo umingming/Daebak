@@ -108,6 +108,7 @@ export default {
             const datasetOfLastMonth = this.datasetOfMonth(this.month - 1);
             const datasetOfThisMonth = this.datasetOfMonth(this.month);
             datasetOfThisMonth.backgroundColor = "#FFA200";
+            datasetOfThisMonth.hoverBackgroundColor = "#FF7B00";
 
             return [datasetOfLastMonth, datasetOfThisMonth];
         },
