@@ -172,7 +172,7 @@ body {
   );
 }
 .main-banner .icon:hover::before {
-  animation: light-up 1s linear 1;
+  animation: light-up 0.5s linear 1;
 }
 @keyframes light-up {
   0% {

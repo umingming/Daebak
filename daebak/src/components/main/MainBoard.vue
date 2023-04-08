@@ -148,7 +148,7 @@ export default {
 }
 .main-board button:hover {
     background-color: #ff7b00;
-    transition: background-color 0.5s ease-in-out 0.5s;
+    transition: background-color 0.5s ease-in-out;
 }
 .main-board button::before {
     content: "";
@@ -165,7 +165,7 @@ export default {
     );
 }
 .main-board button:hover::before {
-    animation: light-up 1s linear 1;
+    animation: light-up 0.5s linear 1;
 }
 @keyframes light-up {
     0% {
