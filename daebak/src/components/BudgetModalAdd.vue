@@ -21,7 +21,7 @@
 <script>
 import BudgetTable from "@/components/BudgetTable.vue";
 import BudgetItem from "@/components/BudgetItem.vue";
-import * as API from "@/api/index.js";
+import { createOrders } from "@/api";
 
 export default {
     props: {
@@ -60,8 +60,8 @@ export default {
                     content: i.title,
                 };
             });
-
-            API.createOrder(param);
+            createOrders(param);
+            this.$emit("close");
         },
     },
 };

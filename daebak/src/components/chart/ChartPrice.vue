@@ -114,7 +114,6 @@ export default {
         },
         datasetOfMonth() {
             return (month) => {
-                month = month || 12;
                 const label = `${month}월`;
                 const data = this.pricesOfMonth(month);
                 return { label, data };
@@ -122,7 +121,7 @@ export default {
         },
         pricesOfMonth() {
             return (month) => {
-                return this.valuesOfMonth(month, "value");
+                return this.valuesOfMonth(this.year, month, "value");
             };
         },
     },

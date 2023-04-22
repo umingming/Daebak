@@ -49,8 +49,8 @@ export default {
         this.init();
     },
     methods: {
-        init() {
-            this.dispatchOrder("FETCH_ORDERS");
+        async init() {
+            await this.dispatchOrder("FETCH_ORDERS");
 
             const thisMonth = { year: this.year, month: this.month };
             const lastMonth = this.getLastMonth();

@@ -47,7 +47,7 @@
                 </export-excel>
             </div>
             <budget-table
-                :items="fetchedList"
+                :items="orders"
                 :hasPagination="true"
                 @check="checkItem"
             >
@@ -93,13 +93,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["fetchedList"]),
+        ...mapGetters("order", ["orders"]),
         checkItems() {
             return [...this.checkList];
         },
-    },
-    created() {
-        this.$store.dispatch("FETCH_LIST");
     },
     methods: {
         showModal({ target }) {

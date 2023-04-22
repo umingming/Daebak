@@ -59,7 +59,7 @@ export default {
             return `${this.month}월 총 ${MAIN[this.type]}`;
         },
         valuesOfThisMonth() {
-            return this.valuesOfMonth(this.month, this.type);
+            return this.valuesOfMonth(this.year, this.month, this.type);
         },
         valueTotal() {
             const values = this.valuesOfThisMonth;

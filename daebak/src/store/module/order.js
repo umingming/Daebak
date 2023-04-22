@@ -3,7 +3,7 @@ import { isDateInMonth } from "@/utils/common.js";
 
 const state = () => ({
     orders: [],
-    ordersOfMonth: [],
+    ordersOfMonth: {},
 });
 
 const getters = {
@@ -11,9 +11,12 @@ const getters = {
         return state.orders;
     },
     valuesOfMonth(state) {
-        return (month, type) => {
+        return (year, month, type) => {
             const values = [];
-            state.ordersOfMonth[month].forEach((i) => {
+            const ordersOfMonth = state.orders.filter((i) =>
+                isDateInMonth(year, month, i.date)
+            );
+            ordersOfMonth.forEach((i) => {
                 const index = i.date.slice(-2) - 1;
                 values[index] = (values[index] ?? 0) + +i[type];
             });
@@ -23,11 +26,23 @@ const getters = {
 };
 
 const actions = {
-    FETCH_ORDERS({ commit }) {
+    async FETCH_ORDERS({ commit }) {
         try {
-            const response = fetchOrders();
-            commit("SET_ORDERS", response);
-            return response;
+            const { data } = await fetchOrders();
+            if (data.result === "SUCCESS") {
+                const successData = data.data.map((i) => {
+                    return {
+                        date: i.orderDate,
+                        title: i.content,
+                        value: i.price,
+                        amount: i.quantity,
+                        cate: i.type,
+                        orderId: i.orderId,
+                    };
+                });
+                commit("SET_ORDERS", successData);
+            }
+            return data;
         } catch (error) {
             console.log(error);
         }

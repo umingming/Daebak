@@ -135,7 +135,7 @@ export default {
         },
         quantitiesOfMonth() {
             return (month) => {
-                return this.valuesOfMonth(month, "amount");
+                return this.valuesOfMonth(this.year, month, "amount");
             };
         },
     },

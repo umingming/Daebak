@@ -37,7 +37,7 @@
                 <button class="btn-modify" id="modify" @click="showModal">
                     <i class="fa-solid fa-pen"></i>
                 </button>
-                <button class="btn-delete" id="delete">
+                <button class="btn-delete" id="delete" @click="deleteData">
                     <i class="fa-solid fa-trash"></i>
                 </button>
                 <export-excel
@@ -68,6 +68,8 @@ import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
 import { mapGetters } from "vuex";
+
+import { deleteOrders } from "@/api";
 
 export default {
     components: {
@@ -127,6 +129,12 @@ export default {
         },
         dispatchOrder(action, param = {}) {
             return this.$store.dispatch(`order/${action}`, param);
+        },
+        deleteData() {
+            const orderIds = this.checkItems.map((i) => i.orderId);
+            console.log(this.checkItems);
+            deleteOrders(orderIds.join(","));
+            this.init();
         },
     },
 };
