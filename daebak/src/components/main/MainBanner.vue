@@ -8,8 +8,8 @@
             <animated-number
                 :duration="1000"
                 :delay="10"
-                :value="value"
-                :formatValue="formatNumber"
+                :value="valueTotal"
+                :formatValue="$formatValue"
             ></animated-number>
             <small data-test="increment">
                 <i class="fa-solid fa-arrow-up-long"></i>
@@ -21,31 +21,31 @@
 
 <script>
 import AnimatedNumber from "animated-number-vue";
-
-import * as MAIN from "@/constants/main.js";
+import orderMixin from "@/mixins/orderMixin.js";
+import { BANNER } from "@/constants/main.js";
 
 export default {
     components: {
         AnimatedNumber,
     },
+    mixins: [orderMixin],
     props: {
         type: { type: String, default: "" },
         month: { type: String, default: "0" },
-        value: { type: Number, default: 0 },
-        lastValue: { type: Number, default: 0 },
     },
     computed: {
         title() {
-            return `${this.month}월 총 ${MAIN[this.type]}`;
+            return `${this.month}월 총 ${BANNER[this.type]}`;
+        },
+        values() {
+            return this.currentMonthValues(this.type);
+        },
+        valueTotal() {
+            return this.values.reduce((acc, curr) => acc + (+curr || 0), 0);
         },
         valueIncrement() {
-            const increment = this.value - this.lastValue;
-            return this.formatNumber(increment);
-        },
-    },
-    methods: {
-        formatNumber(value) {
-            return Math.round(value).toLocaleString();
+            const increment = this.values.at(-1) - this.values.at(-2);
+            return this.$formatValue(increment);
         },
     },
 };

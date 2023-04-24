@@ -1,10 +1,12 @@
 <template>
     <div id="main-view" class="wrapper">
-        <main-banner type="value">
+        <main-banner
+            v-for="type in bannerTypes"
+            :key="type"
+            :type="type"
+            :month="currentMonth"
+        >
             <i slot="icon" class="fa-solid fa-sack-dollar"></i>
-        </main-banner>
-        <main-banner type="amount">
-            <i slot="icon" class="fa-solid fa-phone-volume"></i>
         </main-banner>
         <chart-price></chart-price>
         <chart-quantity-avg></chart-quantity-avg>
@@ -19,7 +21,8 @@ import ChartPrice from "@/components/chart/ChartPrice.vue";
 import ChartQuantityAvg from "@/components/chart/ChartQuantityAvg.vue";
 import ChartQuantityRate from "@/components/chart/ChartQuantityRate.vue";
 import MainBoard from "@/components/main/MainBoard.vue";
-import { mapGetters } from "vuex";
+
+import orderMixin from "@/mixins/orderMixin.js";
 
 export default {
     components: {
@@ -29,42 +32,12 @@ export default {
         ChartQuantityRate,
         MainBoard,
     },
+    mixins: [orderMixin],
     data() {
         return {
-            currentMonth: new Date().getMonth() + 1,
+            currentMonth: (new Date().getMonth() + 1).toString(),
+            bannerTypes: ["value", "amount"],
         };
-    },
-    computed: {
-        ...mapGetters("date", ["month", "year"]),
-        ...mapGetters("order", ["valuesOfMonth"]),
-        pricesOfThisMonth() {
-            return this.valuesOfMonth(this.month, "value");
-        },
-        pricesOfLastMonth() {
-            return this.valuesOfMonth(this.month - 1 || 12, "value");
-        },
-        quantitiesOfThisMonth() {
-            return this.valuesOfMonth(this.month, "amount");
-        },
-        quantitiesOfLastMonth() {
-            return this.valuesOfMonth(this.month - 1 || 12, "amount");
-        },
-    },
-    created() {
-        this.init();
-    },
-    methods: {
-        async init() {
-            await this.dispatchOrder("FETCH_ORDERS");
-        },
-        getLastMonth() {
-            const year = this.month === 1 ? this.year - 1 : this.year;
-            const month = this.month === 1 ? 12 : this.month - 1;
-            return { year, month };
-        },
-        dispatchOrder(action, param = {}) {
-            return this.$store.dispatch(`order/${action}`, param);
-        },
     },
 };
 </script>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682311874489" clover="3.2.0">
-  <project timestamp="1682311874489" name="All files">
-    <metrics statements="210" coveredstatements="5" conditionals="340" coveredconditionals="0" methods="97" coveredmethods="1" elements="647" coveredelements="6" complexity="0" loc="210" ncloc="210" packages="13" files="32" classes="32"/>
+<coverage generated="1682318021445" clover="3.2.0">
+  <project timestamp="1682318021446" name="All files">
+    <metrics statements="223" coveredstatements="0" conditionals="349" coveredconditionals="0" methods="104" coveredmethods="0" elements="676" coveredelements="0" complexity="0" loc="223" ncloc="223" packages="14" files="33" classes="33"/>
     <package name="daebak">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name=".eslintrc.js" path="C:\YouMe\Daebak\Daebak\daebak\.eslintrc.js">
@@ -225,10 +225,10 @@
       </file>
     </package>
     <package name="daebak.src.components.main">
-      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="MainBanner.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBanner.vue">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="9" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
       </file>
       <file name="MainBoard.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBoard.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -240,13 +240,21 @@
       </file>
     </package>
     <package name="daebak.src.constants">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.js" path="C:\YouMe\Daebak\Daebak\daebak\src\constants\main.js">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="daebak.src.mixins">
+      <metrics statements="1" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="orderMixin.js" path="C:\YouMe\Daebak\Daebak\daebak\src\mixins\orderMixin.js">
+        <metrics statements="1" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
       </file>
     </package>
     <package name="daebak.src.routes">
@@ -266,7 +274,7 @@
       </file>
     </package>
     <package name="daebak.src.store.module">
-      <metrics statements="34" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="16" coveredmethods="0"/>
+      <metrics statements="44" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="20" coveredmethods="0"/>
       <file name="date.js" path="C:\YouMe\Daebak\Daebak\daebak\src\store\module\date.js">
         <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -286,32 +294,42 @@
         <line num="36" count="0" type="stmt"/>
       </file>
       <file name="order.js" path="C:\YouMe\Daebak\Daebak\daebak\src\store\module\order.js">
-        <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <metrics statements="29" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="13" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
       </file>
     </package>
     <package name="daebak.src.utils">
-      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
       <file name="common.js" path="C:\YouMe\Daebak\Daebak\daebak\src\utils\common.js">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -324,6 +342,7 @@
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
     </package>
     <package name="daebak.src.views">

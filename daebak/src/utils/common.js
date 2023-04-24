@@ -25,10 +25,15 @@ function compareMonth(date, target) {
     return pattern.test(target);
 }
 
+function $getTotalValue(values) {
+    return values.reduce((acc, curr) => acc + (curr || 0), 0);
+}
+
 export {
     isDateInMonth,
     getDayOffsetOfMonth,
     formatISODate,
     formatISODateForChartLabel,
     compareMonth,
+    $getTotalValue,
 };

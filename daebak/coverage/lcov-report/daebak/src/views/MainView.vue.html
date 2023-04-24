@@ -108,61 +108,7 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,11 +155,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&lt;template&gt;</span></span>
     &lt;div id="main-view" class="wrapper"&gt;
-        &lt;main-banner type="value"&gt;
+        &lt;main-banner
+            v-for="type in bannerTypes"
+            :key="type"
+            :type="type"
+            :month="currentMonth"
+        &gt;
             &lt;i slot="icon" class="fa-solid fa-sack-dollar"&gt;&lt;/i&gt;
-        &lt;/main-banner&gt;
-        &lt;main-banner type="amount"&gt;
-            &lt;i slot="icon" class="fa-solid fa-phone-volume"&gt;&lt;/i&gt;
         &lt;/main-banner&gt;
         &lt;chart-price&gt;&lt;/chart-price&gt;
         &lt;chart-quantity-avg&gt;&lt;/chart-quantity-avg&gt;
@@ -228,7 +176,8 @@ import ChartPrice from "@/components/chart/ChartPrice.vue";
 import ChartQuantityAvg from "@/components/chart/ChartQuantityAvg.vue";
 import ChartQuantityRate from "@/components/chart/ChartQuantityRate.vue";
 import MainBoard from "@/components/main/MainBoard.vue";
-import { mapGetters } from "vuex";
+&nbsp;
+import orderMixin from "@/mixins/orderMixin.js";
 &nbsp;
 export default {
     components: {
@@ -238,42 +187,12 @@ export default {
         ChartQuantityRate,
         MainBoard,
     },
+    mixins: [orderMixin],
     data() {
         return {
-            currentMonth: new Date().getMonth() + 1,
+            currentMonth: (new Date().getMonth() + 1).toString(),
+            bannerTypes: ["value", "amount"],
         };
-    },
-    computed: {
-        ...mapGetters("date", ["month", "year"]),
-        ...mapGetters("order", ["valuesOfMonth"]),
-        pricesOfThisMonth() {
-            return this.valuesOfMonth(this.month, "value");
-        },
-        pricesOfLastMonth() {
-            return this.valuesOfMonth(this.month - 1 || 12, "value");
-        },
-        quantitiesOfThisMonth() {
-            return this.valuesOfMonth(this.month, "amount");
-        },
-        quantitiesOfLastMonth() {
-            return this.valuesOfMonth(this.month - 1 || 12, "amount");
-        },
-    },
-    created() {
-        this.init();
-    },
-    methods: {
-        async init() {
-            await this.dispatchOrder("FETCH_ORDERS");
-        },
-        getLastMonth() {
-            const year = this.month === 1 ? this.year - 1 : this.year;
-            const month = this.month === 1 ? 12 : this.month - 1;
-            return { year, month };
-        },
-        dispatchOrder(action, param = {}) {
-            return this.$store.dispatch(`order/${action}`, param);
-        },
     },
 };
 &lt;/script&gt;
@@ -286,7 +205,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-24T04:51:14.326Z
+                at 2023-04-24T06:33:41.249Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

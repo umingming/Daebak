@@ -9,14 +9,22 @@ const getters = {
     orders(state) {
         return state.orders;
     },
-    currentMonthOrders(state) {
-        const date = new Date();
-        return state.orders.filter((i) => compareMonth(date, i.date));
+    currentMonthValues(state) {
+        return (type) => {
+            const date = new Date();
+            const monthOrders =
+                state.orders.filter((i) => compareMonth(date, i.date)) || [];
+            return getMonthValuesByOrders(monthOrders, type);
+        };
     },
-    lastMonthOrders(state) {
-        const date = new Date();
-        date.setMonth(date.getMonth() - 1);
-        return state.orders.filter((i) => compareMonth(date, i.date));
+    lastMonthValues(state) {
+        return (type) => {
+            const date = new Date();
+            date.setMonth(date.getMonth() - 1);
+            const monthOrders =
+                state.orders.filter((i) => compareMonth(date, i.date)) || [];
+            return getMonthValuesByOrders(monthOrders, type);
+        };
     },
 };
 
@@ -57,3 +65,13 @@ export default {
     actions,
     mutations,
 };
+
+function getMonthValuesByOrders(orders, type) {
+    const values = [];
+    orders.forEach((i) => {
+        const index = +i.date.split("-").at(-1);
+        const value = (values[index] || 0) + +i[type];
+        values[index] = value;
+    });
+    return values;
+}
