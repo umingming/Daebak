@@ -8,18 +8,19 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "App",
     created() {
         this.initKakao();
-        this.fetchToday();
+    },
+    mounted() {
+        this.FETCH_ORDERS();
     },
     methods: {
+        ...mapActions("order", ["FETCH_ORDERS"]),
         initKakao() {
             window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
-        },
-        fetchToday() {
-            this.$store.dispatch("date/FETCH_TODAY");
         },
     },
 };

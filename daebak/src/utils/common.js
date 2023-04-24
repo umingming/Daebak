@@ -18,9 +18,17 @@ function formatISODateForChartLabel(year, month, index) {
     return date.toISOString().slice(0, 10);
 }
 
+function compareMonth(date, target) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const pattern = new RegExp(`^${year}-0?${month}-\\d{2}$`);
+    return pattern.test(target);
+}
+
 export {
     isDateInMonth,
     getDayOffsetOfMonth,
     formatISODate,
     formatISODateForChartLabel,
+    compareMonth,
 };
