@@ -12,27 +12,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { getDayOffsetOfMonth } from "@/utils/common";
-import { Line as LineChart } from "vue-chartjs/legacy";
-import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement,
-} from "chart.js";
-
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-);
+import { Line as LineChart } from "vue-chartjs";
 
 export default {
     components: {

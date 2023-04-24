@@ -1,6 +1,6 @@
 <template>
     <div class="main-banner">
-        <h3>{{ title }}</h3>
+        <h3 data-test="title">{{ title }}</h3>
         <div class="icon">
             <slot name="icon"></slot>
         </div>
@@ -8,10 +8,10 @@
             <animated-number
                 :duration="1000"
                 :delay="10"
-                :value="valueTotal"
+                :value="value"
                 :formatValue="formatNumber"
             ></animated-number>
-            <small>
+            <small data-test="increment">
                 <i class="fa-solid fa-arrow-up-long"></i>
                 {{ valueIncrement }}
             </small>
@@ -22,28 +22,7 @@
 <script>
 import AnimatedNumber from "animated-number-vue";
 
-import { mapGetters } from "vuex";
 import * as MAIN from "@/constants/main.js";
-import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement,
-} from "chart.js";
-
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-);
 
 export default {
     components: {
@@ -51,30 +30,22 @@ export default {
     },
     props: {
         type: { type: String, default: "" },
+        month: { type: String, default: "0" },
+        value: { type: Number, default: 0 },
+        lastValue: { type: Number, default: 0 },
     },
     computed: {
-        ...mapGetters("date", ["month", "year"]),
-        ...mapGetters("order", ["valuesOfMonth"]),
         title() {
             return `${this.month}월 총 ${MAIN[this.type]}`;
         },
-        valuesOfThisMonth() {
-            return this.valuesOfMonth(this.year, this.month, this.type);
-        },
-        valueTotal() {
-            const values = this.valuesOfThisMonth;
-            return values.length
-                ? values.reduce((sum, i) => sum + (i ?? 0))
-                : 0;
-        },
         valueIncrement() {
-            const increment = this.valuesOfThisMonth.at(-1) ?? 0;
+            const increment = this.value - this.lastValue;
             return this.formatNumber(increment);
         },
     },
     methods: {
         formatNumber(value) {
-            return (+value.toFixed()).toLocaleString();
+            return Math.round(value).toLocaleString();
         },
     },
 };

@@ -56,14 +56,6 @@ export default {
     methods: {
         async init() {
             await this.dispatchOrder("FETCH_ORDERS");
-
-            const thisMonth = { year: this.year, month: this.month };
-            const lastMonth = this.getLastMonth();
-            this.fetchOrdersOfMonth(thisMonth);
-            this.fetchOrdersOfMonth(lastMonth);
-        },
-        fetchOrdersOfMonth({ year, month }) {
-            this.dispatchOrder("FETCH_ORDERS_OF_MONTH", { year, month });
         },
         getLastMonth() {
             const year = this.month === 1 ? this.year - 1 : this.year;

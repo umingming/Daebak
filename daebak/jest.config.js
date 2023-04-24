@@ -13,7 +13,12 @@ module.exports = {
         "**/?(*.)+(spec|test).[jt]s?(x)",
     ],
     testPathIgnorePatterns: ["/node_modules/"],
-    transformIgnorePatterns: ["/node_modules/(?!@babel|@vue)"],
+    transformIgnorePatterns: [
+        "/node_modules/(?!@babel|@vue)",
+        "/node_modules/(?!@vue/vue2-jest)",
+        "/node_modules/(?!vue-chartjs/)",
+    ],
     collectCoverage: true,
     collectCoverageFrom: ["**/*.{js,vue}", "!**/node_modules/**"],
 };
+process.env.NODE_ENV = "test";

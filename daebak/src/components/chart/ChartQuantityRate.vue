@@ -11,17 +11,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Doughnut as DoughnutChart } from "vue-chartjs/legacy";
-import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    CategoryScale,
-    ArcElement,
-} from "chart.js";
-
-ChartJS.register(Title, Tooltip, Legend, CategoryScale, ArcElement);
+import { Doughnut as DoughnutChart } from "vue-chartjs";
 
 export default {
     components: {
