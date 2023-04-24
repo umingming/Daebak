@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682318021445" clover="3.2.0">
-  <project timestamp="1682318021446" name="All files">
-    <metrics statements="223" coveredstatements="0" conditionals="349" coveredconditionals="0" methods="104" coveredmethods="0" elements="676" coveredelements="0" complexity="0" loc="223" ncloc="223" packages="14" files="33" classes="33"/>
+<coverage generated="1682380138287" clover="3.2.0">
+  <project timestamp="1682380138287" name="All files">
+    <metrics statements="223" coveredstatements="7" conditionals="349" coveredconditionals="0" methods="104" coveredmethods="2" elements="676" coveredelements="9" complexity="0" loc="223" ncloc="223" packages="14" files="33" classes="33"/>
     <package name="daebak">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name=".eslintrc.js" path="C:\YouMe\Daebak\Daebak\daebak\.eslintrc.js">
@@ -225,10 +225,10 @@
       </file>
     </package>
     <package name="daebak.src.components.main">
-      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="MainBanner.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBanner.vue">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="12" type="stmt"/>
       </file>
       <file name="MainBoard.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBoard.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -240,21 +240,21 @@
       </file>
     </package>
     <package name="daebak.src.constants">
-      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.js" path="C:\YouMe\Daebak\Daebak\daebak\src\constants\main.js">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
       </file>
     </package>
     <package name="daebak.src.mixins">
-      <metrics statements="1" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="orderMixin.js" path="C:\YouMe\Daebak\Daebak\daebak\src\mixins\orderMixin.js">
-        <metrics statements="1" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="9" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="6" type="stmt"/>
       </file>
     </package>
     <package name="daebak.src.routes">

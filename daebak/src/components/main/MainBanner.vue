@@ -41,10 +41,12 @@ export default {
             return this.currentMonthValues(this.type);
         },
         valueTotal() {
-            return this.values.reduce((acc, curr) => acc + (+curr || 0), 0);
+            const total =
+                this.values?.reduce((acc, curr) => acc + (+curr || 0), 0) || 0;
+            return total;
         },
         valueIncrement() {
-            const increment = this.values.at(-1) - this.values.at(-2);
+            const increment = this.values?.at(-1) - this.values?.at(-2) || 0;
             return this.$formatValue(increment);
         },
     },
