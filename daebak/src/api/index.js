@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const config = {
-    baseUrl: "http://192.168.219.137:5959/api/v1/daebak",
+    baseUrl: "http://192.168.101.43:5959/api/v1/daebak",
 };
 
 function fetchUserInfo() {

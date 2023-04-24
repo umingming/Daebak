@@ -29,6 +29,11 @@ export default {
         ChartQuantityRate,
         MainBoard,
     },
+    data() {
+        return {
+            currentMonth: new Date().getMonth() + 1,
+        };
+    },
     computed: {
         ...mapGetters("date", ["month", "year"]),
         ...mapGetters("order", ["valuesOfMonth"]),
