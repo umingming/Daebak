@@ -1,7 +1,6 @@
 <template>
     <div id="main-view" class="wrapper">
         <main-banner v-for="type in bannerTypes" :key="type" :type="type">
-            <i slot="icon" class="fa-solid fa-sack-dollar"></i>
         </main-banner>
         <chart-price></chart-price>
         <!-- <chart-quantity-avg></chart-quantity-avg>
