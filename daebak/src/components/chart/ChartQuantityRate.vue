@@ -2,21 +2,34 @@
     <div class="main-chart-monthly-quantity">
         <h3>{{ title }}</h3>
         <doughnut-chart
+            class="doughnut-chart"
             :chart-data="chartData"
             :chart-options="chartOptions"
-            :height="200"
         ></doughnut-chart>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import orderMixin from "@/mixins/orderMixin.js";
+import dateMixin from "@/mixins/dateMixin.js";
 import { Doughnut as DoughnutChart } from "vue-chartjs";
+import {
+    Chart as ChartJS,
+    Title,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    ArcElement,
+} from "chart.js";
+
+ChartJS.register(Title, Tooltip, Legend, CategoryScale, ArcElement);
+import { CHART_OPTIONS_QUANTITY_RATE } from "@/constants/main.js";
 
 export default {
     components: {
         DoughnutChart,
     },
+    mixins: [orderMixin, dateMixin],
     data() {
         return {
             chartData: {
@@ -33,31 +46,12 @@ export default {
                     },
                 ],
             },
-            chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: "right",
-                        labels: {
-                            font: {
-                                size: 15,
-                            },
-                            boxWidth: 7,
-                            padding: 15,
-                            usePointStyle: true,
-                            pointStyle: "circle",
-                        },
-                    },
-                },
-            },
+            chartOptions: CHART_OPTIONS_QUANTITY_RATE,
         };
     },
     computed: {
-        ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
-        ...mapGetters("order", ["valuesOfMonth"]),
         title() {
-            return `${this.month}월 주문 카테고리 비율`;
+            return `${this.currentMonth}월 주문 카테고리 비율`;
         },
     },
     methods: {
@@ -108,9 +102,8 @@ export default {
 </script>
 
 <style scoped>
-::v-deep #doughnut-chart {
-    position: relative;
-    left: -5px;
-    top: 8px;
+::v-deep .doughnut-chart {
+    height: 200px;
+    margin-top: 10px;
 }
 </style>

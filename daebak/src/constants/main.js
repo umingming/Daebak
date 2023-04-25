@@ -110,3 +110,23 @@ export const CHART_OPTIONS_QUANTITY_AVG = {
         },
     },
 };
+
+export const CHART_OPTIONS_QUANTITY_RATE = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: "right",
+            labels: {
+                font: {
+                    size: 15,
+                },
+                boxWidth: 7,
+                boxHeight: 7,
+                padding: 15,
+                usePointStyle: true,
+                pointStyle: "circle",
+            },
+        },
+    },
+};
