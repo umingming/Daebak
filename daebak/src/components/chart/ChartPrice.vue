@@ -41,7 +41,7 @@ export default {
     data() {
         return {
             chartOptions: CHART_OPTIONS_PRICE,
-            labels: this.getDateLabelsOfMonth(),
+            labels: this.getDateLabelsOfCurrentMonth(),
         };
     },
     computed: {

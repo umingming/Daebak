@@ -61,3 +61,52 @@ export const CHART_OPTIONS_PRICE = {
         },
     },
 };
+
+export const CHART_OPTIONS_QUANTITY_AVG = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: "top",
+            reverse: "true",
+            align: "end",
+            labels: {
+                font: {
+                    size: 15,
+                },
+                boxWidth: 7,
+                boxHeight: 7,
+                padding: 15,
+                usePointStyle: true,
+                pointStyle: "circle",
+            },
+        },
+    },
+    scales: {
+        x: {
+            display: true,
+            ticks: {
+                font: {
+                    size: 14,
+                },
+                stepSize: 1,
+            },
+            grid: {
+                color: "white",
+            },
+        },
+        y: {
+            display: true,
+            ticks: {
+                font: {
+                    size: 14,
+                },
+                stepSize: 5,
+                min: 0,
+            },
+            grid: {
+                borderWidth: 0,
+            },
+        },
+    },
+};
