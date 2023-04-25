@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682401205746" clover="3.2.0">
-  <project timestamp="1682401205746" name="All files">
-    <metrics statements="236" coveredstatements="13" conditionals="351" coveredconditionals="0" methods="111" coveredmethods="3" elements="698" coveredelements="16" complexity="0" loc="236" ncloc="236" packages="14" files="35" classes="35"/>
+<coverage generated="1682408120788" clover="3.2.0">
+  <project timestamp="1682408120788" name="All files">
+    <metrics statements="234" coveredstatements="24" conditionals="351" coveredconditionals="2" methods="111" coveredmethods="9" elements="696" coveredelements="35" complexity="0" loc="234" ncloc="234" packages="14" files="35" classes="35"/>
     <package name="daebak">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name=".eslintrc.js" path="C:\YouMe\Daebak\Daebak\daebak\.eslintrc.js">
@@ -15,7 +15,7 @@
       <file name="jest.config.js" path="C:\YouMe\Daebak\Daebak\daebak\jest.config.js">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
       </file>
       <file name="vue.config.js" path="C:\YouMe\Daebak\Daebak\daebak\vue.config.js">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -181,19 +181,19 @@
       </file>
     </package>
     <package name="daebak.src.components">
-      <metrics statements="8" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <metrics statements="7" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="6" coveredmethods="0"/>
       <file name="BudgetBoard.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\BudgetBoard.vue">
         <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="BudgetChartTest.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\BudgetChartTest.vue">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
       </file>
       <file name="BudgetItem.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\BudgetItem.vue">
-        <metrics statements="2" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="1" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="49" count="0" type="stmt"/>
       </file>
       <file name="BudgetModalAdd.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\BudgetModalAdd.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -204,16 +204,15 @@
         <line num="1" count="0" type="stmt"/>
       </file>
       <file name="BudgetTable.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\BudgetTable.vue">
-        <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="82" count="0" type="stmt"/>
       </file>
     </package>
     <package name="daebak.src.components.chart">
-      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="ChartPrice.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\chart\ChartPrice.vue">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="6" type="stmt"/>
       </file>
       <file name="ChartQuantityAvg.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\chart\ChartQuantityAvg.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -225,10 +224,11 @@
       </file>
     </package>
     <package name="daebak.src.components.main">
-      <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="MainBanner.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBanner.vue">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="12" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
       </file>
       <file name="MainBoard.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\components\main\MainBoard.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -240,36 +240,36 @@
       </file>
     </package>
     <package name="daebak.src.constants">
-      <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="common.js" path="C:\YouMe\Daebak\Daebak\daebak\src\constants\common.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="main.js" path="C:\YouMe\Daebak\Daebak\daebak\src\constants\main.js">
-        <metrics statements="9" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="33" count="30" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="cond" truecount="2" falsecount="0"/>
       </file>
     </package>
     <package name="daebak.src.mixins">
-      <metrics statements="9" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="dateMixin.js" path="C:\YouMe\Daebak\Daebak\daebak\src\mixins\dateMixin.js">
-        <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="30" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
       </file>
       <file name="orderMixin.js" path="C:\YouMe\Daebak\Daebak\daebak\src\mixins\orderMixin.js">
         <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -346,17 +346,17 @@
       </file>
     </package>
     <package name="daebak.src.utils">
-      <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="1"/>
       <file name="common.js" path="C:\YouMe\Daebak\Daebak\daebak\src\utils\common.js">
-        <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="13" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="1"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="17" count="30" type="stmt"/>
+        <line num="18" count="30" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
@@ -365,20 +365,18 @@
       </file>
     </package>
     <package name="daebak.src.views">
-      <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
       <file name="BoardView.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\views\BoardView.vue">
         <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="LoginNaverView.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\views\LoginNaverView.vue">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
       </file>
       <file name="LoginView.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\views\LoginView.vue">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
       </file>
       <file name="MainView.vue" path="C:\YouMe\Daebak\Daebak\daebak\src\views\MainView.vue">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

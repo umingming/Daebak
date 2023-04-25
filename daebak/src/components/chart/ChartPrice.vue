@@ -1,6 +1,6 @@
 <template>
     <div class="main-chart-monthly-price chart-box">
-        <h3>{{ title }}</h3>
+        <h3 data-test="title">{{ title }}</h3>
         <bar-chart
             :chart-data="{ labels, datasets }"
             :chart-options="chartOptions"
@@ -10,10 +10,6 @@
 </template>
 
 <script>
-import { Bar as BarChart } from "vue-chartjs/legacy";
-import { CHART_OPTIONS_PRICE } from "@/constants/main.js";
-import orderMixin from "@/mixins/orderMixin.js";
-import dateMixin from "@/mixins/dateMixin.js";
 import {
     Chart as ChartJS,
     Title,
@@ -32,6 +28,10 @@ ChartJS.register(
     CategoryScale,
     LinearScale
 );
+import { Bar as BarChart } from "vue-chartjs/legacy";
+import { CHART_OPTIONS_PRICE } from "@/constants/main.js";
+import orderMixin from "@/mixins/orderMixin.js";
+import dateMixin from "@/mixins/dateMixin.js";
 
 export default {
     components: {
