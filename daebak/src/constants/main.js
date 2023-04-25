@@ -19,6 +19,7 @@ export const CHART_OPTIONS_PRICE = {
                     size: 15,
                 },
                 boxWidth: 7,
+                boxHeight: 7,
                 padding: 15,
                 usePointStyle: true,
                 pointStyle: "circle",
