@@ -9,18 +9,18 @@
             <i slot="icon" class="fa-solid fa-sack-dollar"></i>
         </main-banner>
         <chart-price></chart-price>
-        <chart-quantity-avg></chart-quantity-avg>
+        <!-- <chart-quantity-avg></chart-quantity-avg>
         <chart-quantity-rate></chart-quantity-rate>
-        <main-board></main-board>
+        <main-board></main-board> -->
     </div>
 </template>
 
 <script>
 import MainBanner from "@/components/main/MainBanner.vue";
 import ChartPrice from "@/components/chart/ChartPrice.vue";
-import ChartQuantityAvg from "@/components/chart/ChartQuantityAvg.vue";
-import ChartQuantityRate from "@/components/chart/ChartQuantityRate.vue";
-import MainBoard from "@/components/main/MainBoard.vue";
+// import ChartQuantityAvg from "@/components/chart/ChartQuantityAvg.vue";
+// import ChartQuantityRate from "@/components/chart/ChartQuantityRate.vue";
+// import MainBoard from "@/components/main/MainBoard.vue";
 
 import orderMixin from "@/mixins/orderMixin.js";
 
@@ -28,9 +28,9 @@ export default {
     components: {
         ChartPrice,
         MainBanner,
-        ChartQuantityAvg,
-        ChartQuantityRate,
-        MainBoard,
+        // ChartQuantityAvg,
+        // ChartQuantityRate,
+        // MainBoard,
     },
     mixins: [orderMixin],
     data() {

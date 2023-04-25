@@ -1,5 +1,5 @@
 import { fetchOrders } from "@/api/index.js";
-import { compareMonth } from "@/utils/common.js";
+import { $compareMonth } from "@/utils/common.js";
 
 const state = () => ({
     orders: [],
@@ -13,7 +13,7 @@ const getters = {
         return (type) => {
             const date = new Date();
             const monthOrders =
-                state.orders.filter((i) => compareMonth(date, i.date)) || [];
+                state.orders.filter((i) => $compareMonth(date, i.date)) || [];
             return getMonthValuesByOrders(monthOrders, type);
         };
     },
@@ -22,7 +22,7 @@ const getters = {
             const date = new Date();
             date.setMonth(date.getMonth() - 1);
             const monthOrders =
-                state.orders.filter((i) => compareMonth(date, i.date)) || [];
+                state.orders.filter((i) => $compareMonth(date, i.date)) || [];
             return getMonthValuesByOrders(monthOrders, type);
         };
     },
@@ -67,11 +67,11 @@ export default {
 };
 
 function getMonthValuesByOrders(orders, type) {
-    const values = [];
+    const values = Array.from({ length: 32 }, () => 0);
     orders.forEach((i) => {
-        const index = +i.date.split("-").at(-1);
-        const value = (values[index] || 0) + +i[type];
+        const index = +i.date.split("-").at(-1) - 1;
+        const value = values[index] + +i[type];
         values[index] = value;
     });
-    return values;
+    return values.map((i) => i || 0);
 }

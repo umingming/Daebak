@@ -10,101 +10,60 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { formatISODateForChartLabel } from "@/utils/common";
-import { Bar as BarChart } from "vue-chartjs";
+import { Bar as BarChart } from "vue-chartjs/legacy";
+import { CHART_OPTIONS_PRICE } from "@/constants/main.js";
+import orderMixin from "@/mixins/orderMixin.js";
+import dateMixin from "@/mixins/dateMixin.js";
+import {
+    Chart as ChartJS,
+    Title,
+    Tooltip,
+    Legend,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+    Title,
+    Tooltip,
+    Legend,
+    BarElement,
+    CategoryScale,
+    LinearScale
+);
 
 export default {
     components: {
         BarChart,
     },
+    mixins: [orderMixin, dateMixin],
     data() {
         return {
-            chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: "top",
-                        align: "end",
-                        labels: {
-                            font: {
-                                size: 15,
-                            },
-                            boxWidth: 7,
-                            padding: 15,
-                            usePointStyle: true,
-                            pointStyle: "circle",
-                        },
-                    },
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        ticks: {
-                            callback(data) {
-                                return +this.getLabelForValue(data).slice(-2);
-                            },
-                            font: {
-                                size: 14,
-                            },
-                            stepSize: 1,
-                        },
-                        grid: {
-                            color: "white",
-                        },
-                    },
-                    y: {
-                        display: true,
-                        ticks: {
-                            callback(data) {
-                                let value = (data + "").slice(0, -4);
-                                return value || 0;
-                            },
-                            font: {
-                                size: 14,
-                            },
-                            stepSize: 200000,
-                            max: 1000000,
-                        },
-                        grid: {
-                            borderWidth: 0,
-                        },
-                    },
-                },
-            },
+            chartOptions: CHART_OPTIONS_PRICE,
+            labels: this.getDateLabelsOfMonth(),
         };
     },
     computed: {
-        ...mapGetters("date", ["year", "month", "lastDateOfMonth"]),
-        ...mapGetters("order", ["valuesOfMonth"]),
         title() {
-            return `${this.month}월 매출 추이`;
+            return `${this.currentMonth}월 매출 추이`;
         },
-        labels() {
-            return Array.from({ length: this.lastDateOfMonth }, (_, index) =>
-                formatISODateForChartLabel(this.year, this.month, index)
-            );
+        datasetOfLastMonth() {
+            return {
+                label: `${this.currentMonth - 1}월`,
+                data: this.lastMonthValues("value"),
+            };
+        },
+        datasetOfCurrentMonth() {
+            return {
+                label: `${this.currentMonth}월`,
+                data: this.currentMonthValues("value"),
+                backgroundColor: "#FFA200",
+                hoverBackgroundColor: "#FF7B00",
+            };
         },
         datasets() {
-            const datasetOfLastMonth = this.datasetOfMonth(this.month - 1);
-            const datasetOfThisMonth = this.datasetOfMonth(this.month);
-            datasetOfThisMonth.backgroundColor = "#FFA200";
-            datasetOfThisMonth.hoverBackgroundColor = "#FF7B00";
-
-            return [datasetOfLastMonth, datasetOfThisMonth];
-        },
-        datasetOfMonth() {
-            return (month) => {
-                const label = `${month}월`;
-                const data = this.pricesOfMonth(month);
-                return { label, data };
-            };
-        },
-        pricesOfMonth() {
-            return (month) => {
-                return this.valuesOfMonth(this.year, month, "value");
-            };
+            return [this.datasetOfLastMonth, this.datasetOfCurrentMonth];
         },
     },
 };

@@ -2,14 +2,14 @@
     <div class="main-banner">
         <h3 data-test="title">{{ title }}</h3>
         <div class="icon">
-            <slot name="icon"></slot>
+            <i :class="icon"></i>
         </div>
         <div class="number">
             <animated-number
                 :duration="1000"
                 :delay="10"
                 :value="valueTotal"
-                :formatValue="$formatValue"
+                :formatValue="formatValue"
             ></animated-number>
             <small data-test="increment">
                 <i class="fa-solid fa-arrow-up-long"></i>
@@ -23,6 +23,7 @@
 import AnimatedNumber from "animated-number-vue";
 import orderMixin from "@/mixins/orderMixin.js";
 import { BANNER } from "@/constants/main.js";
+import { ICON } from "@/constants/common.js";
 
 export default {
     components: {
@@ -37,6 +38,9 @@ export default {
         title() {
             return `${this.month}월 총 ${BANNER[this.type]}`;
         },
+        icon() {
+            return ICON[this.type];
+        },
         values() {
             return this.currentMonthValues(this.type);
         },
@@ -47,7 +51,7 @@ export default {
         },
         valueIncrement() {
             const increment = this.values?.at(-1) - this.values?.at(-2) || 0;
-            return this.$formatValue(increment);
+            return this.formatValue(increment);
         },
     },
 };
