@@ -22,6 +22,7 @@
 <script>
 import AnimatedNumber from "animated-number-vue";
 import orderMixin from "@/mixins/orderMixin.js";
+import dateMixin from "@/mixins/dateMixin.js";
 import { BANNER } from "@/constants/main.js";
 import { ICON } from "@/constants/common.js";
 
@@ -29,14 +30,13 @@ export default {
     components: {
         AnimatedNumber,
     },
-    mixins: [orderMixin],
+    mixins: [orderMixin, dateMixin],
     props: {
         type: { type: String, default: "" },
-        month: { type: String, default: "0" },
     },
     computed: {
         title() {
-            return `${this.month}월 총 ${BANNER[this.type]}`;
+            return `${this.currentMonth}월 총 ${BANNER[this.type]}`;
         },
         icon() {
             return ICON[this.type];

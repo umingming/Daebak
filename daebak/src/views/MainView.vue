@@ -1,11 +1,6 @@
 <template>
     <div id="main-view" class="wrapper">
-        <main-banner
-            v-for="type in bannerTypes"
-            :key="type"
-            :type="type"
-            :month="currentMonth"
-        >
+        <main-banner v-for="type in bannerTypes" :key="type" :type="type">
             <i slot="icon" class="fa-solid fa-sack-dollar"></i>
         </main-banner>
         <chart-price></chart-price>
@@ -35,7 +30,6 @@ export default {
     mixins: [orderMixin],
     data() {
         return {
-            currentMonth: (new Date().getMonth() + 1).toString(),
             bannerTypes: ["value", "amount"],
         };
     },

@@ -32,7 +32,7 @@ describe("MainBanner", () => {
             // Given
             const wrapper = mount(MainBanner, {
                 localVue,
-                propsData: { month, type },
+                propsData: { type },
                 store,
             });
 
