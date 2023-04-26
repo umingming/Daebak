@@ -117,6 +117,7 @@ export const CHART_QUANTITY_AVG = {
 };
 
 export const CHART_QUANTITY_RATE = {
+    labels: ["배달의민족", "요기요", "쿠팡이츠", "배달특급", "기타"],
     chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -134,19 +135,7 @@ export const CHART_QUANTITY_RATE = {
                     pointStyle: "circle",
                 },
             },
-            afterDraw: (chart) => {
-                const ctx = chart.ctx;
-                const xAxis = chart.scales["x"];
-                const yAxis = chart.scales["y"];
-                xAxis.ticks.forEach((value, index) => {
-                    let x = xAxis.getPixelForTick(index);
-                    ctx.drawImage(
-                        "@/assets/img/logoBaemin",
-                        x - 12,
-                        yAxis.bottom + 10
-                    );
-                });
-            },
         },
     },
+    backgroundColor: ["#36A2EB", "#FF6384", "#FFCD56", "#4BC0C0", "#E5E5E5"],
 };

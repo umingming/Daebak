@@ -45,8 +45,7 @@ export default {
             return this.currentMonthValues(this.type);
         },
         valueTotal() {
-            const total =
-                this.values?.reduce((acc, curr) => acc + (+curr || 0), 0) || 0;
+            const total = this.getTotalValue(this.values);
             return total;
         },
         valueIncrement() {

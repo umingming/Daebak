@@ -9,11 +9,15 @@ const getters = {
     orders(state) {
         return state.orders;
     },
-    currentMonthValues(state) {
+    currentMonthOrders(state) {
+        const date = new Date();
+        const monthOrders =
+            state.orders.filter((i) => $compareMonth(date, i.date)) || [];
+        return monthOrders;
+    },
+    currentMonthValues(state, getters) {
         return (type) => {
-            const date = new Date();
-            const monthOrders =
-                state.orders.filter((i) => $compareMonth(date, i.date)) || [];
+            const monthOrders = getters.currentMonthOrders;
             return getMonthValuesByOrders(monthOrders, type);
         };
     },

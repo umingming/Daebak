@@ -3,7 +3,7 @@
         <h3>{{ title }}</h3>
         <doughnut-chart
             class="doughnut-chart"
-            :chart-data="chartData"
+            :chart-data="{ labels, datasets }"
             :chart-options="chartOptions"
         ></doughnut-chart>
     </div>
@@ -31,50 +31,32 @@ export default {
     },
     mixins: [orderMixin, dateMixin],
     data() {
-        const { chartOptions } = CHART_QUANTITY_RATE;
+        const { labels, chartOptions, backgroundColor } = CHART_QUANTITY_RATE;
         return {
-            chartData: {
-                labels: [
-                    "배달의민족",
-                    "요기요",
-                    "쿠팡이츠",
-                    "배달특급",
-                    "기타",
-                ],
-                datasets: [
-                    {
-                        data: [30, 10, 5, 3, 1],
-                        backgroundColor: [
-                            "#36A2EB",
-                            "#FF6384",
-                            "#FFCD56",
-                            "#4BC0C0",
-                            "#E5E5E5",
-                        ],
-                    },
-                ],
-            },
+            labels,
             chartOptions,
+            backgroundColor,
         };
     },
     computed: {
         title() {
             return `${this.currentMonth}월 주문 카테고리 비율`;
         },
-    },
-    methods: {
-        init() {
-            this.setChartLabels();
-            this.setChartDatas();
-        },
-        setChartLabels() {
-            const month = new Date().getMonth();
-            this.chartData.datasets[0].label = `${month + 1}월`;
-        },
-        setChartDatas() {
-            this.chartData.datasets.forEach(
-                (i) => (i.data = this.getQuantityListByMonth(i.label))
-            );
+        datasets() {
+            const data = [];
+            for (const label of this.labels) {
+                const quantities = this.currentMonthOrders
+                    .filter((i) => i.cate === label)
+                    .map((i) => i.amount);
+                const total = this.getTotalValue(quantities);
+                data.push(total);
+            }
+            return [
+                {
+                    data,
+                    backgroundColor: this.backgroundColor,
+                },
+            ];
         },
     },
 };
