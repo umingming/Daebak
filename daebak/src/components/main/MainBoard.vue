@@ -15,13 +15,14 @@
 
 <script>
 import BudgetTable from "@/components/BudgetTable.vue";
-
-import { mapGetters } from "vuex";
+import orderMixin from "@/mixins/orderMixin.js";
+import dateMixin from "@/mixins/dateMixin.js";
 
 export default {
     components: {
         BudgetTable,
     },
+    mixins: [orderMixin, dateMixin],
     data() {
         return {
             excelField: {
@@ -46,17 +47,8 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("date", ["month", "year"]),
-        ...mapGetters("order", ["orders"]),
-        itemsByDate() {
-            let items = this.orders.filter((i) => i.date === this.today);
-            return items;
-        },
         title() {
-            return `${new Date().getMonth() + 1}월 주문 내역`;
-        },
-        today() {
-            return new Date().toISOString().slice(0, 10);
+            return `${this.currentMonth}월 주문 내역`;
         },
     },
     methods: {
