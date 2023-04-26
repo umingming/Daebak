@@ -23,7 +23,7 @@ import {
 } from "chart.js";
 
 ChartJS.register(Title, Tooltip, Legend, CategoryScale, ArcElement);
-import { CHART_OPTIONS_QUANTITY_RATE } from "@/constants/main.js";
+import { CHART_QUANTITY_RATE } from "@/constants/main.js";
 
 export default {
     components: {
@@ -31,6 +31,7 @@ export default {
     },
     mixins: [orderMixin, dateMixin],
     data() {
+        const { chartOptions } = CHART_QUANTITY_RATE;
         return {
             chartData: {
                 labels: ["배민", "요기요", "쿠팡", "매장"],
@@ -46,7 +47,7 @@ export default {
                     },
                 ],
             },
-            chartOptions: CHART_OPTIONS_QUANTITY_RATE,
+            chartOptions,
         };
     },
     computed: {

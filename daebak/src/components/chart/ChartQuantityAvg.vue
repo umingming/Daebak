@@ -31,7 +31,7 @@ ChartJS.register(
     CategoryScale,
     PointElement
 );
-import { CHART_OPTIONS_QUANTITY_AVG } from "@/constants/main.js";
+import { CHART_QUANTITY_AVG } from "@/constants/main.js";
 import orderMixin from "@/mixins/orderMixin.js";
 import dateMixin from "@/mixins/dateMixin.js";
 
@@ -41,9 +41,10 @@ export default {
     },
     mixins: [orderMixin, dateMixin],
     data() {
+        const { labels, chartOptions } = CHART_QUANTITY_AVG;
         return {
-            labels: ["월", "화", "수", "목", "금", "토", "일"],
-            chartOptions: CHART_OPTIONS_QUANTITY_AVG,
+            labels,
+            chartOptions,
         };
     },
     computed: {
@@ -52,20 +53,10 @@ export default {
         },
         datasetOfLastMonth() {
             const month = this.currentMonth - 1;
-            const dayOffset = this.getDateOffsetByMonth(month);
-            const avgList = [];
-
-            const quantities = this.lastMonthValues("amount");
-            for (let i = 0; i < quantities.length; i++) {
-                const day = (i + dayOffset) % 7;
-                if (!avgList[day]) avgList[day] = [];
-                avgList[day].push(quantities[i] ?? 0);
-            }
+            const values = this.lastMonthValues("amount");
             return {
                 label: `${month}월`,
-                data: avgList.map(
-                    (i) => i.reduce((acc, cur) => acc + cur, 0) / i.length
-                ),
+                data: this.getWeeklyAverages(month, values),
                 pointBorderWidth: 3,
                 pointHitRadius: 10,
                 backgroundColor: "white",
@@ -74,20 +65,10 @@ export default {
         },
         datasetOfCurrentMonth() {
             const month = this.currentMonth;
-            const dayOffset = this.getDateOffsetByMonth(month);
-            const avgList = [];
-
-            const quantities = this.currentMonthValues("amount");
-            for (let i = 0; i < quantities.length; i++) {
-                const day = (i + dayOffset) % 7;
-                if (!avgList[day]) avgList[day] = [];
-                avgList[day].push(quantities[i] ?? 0);
-            }
+            const values = this.currentMonthValues("amount");
             return {
                 label: `${month}월`,
-                data: avgList.map(
-                    (i) => i.reduce((acc, cur) => acc + cur, 0) / i.length
-                ),
+                data: this.getWeeklyAverages(month, values),
                 pointBorderWidth: 3,
                 pointHitRadius: 10,
                 backgroundColor: "white",
@@ -96,6 +77,20 @@ export default {
         },
         datasets() {
             return [this.datasetOfLastMonth, this.datasetOfCurrentMonth];
+        },
+    },
+    methods: {
+        getWeeklyAverages(month, values) {
+            const averages = Array.from({ length: 7 }, () => []);
+            const dayOffset = this.getDateOffsetByMonth(month);
+
+            for (let i = 0; i < values.length; i++) {
+                const day = (i + dayOffset) % 7;
+                averages[day].push(values[i] ?? 0);
+            }
+            return averages.map(
+                (i) => i.reduce((acc, cur) => acc + cur, 0) / (i.length || 1)
+            );
         },
     },
 };

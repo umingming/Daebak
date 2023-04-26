@@ -7,125 +7,132 @@ export const BANNER = {
     value: "매출액",
     amount: "주문 수",
 };
-export const CHART_OPTIONS_PRICE = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-            position: "top",
-            align: "end",
-            labels: {
-                font: {
-                    size: 15,
+export const CHART_PRICE = {
+    chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: "top",
+                align: "end",
+                labels: {
+                    font: {
+                        size: 15,
+                    },
+                    boxWidth: 7,
+                    boxHeight: 7,
+                    padding: 15,
+                    usePointStyle: true,
+                    pointStyle: "circle",
                 },
-                boxWidth: 7,
-                boxHeight: 7,
-                padding: 15,
-                usePointStyle: true,
-                pointStyle: "circle",
             },
         },
-    },
-    scales: {
-        x: {
-            display: true,
-            ticks: {
-                callback(data) {
-                    return +this.getLabelForValue(data).slice(-2);
+        scales: {
+            x: {
+                display: true,
+                ticks: {
+                    callback(data) {
+                        return +this.getLabelForValue(data).slice(-2);
+                    },
+                    font: {
+                        size: 14,
+                    },
+                    stepSize: 1,
                 },
-                font: {
-                    size: 14,
+                grid: {
+                    color: "white",
                 },
-                stepSize: 1,
             },
-            grid: {
-                color: "white",
-            },
-        },
-        y: {
-            display: true,
-            ticks: {
-                callback(data) {
-                    let value = (data + "").slice(0, -4);
-                    return value || 0;
+            y: {
+                display: true,
+                ticks: {
+                    callback(data) {
+                        let value = (data + "").slice(0, -4);
+                        return value || 0;
+                    },
+                    font: {
+                        size: 14,
+                    },
+                    stepSize: 200000,
+                    max: 1000000,
                 },
-                font: {
-                    size: 14,
+                grid: {
+                    borderWidth: 0,
                 },
-                stepSize: 200000,
-                max: 1000000,
-            },
-            grid: {
-                borderWidth: 0,
-            },
-        },
-    },
-};
-
-export const CHART_OPTIONS_QUANTITY_AVG = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-            position: "top",
-            reverse: "true",
-            align: "end",
-            labels: {
-                font: {
-                    size: 15,
-                },
-                boxWidth: 7,
-                boxHeight: 7,
-                padding: 15,
-                usePointStyle: true,
-                pointStyle: "circle",
-            },
-        },
-    },
-    scales: {
-        x: {
-            display: true,
-            ticks: {
-                font: {
-                    size: 14,
-                },
-                stepSize: 1,
-            },
-            grid: {
-                color: "white",
-            },
-        },
-        y: {
-            display: true,
-            ticks: {
-                font: {
-                    size: 14,
-                },
-                stepSize: 5,
-                min: 0,
-            },
-            grid: {
-                borderWidth: 0,
             },
         },
     },
 };
 
-export const CHART_OPTIONS_QUANTITY_RATE = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-            position: "right",
-            labels: {
-                font: {
-                    size: 15,
+export const CHART_QUANTITY_AVG = {
+    labels: ["월", "화", "수", "목", "금", "토", "일"],
+    chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: "top",
+                reverse: "true",
+                align: "end",
+                labels: {
+                    font: {
+                        size: 15,
+                    },
+                    boxWidth: 7,
+                    boxHeight: 7,
+                    padding: 15,
+                    usePointStyle: true,
+                    pointStyle: "circle",
                 },
-                boxWidth: 7,
-                boxHeight: 7,
-                padding: 15,
-                usePointStyle: true,
-                pointStyle: "circle",
+            },
+        },
+        scales: {
+            x: {
+                display: true,
+                ticks: {
+                    font: {
+                        size: 14,
+                    },
+                    stepSize: 1,
+                },
+                grid: {
+                    color: "white",
+                },
+            },
+            y: {
+                display: true,
+                ticks: {
+                    font: {
+                        size: 14,
+                    },
+                    stepSize: 5,
+                    min: 0,
+                },
+                grid: {
+                    borderWidth: 0,
+                },
+            },
+        },
+    },
+};
+
+export const CHART_QUANTITY_RATE = {
+    chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: "right",
+                labels: {
+                    font: {
+                        size: 15,
+                    },
+                    boxWidth: 7,
+                    boxHeight: 7,
+                    padding: 15,
+                    usePointStyle: true,
+                    pointStyle: "circle",
+                },
             },
         },
     },

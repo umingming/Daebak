@@ -29,7 +29,7 @@ ChartJS.register(
     LinearScale
 );
 import { Bar as BarChart } from "vue-chartjs/legacy";
-import { CHART_OPTIONS_PRICE } from "@/constants/main.js";
+import { CHART_PRICE } from "@/constants/main.js";
 import orderMixin from "@/mixins/orderMixin.js";
 import dateMixin from "@/mixins/dateMixin.js";
 
@@ -39,8 +39,9 @@ export default {
     },
     mixins: [orderMixin, dateMixin],
     data() {
+        const { chartOptions } = CHART_PRICE;
         return {
-            chartOptions: CHART_OPTIONS_PRICE,
+            chartOptions,
             labels: this.getDateLabelsOfCurrentMonth(),
         };
     },
