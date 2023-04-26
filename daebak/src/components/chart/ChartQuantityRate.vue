@@ -69,35 +69,6 @@ export default {
                 (i) => (i.data = this.getQuantityListByMonth(i.label))
             );
         },
-        /*
-            요일 별 주문 수 구하기
-            1. 0이 월요일이 되기 위해서 해당 달의 1일의 요일을 구함.
-                그 값에 -1을 하고 date에 더하면 됨.
-            2. date에서 7을 나눈 값에서 인덱스를 +/-
-            3. 해당 값에 더함.
-
-        */
-        getQuantityListByMonth(label) {
-            const monthFromLabel = +label.slice(0, -1);
-            let orderList = this.fetchedList.filter((i) => {
-                const monthFromOrder = +i.date.split("-")[1];
-                return monthFromOrder === monthFromLabel;
-            });
-
-            const dayOffset =
-                new Date(
-                    new Date().getFullYear(),
-                    monthFromLabel - 1
-                ).getDay() - 1;
-
-            let quantityList = Array(this.chartData.labels.length).fill(0);
-            orderList.forEach((i) => {
-                const index = (+i.date.slice(-2) + dayOffset) % 7;
-                quantityList[index] += +i.amount;
-            });
-
-            return quantityList;
-        },
     },
 };
 </script>
