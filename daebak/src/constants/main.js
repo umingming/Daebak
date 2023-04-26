@@ -134,6 +134,19 @@ export const CHART_QUANTITY_RATE = {
                     pointStyle: "circle",
                 },
             },
+            afterDraw: (chart) => {
+                const ctx = chart.ctx;
+                const xAxis = chart.scales["x"];
+                const yAxis = chart.scales["y"];
+                xAxis.ticks.forEach((value, index) => {
+                    let x = xAxis.getPixelForTick(index);
+                    ctx.drawImage(
+                        "@/assets/img/logoBaemin",
+                        x - 12,
+                        yAxis.bottom + 10
+                    );
+                });
+            },
         },
     },
 };

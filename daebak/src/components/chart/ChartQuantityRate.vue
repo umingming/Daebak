@@ -34,14 +34,21 @@ export default {
         const { chartOptions } = CHART_QUANTITY_RATE;
         return {
             chartData: {
-                labels: ["배민", "요기요", "쿠팡", "매장"],
+                labels: [
+                    "배달의민족",
+                    "요기요",
+                    "쿠팡이츠",
+                    "배달특급",
+                    "기타",
+                ],
                 datasets: [
                     {
-                        data: [30, 10, 5, 1],
+                        data: [30, 10, 5, 3, 1],
                         backgroundColor: [
                             "#36A2EB",
                             "#FF6384",
-                            "#FFD166",
+                            "#FFCD56",
+                            "#4BC0C0",
                             "#E5E5E5",
                         ],
                     },
