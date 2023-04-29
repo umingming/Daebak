@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <div class="header" :class="$route.name">💸대박나라💸</div>
+        <router-link to="/main">
+            <div class="header" :class="$route.name">💸대박나라💸</div>
+        </router-link>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -31,6 +33,9 @@ export default {
     height: 96vh;
     /* overflow: hidden; */
     margin: 0 auto;
+}
+a {
+    text-decoration: none;
 }
 .header {
     font-size: 55px;

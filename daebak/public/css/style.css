@@ -225,9 +225,7 @@ body {
   background-color: #f9f9f9;
 } */
 #budget-table table tr:first-child {
-  height: 30px;
-  border-radius: 5px !important;
-  background: rgb(242, 242, 242) !important;
+  /* background: rgb(242, 242, 242) !important; */
 }
 #budget-table table th,
 #budget-table table td {
@@ -412,10 +410,6 @@ body {
 #budget-table::-webkit-scrollbar-track {
   border-radius: 10px;
   background: #fff;
-}
-.main-board #budget-table tr:first-child {
-  display: none;
-  height: 0;
 }
 .main-board #budget-table td {
   padding: 1px 0px; 

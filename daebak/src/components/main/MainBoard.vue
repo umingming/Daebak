@@ -11,7 +11,11 @@
                 <i class="fa-solid fa-plus"></i>
             </button>
         </div>
-        <base-table :items="currentMonthOrders" :hasPagination="false">
+        <base-table
+            :items="currentMonthOrders"
+            :has-pagination="false"
+            :has-header="false"
+        >
         </base-table>
     </div>
 </template>

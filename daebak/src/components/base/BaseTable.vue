@@ -1,15 +1,17 @@
 <template>
     <div id="budget-table">
         <table>
-            <tr>
-                <th class="col-check" v-if="hasCheckBox">
-                    <input
-                        type="checkbox"
-                        @click="checkAll"
-                        v-model="isCheckedAll"
-                    />
-                </th>
-                <th v-else-if="isModal" class="col-delete"></th>
+            <tr v-if="hasHeader">
+                <slot name="header-col">
+                    <th class="col-check" v-if="hasCheckBox">
+                        <input
+                            type="checkbox"
+                            @click="checkAll"
+                            v-model="isCheckedAll"
+                        />
+                    </th>
+                    <th v-else-if="isModal" class="col-delete"></th>
+                </slot>
                 <th
                     v-for="(value, key) in header"
                     :key="key"
@@ -28,34 +30,41 @@
                     </i>
                 </th>
             </tr>
-            <tr v-for="(item, index) in pageItems" :key="index">
-                <td class="col-check" v-if="hasCheckBox">
-                    <input
-                        ref="checkBox"
-                        type="checkbox"
-                        :id="itemIndex(index)"
-                        @input="checkItem"
-                    />
-                </td>
-                <td v-else-if="isModal" class="col-delete">
-                    <button class="btn-delete" @click="deleteItem(index)">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-                <td id="date" ref="date">{{ item.date }}<span></span></td>
-                <td id="cate" ref="cate">
-                    <img :src="typeImage(item.cate)" />
-                </td>
-                <td id="value" ref="value">
-                    {{ itemPrice(item.value) }}<span></span>
-                </td>
-                <td id="amount" ref="amount">
-                    {{ item.amount }}건<span></span>
-                </td>
-                <td id="title" ref="title">
-                    {{ formatedContent(item.title) }}
-                </td>
-            </tr>
+            <slot name="body">
+                <tr v-for="(item, index) in pageItems" :key="index">
+                    <slot name="body-col">
+                        <td class="col-check" v-if="hasCheckBox">
+                            <input
+                                ref="checkBox"
+                                type="checkbox"
+                                :id="itemIndex(index)"
+                                @input="checkItem"
+                            />
+                        </td>
+                        <td v-else-if="isModal" class="col-delete">
+                            <button
+                                class="btn-delete"
+                                @click="deleteItem(index)"
+                            >
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </td>
+                    </slot>
+                    <td id="date" ref="date">{{ item.date }}<span></span></td>
+                    <td id="cate" ref="cate">
+                        <img :src="typeImage(item.cate)" />
+                    </td>
+                    <td id="value" ref="value">
+                        {{ itemPrice(item.value) }}<span></span>
+                    </td>
+                    <td id="amount" ref="amount">
+                        {{ item.amount }}건<span></span>
+                    </td>
+                    <td id="title" ref="title">
+                        {{ formatedContent(item.title) }}
+                    </td>
+                </tr>
+            </slot>
         </table>
         <div class="pagination" v-if="hasPagination">
             <button @click="setIndex(1)">
@@ -92,6 +101,7 @@ export default {
         hasPagination: { type: Boolean, default: false },
         isModal: { type: Boolean, default: false },
         hasCheckBox: { type: Boolean, default: false },
+        hasHeader: { type: Boolean, default: true },
         pageSize: { type: Number, default: 15 },
     },
     data() {

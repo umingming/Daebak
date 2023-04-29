@@ -14,6 +14,9 @@ const store = new Vuex.Store({
                 currentMonthValues() {
                     return jest.fn();
                 },
+                currentMonthOrders() {
+                    return jest.fn();
+                },
             },
             namespaced: true,
         },
