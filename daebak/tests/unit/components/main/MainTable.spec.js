@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from "@vue/test-utils";
-import MainBoard from "@/components/main/MainBoard.vue";
+import MainTable from "@/components/main/MainTable.vue";
 import VueRouter from "vue-router";
 import Vuex from "vuex";
 
@@ -33,7 +33,7 @@ const router = new VueRouter({
 
 test("renders the title by current month", () => {
     //Given
-    const wrapper = mount(MainBoard, {
+    const wrapper = mount(MainTable, {
         localVue,
         store,
         router,

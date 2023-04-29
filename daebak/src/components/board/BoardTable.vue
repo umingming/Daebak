@@ -1,38 +1,44 @@
 <template>
-    <div id="board-view" class="wrapper">
-        <modal-add
-            v-if="isShowModal.add"
-            :checkItem="checkItems[0]"
-            @close="isShowModal['add'] = false"
+    <div class="board-table">
+        <h3 data-test="title">주문 목록</h3>
+        <div class="btn-icon">
+            <button class="btn-add" id="add" @click="showModal">
+                <i class="fa-solid fa-square-plus"></i>
+            </button>
+            <button class="btn-modify" id="modify" @click="showModal">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="btn-delete" id="delete" @click="deleteData">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            <export-excel
+                class="btn-excel"
+                :data="orders"
+                :fields="excelField"
+                name="excel.xls"
+            >
+                <i class="fa-solid fa-floppy-disk"></i>
+            </export-excel>
+        </div>
+        <base-table
+            :items="orders"
+            :hasPagination="true"
+            :hasCheckBox="true"
+            @check="checkItem"
         >
-        </modal-add>
-        <modal-modify
-            v-if="isShowModal.modify"
-            :checkItems="checkItems"
-            @close="isShowModal['modify'] = false"
-        >
-        </modal-modify>
-        <board-filter></board-filter>
-        <board-table></board-table>
+        </base-table>
     </div>
 </template>
 
 <script>
-import ModalAdd from "@/components/BudgetModalAdd.vue";
-import ModalModify from "@/components/BudgetModalModify.vue";
-import BoardFilter from "@/components/board/BoardFilter.vue";
-import BoardTable from "@/components/board/BoardTable.vue";
-import "vue2-datepicker/index.css";
+import BaseTable from "@/components/base/BaseTable.vue";
 
 import { mapGetters } from "vuex";
 import { deleteOrders } from "@/api";
 
 export default {
     components: {
-        ModalAdd,
-        ModalModify,
-        BoardFilter,
-        BoardTable,
+        BaseTable,
     },
     data() {
         return {

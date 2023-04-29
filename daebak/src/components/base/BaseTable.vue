@@ -1,7 +1,7 @@
 <template>
     <div id="budget-table">
         <table>
-            <tr v-if="hasHeader">
+            <tr v-if="hasHeader" id="table-header">
                 <slot name="header-col">
                     <th class="col-check" v-if="hasCheckBox">
                         <input
