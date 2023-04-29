@@ -28,7 +28,7 @@ export default {
 <style scoped>
 #app {
     width: 1200px;
-    height: 97vh;
+    height: 96vh;
     /* overflow: hidden; */
     margin: 0 auto;
 }

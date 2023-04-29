@@ -40,7 +40,7 @@ export default {
     },
     computed: {
         title() {
-            return `${this.currentMonth}월 주문 카테고리 비율`;
+            return `${this.currentMonth}월 카테고리별 주문 비율`;
         },
         datasets() {
             const data = [];

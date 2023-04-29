@@ -1,5 +1,5 @@
 import { fetchOrders } from "@/api/index.js";
-import { $compareMonth } from "@/utils/common.js";
+import { $compareMonth, $sortByLatest } from "@/utils/common.js";
 
 const state = () => ({
     orders: [],
@@ -13,7 +13,7 @@ const getters = {
         const date = new Date();
         const monthOrders =
             state.orders.filter((i) => $compareMonth(date, i.date)) || [];
-        return monthOrders;
+        return $sortByLatest(monthOrders);
     },
     currentMonthValues(state, getters) {
         return (type) => {

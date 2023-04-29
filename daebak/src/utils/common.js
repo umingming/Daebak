@@ -29,6 +29,11 @@ function $getTotalValue(values) {
     return values.reduce((acc, curr) => acc + (curr || 0), 0);
 }
 
+function $sortByLatest(items) {
+    const getDate = (date) => +date.split("-").at(-1);
+    return items.sort((a, b) => getDate(b.date) - getDate(a.date));
+}
+
 export {
     isDateInMonth,
     getDayOffsetOfMonth,
@@ -36,4 +41,5 @@ export {
     formatISODateForChartLabel,
     $compareMonth,
     $getTotalValue,
+    $sortByLatest,
 };

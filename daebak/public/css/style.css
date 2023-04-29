@@ -221,29 +221,32 @@ body {
 #budget-table table tr {
   width: 100%;
 }
-#budget-table table tr:nth-child(even) {
+/* #budget-table table tr:nth-child(even) {
   background-color: #f9f9f9;
-}
+} */
 #budget-table table tr:first-child {
   height: 30px;
+  border-radius: 5px !important;
+  background: rgb(242, 242, 242) !important;
 }
 #budget-table table th,
 #budget-table table td {
-  border-bottom: 1px solid #f9f9f9;
+  /* border-bottom: 1px solid #f9f9f9; */
   width: auto;
   text-align: center;
 }
 #budget-table table th {
   position: sticky;
+  color:rgb(40, 40, 40);
   top: 0px;
   cursor: pointer;
-  background: white !important;
-  border-top: 3px solid #e8e8e8;
-  border-bottom: 2px solid #e8e8e8;
+  /* border-top: 3px solid #e8e8e8;
+  border-bottom: 2px solid #e8e8e8; */
+  z-index: 10;
 }
-#budget-table table tr:last-child td {
+/* #budget-table table tr:last-child td {
   border-bottom: 2px solid #e8e8e8;
-}
+} */
 #budget-table table th span {
   position: relative;
   letter-spacing: 25px;
@@ -386,4 +389,148 @@ body {
 .btn-icon .btn-modify i,
 .btn-icon .btn-delete i {
   font-size: 18px;
+}
+.main-board #budget-table {
+  position: relative;
+  height: 194px;
+  top: -17px;
+  margin: 2px auto;
+  overflow-y: scroll;
+  border-top: 1px solid rgb(242, 242, 242);
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+#budget-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+#budget-table::-webkit-scrollbar-thumb {
+  height: 20%;
+  background: #ff7b00;
+  border-radius: 5px;
+}
+
+#budget-table::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #fff;
+}
+.main-board #budget-table tr:first-child {
+  display: none;
+  height: 0;
+}
+.main-board #budget-table td {
+  padding: 1px 0px; 
+  font-size: 15px;
+  color: rgb(108, 108, 108);
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+.main-board #budget-table tr:last-child td {
+  border-bottom: none;
+}
+.main-board #budget-table td#date {
+  width: 83px;
+}
+.main-board #budget-table td#cate {
+  width: 40px;
+}
+.main-board #budget-table td#title {
+  width: 87px;
+}
+.main-board #budget-table td#value {
+  width: 78px;
+}
+.main-board #budget-table td#amount {
+  width: 38px;
+}
+.budget-box .search {
+  position: absolute;
+  left: 50px;
+  top: 19px;
+  width: 450px;
+  height: 30px;
+  line-height: 25px;
+}
+.budget-box .search input {
+  height: 22px;
+  margin-right: 10px;
+}
+.budget-box .search input:focus,
+.budget-box .search select:focus {
+  outline: none;
+}
+.budget-box .search select {
+  height: 26px;
+}
+.budget-box .search #keyword {
+  width: 120px;
+}
+.main-board .btn {
+  position: relative;
+  transform: translateX(270px) translateY(-27px);
+  z-index: 1000;
+}
+.main-board button {
+  position: relative;
+  background-image: linear-gradient(to right, #ff7b0084, #ff7b00);
+  color: white;
+  width: 27px !important;
+  height: 20px !important;
+  margin-left: 7px;
+  border: none;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.main-board button i {
+  font-size: 15px;
+  transform: translateY(1px);
+}
+.main-board button:hover {
+  background-color: #ff7b00;
+  transition: background-color 0.5s ease-in-out;
+}
+.main-board button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.1)
+  );
+}
+.main-board button:hover::before {
+  animation: light-up 0.5s linear 1;
+}
+@keyframes light-up {
+  0% {
+      left: -50%;
+  }
+  100% {
+      left: 100%;
+  }
+}
+#budget-table .btn-delete {
+  width: 0;
+  background-color: none;
+  border: none;
+  color: #f94144;
+  cursor: pointer;
+}
+
+#budget-table .btn-delete i {
+  font-size: 17px;
+}
+#budget-table table #value:after {
+  content: "";
+}
+#budget-table table #cate img {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  transform: translateY(2px);
+  z-index: 0;
 }

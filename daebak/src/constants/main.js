@@ -137,5 +137,5 @@ export const CHART_QUANTITY_RATE = {
             },
         },
     },
-    backgroundColor: ["#36A2EB", "#FF6384", "#FFCD56", "#4BC0C0", "#E5E5E5"],
+    backgroundColor: ["#4BC0C0", "#FF6384", "#FFCD56", "#36A2EB", "#E5E5E5"],
 };

@@ -13,7 +13,7 @@ module.exports = {
         "**/?(*.)+(spec|test).[jt]s?(x)",
     ],
     testPathIgnorePatterns: ["/node_modules/"],
-    transformIgnorePatterns: ["/node_modules/(?!(vue-chartjs|jsdom|vue))"],
+    transformIgnorePatterns: ["/node_modules/(?!(vue-chartjs|jsdom))"],
     collectCoverage: true,
     collectCoverageFrom: ["**/*.{js,vue}", "!**/node_modules/**"],
 };
