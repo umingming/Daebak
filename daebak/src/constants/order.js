@@ -5,7 +5,7 @@ export const TYPES = [
     },
     {
         name: "요기요",
-        img: "/img/logoYogigy.png",
+        img: "/img/logoYogiyo.png",
     },
     {
         name: "쿠팡이츠",

@@ -15,6 +15,7 @@
             :items="currentMonthOrders"
             :has-pagination="false"
             :has-header="false"
+            :max-content-length="5"
         >
         </base-table>
     </div>
@@ -38,7 +39,6 @@ export default {
             return `${this.currentMonth}월 주문 내역`;
         },
     },
-    methods: {},
 };
 </script>
 

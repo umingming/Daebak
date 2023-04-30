@@ -1,36 +1,36 @@
 <template>
-    <div id="budget-table">
-        <table>
-            <tr v-if="hasHeader" id="table-header">
-                <slot name="header-col">
-                    <th class="col-check" v-if="hasCheckBox">
-                        <input
-                            type="checkbox"
-                            @click="checkAll"
-                            v-model="isCheckedAll"
-                        />
-                    </th>
-                    <th v-else-if="isModal" class="col-delete"></th>
-                </slot>
-                <th
-                    v-for="(value, key) in header"
-                    :key="key"
-                    :id="key"
-                    @click="sortTableItems(key)"
-                >
-                    <span>{{ value }}</span>
-                    <i
-                        class="fa-solid"
-                        :class="[
-                            { sorting: sortKey === key },
-                            { 'fa-angle-up': isAscending },
-                            { 'fa-angle-down': !isAscending },
-                        ]"
+    <div class="base-table">
+        <div id="budget-table">
+            <table id="budget-table">
+                <tr v-if="hasHeader" id="table-header">
+                    <slot name="header-col">
+                        <th class="col-check" v-if="hasCheckBox">
+                            <input
+                                type="checkbox"
+                                @click="checkAll"
+                                v-model="isCheckedAll"
+                            />
+                        </th>
+                        <th v-else-if="isModal" class="col-delete"></th>
+                    </slot>
+                    <th
+                        v-for="(value, key) in header"
+                        :key="key"
+                        :id="key"
+                        @click="sortTableItems(key)"
                     >
-                    </i>
-                </th>
-            </tr>
-            <slot name="body">
+                        <span>{{ value }}</span>
+                        <i
+                            class="fa-solid"
+                            :class="[
+                                { sorting: sortKey === key },
+                                { 'fa-angle-up': isAscending },
+                                { 'fa-angle-down': !isAscending },
+                            ]"
+                        >
+                        </i>
+                    </th>
+                </tr>
                 <tr v-for="(item, index) in pageItems" :key="index">
                     <slot name="body-col">
                         <td class="col-check" v-if="hasCheckBox">
@@ -60,12 +60,14 @@
                     <td id="amount" ref="amount">
                         {{ item.amount }}건<span></span>
                     </td>
-                    <td id="title" ref="title">
-                        {{ formatedContent(item.title) }}
-                    </td>
+                    <slot name="col-content">
+                        <td id="title" ref="title">
+                            {{ truncatedContent(item.title) }}
+                        </td>
+                    </slot>
                 </tr>
-            </slot>
-        </table>
+            </table>
+        </div>
         <div class="pagination" v-if="hasPagination">
             <button @click="setIndex(1)">
                 <i class="fa-solid fa-angles-left"></i>
@@ -103,6 +105,7 @@ export default {
         hasCheckBox: { type: Boolean, default: false },
         hasHeader: { type: Boolean, default: true },
         pageSize: { type: Number, default: 15 },
+        maxContentLength: { type: Number, default: 10 },
     },
     data() {
         return {
@@ -151,11 +154,13 @@ export default {
                 return img;
             };
         },
-        formatedContent() {
-            const formatContent = (text) => {
-                return text.length > 5 ? `${text.slice(0, 4)}...` : text;
+        truncatedContent() {
+            const truncateText = (text) => {
+                return text.length > this.maxContentLength
+                    ? `${text.slice(0, this.maxContentLength - 1)}...`
+                    : text;
             };
-            return (text) => formatContent(text);
+            return (text) => truncateText(text);
         },
     },
     watch: {
