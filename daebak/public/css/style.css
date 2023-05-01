@@ -518,6 +518,9 @@ body {
   position: relative;
   height: 100%;
 }
+#board-view .board-box h3 {
+  margin-left: 3px;
+}
 #board-view .board-box .btn-filter {
   position: absolute;
   top: 0;
@@ -529,6 +532,7 @@ body {
   border: none;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 #board-view .board-box .btn-filter i {
   transform: translateX(-2px);
