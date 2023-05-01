@@ -7,7 +7,7 @@
             </div>
             <div class="add-list">
                 <base-table
-                    :items="listItems"
+                    :items="newOrders"
                     :isModal="true"
                     @delete="deleteItem"
                 >
@@ -33,27 +33,17 @@ export default {
         BaseItem,
     },
     mixins: [orderMixin],
-    data() {
-        return {
-            addItems: [],
-        };
-    },
     computed: {
-        listItems() {
-            let items = [...this.addItems];
-            items.forEach((i) => (i.check = true));
-            return items;
-        },
         checkedItem() {
             return this.orders.find((i) => i.check);
         },
     },
     methods: {
         addItem(item) {
-            this.addItems = [...this.addItems, item];
+            this.ADD_NEW_ORDER(item);
         },
         deleteItem(index) {
-            this.addItems.splice(index, 1);
+            this.DELETE_NEW_ORDER(index);
         },
         addBudget() {
             const param = this.addItems.map((i) => {

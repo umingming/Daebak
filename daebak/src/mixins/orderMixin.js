@@ -1,4 +1,4 @@
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     computed: {
@@ -7,9 +7,15 @@ export default {
             "currentMonthOrders",
             "currentMonthValues",
             "lastMonthValues",
+            "newOrders",
         ]),
     },
     methods: {
+        ...mapMutations("order", [
+            "ADD_NEW_ORDER",
+            "DELETE_NEW_ORDER",
+            "SET_NEW_ORDERS",
+        ]),
         formatValue(value = 0) {
             return Math.round(value).toLocaleString();
         },

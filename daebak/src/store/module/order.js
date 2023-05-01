@@ -3,6 +3,7 @@ import { $compareMonth, $sortByLatest } from "@/utils/common.js";
 
 const state = () => ({
     orders: [],
+    newOrders: [],
 });
 
 const getters = {
@@ -29,6 +30,9 @@ const getters = {
                 state.orders.filter((i) => $compareMonth(date, i.date)) || [];
             return getMonthValuesByOrders(monthOrders, type);
         };
+    },
+    newOrders(state) {
+        return state.newOrders;
     },
 };
 
@@ -59,6 +63,15 @@ const actions = {
 const mutations = {
     SET_ORDERS(state, data) {
         state.orders = data;
+    },
+    ADD_NEW_ORDER(state, data) {
+        state.newOrders.push(data);
+    },
+    DELETE_NEW_ORDER(state, index) {
+        state.newOrders.splice(index, 1);
+    },
+    SET_NEW_ORDERS(state, data = []) {
+        state.newOrders = data;
     },
 };
 
