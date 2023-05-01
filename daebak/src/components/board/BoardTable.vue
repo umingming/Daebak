@@ -1,32 +1,37 @@
 <template>
-    <div class="board-table">
-        <h3 data-test="title">주문 목록</h3>
-        <div class="btn-icon">
-            <button class="btn-add" @click="$emit('add')">
-                <i class="fa-solid fa-square-plus"></i>
+    <div class="board-table" :class="{ 'has-filter': hasFilter }">
+        <div class="board-box">
+            <button class="btn-filter" @click="toggleFilter">
+                <i class="fa-solid fa-angle-right"></i>
             </button>
-            <button class="btn-modify" @click="$emit('modify')">
-                <i class="fa-solid fa-pen"></i>
-            </button>
-            <button class="btn-delete">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-            <export-excel
-                class="btn-excel"
-                :data="orders"
-                :fields="excelField"
-                name="excel.xls"
+            <h3 data-test="title">{{ title }}</h3>
+            <div class="btn-icon">
+                <button class="btn-add" @click="$emit('add')">
+                    <i class="fa-solid fa-square-plus"></i>
+                </button>
+                <button class="btn-modify" @click="$emit('modify')">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="btn-delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <export-excel
+                    class="btn-excel"
+                    :data="orders"
+                    :fields="excelField"
+                    name="excel.xls"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </export-excel>
+            </div>
+            <base-table
+                :items="orders"
+                :hasPagination="true"
+                :hasCheckBox="true"
+                @check="checkItem"
             >
-                <i class="fa-solid fa-floppy-disk"></i>
-            </export-excel>
+            </base-table>
         </div>
-        <base-table
-            :items="orders"
-            :hasPagination="true"
-            :hasCheckBox="true"
-            @check="checkItem"
-        >
-        </base-table>
     </div>
 </template>
 
@@ -48,13 +53,23 @@ export default {
                 주문: "amount",
                 분류: "cate",
             },
+            hasFilter: false,
         };
+    },
+    computed: {
+        title() {
+            const total = this.orders.length;
+            return `총 ${total}건`;
+        },
     },
     methods: {
         checkItem(index, isChecked) {
             if (this.orders[index]) {
                 this.orders[index].check = isChecked;
             }
+        },
+        toggleFilter() {
+            this.hasFilter = !this.hasFilter;
         },
     },
 };

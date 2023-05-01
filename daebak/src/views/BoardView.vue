@@ -4,8 +4,9 @@
         </modal-add>
         <modal-modify v-if="isShowModal.modify" @close="closeModal('modify')">
         </modal-modify>
-        <board-filter></board-filter>
+        <board-filter v-if="isShowFilter"></board-filter>
         <board-table
+            :class="{ 'has-filter': isShowFilter }"
             @add="openModal('add')"
             @modify="openModal('modify')"
         ></board-table>
@@ -30,6 +31,7 @@ export default {
     mixins: [orderMixin],
     data() {
         return {
+            isShowFilter: false,
             isShowModal: {
                 add: false,
                 modify: false,
