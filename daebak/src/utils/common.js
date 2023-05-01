@@ -30,8 +30,7 @@ function $getTotalValue(values) {
 }
 
 function $sortByLatest(items) {
-    const getDate = (date) => +date.split("-").at(-1);
-    return items.sort((a, b) => getDate(b.date) - getDate(a.date));
+    return items.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 export {

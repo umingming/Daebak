@@ -7,7 +7,7 @@ const state = () => ({
 
 const getters = {
     orders(state) {
-        return state.orders;
+        return $sortByLatest(state.orders);
     },
     currentMonthOrders(state) {
         const date = new Date();

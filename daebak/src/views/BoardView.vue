@@ -13,12 +13,12 @@
         >
         </modal-modify>
         <board-filter></board-filter>
-        <board-table></board-table>
+        <board-table @add="showModalAdd"></board-table>
     </div>
 </template>
 
 <script>
-import ModalAdd from "@/components/BudgetModalAdd.vue";
+import ModalAdd from "@/components/board/BoardModalAdd.vue";
 import ModalModify from "@/components/BudgetModalModify.vue";
 import BoardFilter from "@/components/board/BoardFilter.vue";
 import BoardTable from "@/components/board/BoardTable.vue";
@@ -36,16 +36,9 @@ export default {
     },
     data() {
         return {
-            excelField: {
-                날짜: "date",
-                내용: "title",
-                금액: "value",
-                주문: "amount",
-                분류: "cate",
-            },
-            checkList: [],
+            checkItems: [],
             isShowModal: {
-                add: false,
+                add: true,
                 modify: false,
             },
             addItem: {
@@ -61,9 +54,6 @@ export default {
     computed: {
         ...mapGetters("date", ["month", "year"]),
         ...mapGetters("order", ["orders"]),
-        checkItems() {
-            return [...this.checkList];
-        },
     },
     created() {
         this.init();
@@ -71,6 +61,10 @@ export default {
     methods: {
         init() {
             this.dispatchOrder("FETCH_ORDERS");
+        },
+        showModalAdd(items) {
+            this.checkItems = items;
+            this.isShowModal.add = true;
         },
         showModal({ target }) {
             this.checkList = this.orders.filter((i) => i.check);

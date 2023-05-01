@@ -8,7 +8,7 @@
             <button class="btn-modify" id="modify" @click="showModal">
                 <i class="fa-solid fa-pen"></i>
             </button>
-            <button class="btn-delete" id="delete" @click="deleteData">
+            <button class="btn-delete" id="delete">
                 <i class="fa-solid fa-trash"></i>
             </button>
             <export-excel
@@ -32,14 +32,13 @@
 
 <script>
 import BaseTable from "@/components/base/BaseTable.vue";
-
-import { mapGetters } from "vuex";
-import { deleteOrders } from "@/api";
+import orderMixin from "@/mixins/orderMixin.js";
 
 export default {
     components: {
         BaseTable,
     },
+    mixins: [orderMixin],
     data() {
         return {
             excelField: {
@@ -50,53 +49,23 @@ export default {
                 분류: "cate",
             },
             checkList: [],
-            isShowModal: {
-                add: false,
-                modify: false,
-            },
-            addItem: {
-                date: "",
-                title: "",
-                value: "",
-                amount: "",
-                cate: "",
-            },
-            searchDate: null,
         };
     },
     computed: {
-        ...mapGetters("date", ["month", "year"]),
-        ...mapGetters("order", ["orders"]),
         checkItems() {
             return [...this.checkList];
         },
     },
-    created() {
-        this.init();
-    },
     methods: {
-        init() {
-            this.dispatchOrder("FETCH_ORDERS");
-        },
         showModal({ target }) {
             this.checkList = this.orders.filter((i) => i.check);
-
-            let key = target.id || target.parentNode.id;
-            this.isShowModal[key] = true;
+            const event = target.id || target.parentNode.id;
+            this.$emit(event, this.checkList);
         },
         checkItem(index, isChecked) {
             if (this.orders[index]) {
                 this.orders[index].check = isChecked;
             }
-        },
-        dispatchOrder(action, param = {}) {
-            return this.$store.dispatch(`order/${action}`, param);
-        },
-        deleteData() {
-            const orderIds = this.checkItems.map((i) => i.orderId);
-            console.log(this.checkItems);
-            deleteOrders(orderIds.join(","));
-            this.init();
         },
     },
 };

@@ -136,7 +136,7 @@ body {
 #main-view .main-banner .icon {
   position: absolute;
   top: 38px;
-  right: 15px;
+  right: 10px;
   width: 60px;
   height: 60px;
   border-radius: 30px;
@@ -538,4 +538,60 @@ body {
 }
 #board-view .board-table #budget-table::-webkit-scrollbar-track {
   margin-top: 30px;
+}
+
+/* modal */
+#board-view .modal-add {
+  grid-area: 1 / 1 / 5 / 13;
+  z-index: 1000;
+  margin: 100px;
+  border: 1px solid #7575753e;
+}
+.modal-add .btn-icon {
+  transform: translateX(110px) translateY(20px);
+  width: 80px;
+}
+.modal-add .btn-icon button {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+}
+.modal-add .btn-icon button i {
+  font-size: 16px;
+}
+.modal-add .add-item {
+  float: left;
+  width: 200px;
+  height: 70%;
+  margin-top: 10px;
+  border-right: 1px solid #7575753e;
+}
+.modal-add .add-list {
+  float: left;
+  width: 660px;
+  height: 90%;
+  transform: translateX(15px);
+  margin-left: 10px;
+  overflow: scroll;
+}
+.modal-add .add-list #budget-table table th,
+.modal-add .add-list #budget-table table td {
+  width: 19% !important;
+}
+.modal-add .btn {
+  position: absolute;
+  width: 95%;
+  bottom: 10px;
+  margin: 0 auto;
+}
+.modal-add .btn button {
+  font-size: 20px;
+  width: 60px;
+  height: 30px;
+  font-weight: bolder;
+  display: inline-block;
+}
+.modal-add .btn button:nth-child(2) {
+  float: right;
+  transform: translateX(-5px);
 }
