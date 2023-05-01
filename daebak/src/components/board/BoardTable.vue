@@ -2,13 +2,13 @@
     <div class="board-table">
         <h3 data-test="title">주문 목록</h3>
         <div class="btn-icon">
-            <button class="btn-add" id="add" @click="showModal">
+            <button class="btn-add" @click="$emit('add')">
                 <i class="fa-solid fa-square-plus"></i>
             </button>
-            <button class="btn-modify" id="modify" @click="showModal">
+            <button class="btn-modify" @click="showModal">
                 <i class="fa-solid fa-pen"></i>
             </button>
-            <button class="btn-delete" id="delete">
+            <button class="btn-delete">
                 <i class="fa-solid fa-trash"></i>
             </button>
             <export-excel

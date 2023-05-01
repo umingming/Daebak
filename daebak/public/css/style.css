@@ -581,7 +581,7 @@ body {
   width: 200px;
   height: 70%;
   margin-top: 10px;
-  border-right: 1px solid #7575753e;
+  border-right: 1px solid rgb(242, 242, 242);
 }
 .modal-add .add-list {
   position: relative;
@@ -591,11 +591,23 @@ body {
   transform: translateX(15px);
   margin-left: 10px;
 }
-.modal-add .add-list #budget-table {
+.modal-add .add-list .base-table {
   position: relative;
-  height: 400px;
+  height: 380px;
   overflow-y: scroll;
   border-bottom: 1px solid rgb(242, 242, 242);
+}
+.modal-add .add-list .base-table::-webkit-scrollbar {
+  position: relative;
+  cursor: pointer;
+  width: 8px;
+}
+.modal-add .add-list .base-table::-webkit-scrollbar-track {
+  margin-top: 30px;
+}
+.modal-add .add-list .base-table::-webkit-scrollbar-thumb {
+  background: rgba(253, 146, 5, 0.817);
+  border-radius: 5px;
 }
 .modal-add .btn {
   position: absolute;

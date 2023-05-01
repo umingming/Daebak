@@ -2,8 +2,8 @@
     <div class="modal-mask">
         <div class="modal-add">
             <div class="add-item">
-                <budget-item :checkItem="checkItem" @apply="addItem">
-                </budget-item>
+                <base-item :checkedItem="checkedItem" @apply="addItem">
+                </base-item>
             </div>
             <div class="add-list">
                 <base-table
@@ -23,17 +23,16 @@
 
 <script>
 import BaseTable from "@/components/base/BaseTable.vue";
-import BudgetItem from "@/components/BudgetItem.vue";
+import BaseItem from "@/components/base/BaseItem.vue";
+import orderMixin from "@/mixins/orderMixin.js";
 import { createOrders } from "@/api";
 
 export default {
-    props: {
-        checkItem: { type: Object },
-    },
     components: {
         BaseTable,
-        BudgetItem,
+        BaseItem,
     },
+    mixins: [orderMixin],
     data() {
         return {
             addItems: [],
@@ -44,6 +43,9 @@ export default {
             let items = [...this.addItems];
             items.forEach((i) => (i.check = true));
             return items;
+        },
+        checkedItem() {
+            return this.orders.find((i) => i.check);
         },
     },
     methods: {
