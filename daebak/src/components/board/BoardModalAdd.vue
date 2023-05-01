@@ -1,25 +1,28 @@
 <template>
-    <div class="modal-add">
-        <div class="add-item">
-            <budget-item :checkItem="checkItem" @apply="addItem"> </budget-item>
-        </div>
-        <div class="add-list">
-            <budget-table
-                :items="listItems"
-                :isModal="true"
-                @delete="deleteItem"
-            >
-            </budget-table>
-        </div>
-        <div class="btn">
-            <button @click="$emit('close')">취소</button>
-            <button @click="addBudget">확인</button>
+    <div class="modal-mask">
+        <div class="modal-add">
+            <div class="add-item">
+                <budget-item :checkItem="checkItem" @apply="addItem">
+                </budget-item>
+            </div>
+            <div class="add-list">
+                <base-table
+                    :items="listItems"
+                    :isModal="true"
+                    @delete="deleteItem"
+                >
+                </base-table>
+            </div>
+            <div class="btn">
+                <button @click="$emit('close')">취소</button>
+                <button @click="addBudget">확인</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import BudgetTable from "@/components/BudgetTable.vue";
+import BaseTable from "@/components/base/BaseTable.vue";
 import BudgetItem from "@/components/BudgetItem.vue";
 import { createOrders } from "@/api";
 
@@ -28,7 +31,7 @@ export default {
         checkItem: { type: Object },
     },
     components: {
-        BudgetTable,
+        BaseTable,
         BudgetItem,
     },
     data() {

@@ -165,10 +165,10 @@ body {
   width: 50%;
   height: 100%;
   background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.1)
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
   );
 }
 .main-banner .icon:hover::before {
@@ -176,10 +176,10 @@ body {
 }
 @keyframes light-up {
   0% {
-      left: -50%;
+    left: -50%;
   }
   100% {
-      left: 100%;
+    left: 100%;
   }
 }
 #main-view .main-chart-weekly-quantity {
@@ -236,7 +236,7 @@ body {
 }
 #budget-table table th {
   position: sticky;
-  color:rgb(40, 40, 40);
+  color: rgb(40, 40, 40);
   top: 0px;
   cursor: pointer;
   border-bottom: 2px solid rgb(242, 242, 242);
@@ -394,7 +394,7 @@ body {
   background: #fff;
 }
 #budget-table td {
-  padding: 1px 0px; 
+  padding: 1px 0px;
   border-bottom: 1px solid rgb(242, 242, 242);
 }
 .main-board #budget-table td {
@@ -473,10 +473,10 @@ body {
   width: 50%;
   height: 100%;
   background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.1)
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
   );
 }
 .main-board button:hover::before {
@@ -484,10 +484,10 @@ body {
 }
 @keyframes light-up {
   0% {
-      left: -50%;
+    left: -50%;
   }
   100% {
-      left: 100%;
+    left: 100%;
   }
 }
 .base-table .btn-delete {
@@ -541,11 +541,28 @@ body {
 }
 
 /* modal */
+.modal-mask {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  background: rgba(97, 97, 97, 0.24) !important;
+  z-index: 100;
+}
 #board-view .modal-add {
-  grid-area: 1 / 1 / 5 / 13;
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 420px;
+  padding: 20px 20px;
+  background: white;
+  border-radius: 5px;
+  font-size: 15px;
   z-index: 1000;
-  margin: 100px;
-  border: 1px solid #7575753e;
 }
 .modal-add .btn-icon {
   transform: translateX(110px) translateY(20px);
@@ -567,16 +584,18 @@ body {
   border-right: 1px solid #7575753e;
 }
 .modal-add .add-list {
+  position: relative;
   float: left;
-  width: 660px;
-  height: 90%;
+  width: 780px;
+  height: 400px;
   transform: translateX(15px);
   margin-left: 10px;
-  overflow: scroll;
 }
-.modal-add .add-list #budget-table table th,
-.modal-add .add-list #budget-table table td {
-  width: 19% !important;
+.modal-add .add-list #budget-table {
+  position: relative;
+  height: 400px;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgb(242, 242, 242);
 }
 .modal-add .btn {
   position: absolute;
