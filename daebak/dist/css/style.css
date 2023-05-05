@@ -1,0 +1,687 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gowun+Dodum&family=Josefin+Sans:ital,wght@0,700;1,700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700&family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@200;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f2d3;
+}
+
+/* Main */
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, 120px);
+  grid-gap: 20px;
+}
+.wrapper > div {
+  position: relative;
+  background: white;
+  border-radius: 5px;
+  padding: 6px 20px;
+  overflow: hidden;
+}
+.wrapper > div > h3 {
+  position: relative;
+  margin: 0 auto;
+  font-size: 20px;
+  z-index: 10;
+}
+input[type="checkbox"] {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 13px;
+  z-index: 10;
+  cursor: pointer !important;
+}
+input[type="checkbox"] + label {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  transform: translateX(-15px) translateY(5px);
+  cursor: pointer !important;
+}
+input[type="checkbox"] + label > i {
+  color: white !important;
+  font-size: 11px;
+  transform: translateY(-8px);
+  opacity: 1 !important;
+}
+input[type="checkbox"]:checked + label {
+  background-color: #ff7b00be;
+  border-color: #ff7b0018;
+}
+
+
+/* main */
+#main-view .main-banner:nth-child(1) {
+  grid-area: 1 / 1 / 2 / 4;
+}
+#main-view .main-banner:nth-child(2) {
+  grid-area: 2 / 1 / 3 / 4;
+}
+#main-view .main-banner span {
+  font-size: 35px;
+  font-weight: bolder;
+}
+#main-view .main-banner small {
+  display: block;
+  font-size: 15px;
+  color: #666 !important;
+  transform: translateX(5px);
+  animation-name: change-rate;
+  animation-duration: 1.4s;
+}
+@keyframes change-rate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#main-view .main-banner small i {
+  color: #ff6384;
+}
+#main-view .main-banner small i.fa-arrow-down-long {
+  color: #36a2eb;
+}
+#main-view .main-banner .icon {
+  position: absolute;
+  top: 38px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background: linear-gradient(to right, #ffa040b3, #ffa040);
+  text-align: center;
+  line-height: 70px;
+  margin-right: 5px;
+  box-shadow: 2px 1px 2px 1px #fd96364f;
+}
+#main-view .main-banner .icon i {
+  font-size: 35px;
+  color: white;
+}
+#main-view .main-banner:nth-child(2) .icon i {
+  transform: rotate(-10deg) translateX(-1px) translateY(1px);
+}
+.main-banner .icon:hover {
+  background-color: #ff7b00;
+  transition: background-color 0.5s ease-in-out 0.5s;
+}
+.main-banner .icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+.main-banner .icon:hover::before {
+  animation: light-up 0.5s linear 1;
+}
+@keyframes light-up {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+#main-view .main-chart-weekly-quantity {
+  grid-area: 3 / 1 / 5 / 5;
+}
+#main-view .main-chart-monthly-price {
+  grid-area: 1 / 4 / 3 / 13;
+}
+#main-view .main-chart-monthly-quantity {
+  grid-area: 3 / 5 / 5 / 9;
+}
+#main-view .main-board {
+  grid-area: 3 / 9 / 5 / 13;
+}
+#board-view .board-table {
+  grid-area: 1 / 1 / 5 / 13;
+}
+.board-table {
+  padding: 20px;
+}
+#budget-table table {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 16px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#budget-table table tr {
+  width: 100%;
+}
+/* #budget-table table tr:nth-child(even) {
+  background-color: #f9f9f9;
+} */
+#budget-table table tr#table-header {
+  height: 30px;
+  /* background: rgb(242, 242, 242) !important; */
+}
+#budget-table table th,
+#budget-table table td {
+  /* border-bottom: 1px solid #f9f9f9; */
+  width: auto;
+  text-align: center;
+}
+#budget-table table th {
+  position: sticky;
+  color: rgb(40, 40, 40);
+  top: 0px;
+  cursor: pointer;
+  border-bottom: 2px solid rgb(242, 242, 242);
+  background: white;
+  z-index: 10;
+}
+/* #budget-table table tr:last-child td {
+  border-bottom: 2px solid #e8e8e8;
+} */
+#budget-table table th span {
+  position: relative;
+  letter-spacing: 25px;
+  left: 15px;
+}
+#budget-table table th i {
+  color: #b4b4b4;
+  opacity: 0;
+}
+#budget-table table th:hover i {
+  color: #ff7b00;
+}
+#budget-table table th i.sorting {
+  opacity: 1;
+}
+#budget-table table .col-check {
+  width: 0px;
+  padding: 2px 0px 2px 10px;
+}
+#budget-table table .col-delete {
+  width: 0px !important;
+  min-width: 0px !important
+}
+#budget-table table td#amount,
+#budget-table table td#value {
+  text-align: right;
+}
+
+.base-table .pagination {
+  position: absolute;
+  bottom: -40px;
+  height: 30px;
+  line-height: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+}
+.base-table .pagination button {
+  width: 24px;
+  margin: 3px;
+  background: none;
+  border: none;
+  color: #b4b4b4;
+  cursor: pointer;
+}
+.base-table .pagination button:hover {
+  color: #ff7b00be;
+}
+.base-table .pagination button i {
+  font-size: 16px;
+}
+.base-table .pagination ul {
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  height: 22px;
+}
+.base-table .pagination ul li {
+  float: left;
+  color: #b4b4b4;
+  margin: 0 4px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.base-table .pagination ul li:hover {
+  color: #ff7b00be;
+}
+.base-table .pagination ul li.page-index {
+  transform: translateY(6px);
+  line-height: 18px;
+  width: 21px;
+  height: 21px;
+  background: #000;
+  border-radius: 13px;
+  margin: 0 2px;
+  color: white;
+  background: #ff7b00a8;
+}
+
+.board-table .btn-icon {
+  position: absolute;
+  right: -50px;
+  top: 10px;
+  width: 220px;
+  height: 40px;
+  z-index: 10;
+}
+.btn-icon button,
+.btn-icon .btn-excel {
+  position: relative;
+  float: left;
+  width: 35px;
+  height: 25px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: #b4b4b4;
+  cursor: pointer;
+  z-index: 100;
+}
+.btn-icon button:hover,
+.btn-icon .btn-excel:hover {
+  color: #ff7b00be !important;
+}
+.btn-icon .btn-refresh {
+  margin-right: 10px;
+}
+.btn-icon .btn-excel {
+  text-align: center;
+  line-height: 25px;
+}
+.btn-icon i {
+  position: relative;
+  top: 1px;
+  font-size: 20px;
+  z-index: 0;
+}
+.btn-icon .btn-modify i,
+.btn-icon .btn-delete i {
+  font-size: 18px;
+}
+.main-board .base-table {
+  position: relative;
+  height: 194px;
+  top: -15px;
+  width: 100%;
+}
+.main-board #budget-table {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  border-top: 1px solid rgb(242, 242, 242);
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+#budget-table::-webkit-scrollbar {
+  cursor: pointer;
+  width: 8px;
+}
+
+#budget-table::-webkit-scrollbar-thumb {
+  background: rgba(253, 146, 5, 0.817);
+  border-radius: 5px;
+}
+
+#budget-table::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #fff;
+}
+#budget-table td {
+  padding: 1px 0px;
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+.main-board #budget-table td {
+  font-size: 15px;
+  color: rgb(108, 108, 108);
+}
+#budget-table tr:last-child td {
+  border-bottom: none !important;
+}
+.main-board #budget-table td#date {
+  width: 83px;
+}
+.main-board #budget-table td#cate {
+  width: 40px;
+}
+.main-board #budget-table td#title {
+  width: 87px;
+}
+.main-board #budget-table td#value {
+  width: 78px;
+}
+.main-board #budget-table td#amount {
+  width: 38px;
+}
+.budget-box .search {
+  position: absolute;
+  left: 50px;
+  top: 19px;
+  width: 450px;
+  height: 30px;
+  line-height: 25px;
+}
+.budget-box .search input {
+  height: 22px;
+  margin-right: 10px;
+}
+.budget-box .search input:focus,
+.budget-box .search select:focus {
+  outline: none;
+}
+.budget-box .search select {
+  height: 26px;
+}
+.budget-box .search #keyword {
+  width: 120px;
+}
+.main-board .btn {
+  position: relative;
+  transform: translateX(270px) translateY(-27px);
+  z-index: 10;
+}
+.main-board button {
+  position: relative;
+  background-image: linear-gradient(to right, #ff7b0084, #ff7b00);
+  color: white;
+  width: 27px !important;
+  height: 20px !important;
+  margin-left: 7px;
+  border: none;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.main-board button i {
+  font-size: 15px;
+  transform: translateY(1px);
+}
+.main-board button:hover {
+  background-color: #ff7b00;
+  transition: background-color 0.5s ease-in-out;
+}
+.main-board button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+.main-board button:hover::before {
+  animation: light-up 0.5s linear 1;
+}
+@keyframes light-up {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.base-table .btn-delete {
+  width: 0;
+  background-color: none;
+  border: none;
+  color: #f94144;
+  cursor: pointer;
+}
+
+.base-table .btn-delete i {
+  font-size: 17px;
+}
+#budget-table table #value:after {
+  content: "";
+}
+#budget-table table #cate img {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  transform: translateY(2px);
+  z-index: 0;
+}
+
+/* board */
+#board-view .board-filter {
+  grid-area: 1 / 1 / 5 / 4;
+}
+#board-view .board-table {
+  grid-area: 1 / 1 / 5 / 13;
+}
+#board-view .board-table.has-filter {
+  grid-area: 1 / 4 / 5 / 13;
+  overflow: visible;
+}
+#board-view .board-box {
+  position: relative;
+  height: 100%;
+}
+#board-view .board-box h3 {
+  margin-left: 3px;
+}
+#board-view .board-box .btn-filter {
+  position: absolute;
+  top: 0;
+  left: -21px; 
+  width: 20px; 
+  height: 30px; 
+  background-color: #ff7b00; 
+  border-radius: 0 30px 30px 0; 
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+#board-view .board-box .btn-filter i {
+  transform: translateX(-2px);
+}
+#board-view .has-filter .board-box .btn-filter {
+  transform: rotate(180deg);
+  left: -40px
+}
+#board-view .board-table .base-table {
+  position: relative;
+  top: 6px;
+  width: 100%;
+  height: 85%;
+}
+#board-view .board-table #budget-table {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+#board-view .board-table #budget-table::-webkit-scrollbar {
+  position: relative;
+  top: 10px;
+}
+#board-view .board-table #budget-table::-webkit-scrollbar-track {
+  margin-top: 30px;
+}
+
+/* modal */
+.modal-mask {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  background: rgba(97, 97, 97, 0.24) !important;
+  z-index: 100;
+}
+#board-view .modal-add {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 420px;
+  padding: 20px 20px;
+  background: white;
+  border-radius: 5px;
+  font-size: 15px;
+  z-index: 1000;
+}
+.modal-add .btn-icon {
+  transform: translateX(110px) translateY(20px);
+  width: 80px;
+}
+.modal-add .btn-icon button {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+}
+.modal-add .btn-icon button i {
+  font-size: 16px;
+}
+.modal-add .add-item {
+  float: left;
+  width: 200px;
+  height: 70%;
+  margin-top: 10px;
+  border-right: 1px solid rgb(242, 242, 242);
+}
+.modal-add .add-list {
+  position: relative;
+  float: left;
+  width: 780px;
+  height: 400px;
+  transform: translateX(15px);
+  margin-left: 10px;
+}
+.modal-add .add-list .base-table {
+  position: relative;
+  height: 380px;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgb(242, 242, 242);
+}
+.modal-add .add-list .base-table::-webkit-scrollbar {
+  position: relative;
+  cursor: pointer;
+  width: 8px;
+}
+.modal-add .add-list .base-table::-webkit-scrollbar-track {
+  margin-top: 30px;
+}
+.modal-add .add-list .base-table::-webkit-scrollbar-thumb {
+  background: rgba(253, 146, 5, 0.817);
+  border-radius: 5px;
+}
+.modal-add .btn {
+  position: absolute;
+  width: 95%;
+  bottom: 10px;
+  margin: 0 auto;
+}
+.modal-add .btn button {
+  font-size: 20px;
+  width: 60px;
+  height: 30px;
+  font-weight: bolder;
+  display: inline-block;
+}
+.modal-add .btn button:nth-child(2) {
+  float: right;
+  transform: translateX(-5px);
+}
+.modal-add #budget-table table th {
+  min-width: 100px !important
+}
+.modal-add #budget-table table th.col-delete {
+  min-width: 10px !important
+}
