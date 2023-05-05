@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <router-link to="/main">
-            <div class="header" :class="$route.name">💸대박나라💸</div>
+            <div class="header" :class="$route.name">
+                <img src="@/assets/daebak.png" />대박나라
+            </div>
         </router-link>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
@@ -47,6 +49,9 @@ a {
 }
 .header.login {
     margin-top: 100px;
+}
+.header img {
+    width: 50px;
 }
 .fade-enter-active,
 .fade-leave-active {

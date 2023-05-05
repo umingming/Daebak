@@ -6,9 +6,9 @@
             </div>
             <div class="add-list">
                 <base-table
-                    :items="newOrders"
+                    :items="pendingOrders"
                     :isModal="true"
-                    @delete="deleteItem"
+                    @delete="deletePendingOrder"
                 >
                 </base-table>
             </div>
@@ -31,13 +31,8 @@ export default {
         BaseItem,
     },
     mixins: [orderMixin],
-    computed: {
-        checkedItems() {
-            return this.orders.filter((i) => i.check);
-        },
-    },
     created() {
-        this.SET_NEW_ORDERS(this.checkedItems);
+        this.initPendingOrders(this.checkedOrders);
     },
     methods: {
         modifyItems(item) {
@@ -48,9 +43,6 @@ export default {
                 );
                 $values.forEach((i) => (i.innerHTML += item[key]));
             }
-        },
-        deleteItem(index) {
-            this.DELETE_NEW_ORDER(index);
         },
     },
 };

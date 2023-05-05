@@ -1,9 +1,6 @@
 <template>
     <div class="board-table" :class="{ 'has-filter': hasFilter }">
         <div class="board-box">
-            <button class="btn-filter" @click="toggleFilter">
-                <i class="fa-solid fa-angle-right"></i>
-            </button>
             <h3 data-test="title">{{ title }}</h3>
             <div class="btn-icon">
                 <button class="btn-add" @click="$emit('add')">
@@ -28,7 +25,6 @@
                 :items="orders"
                 :hasPagination="true"
                 :hasCheckBox="true"
-                @check="checkItem"
             >
             </base-table>
         </div>
@@ -63,11 +59,6 @@ export default {
         },
     },
     methods: {
-        checkItem(index, isChecked) {
-            if (this.orders[index]) {
-                this.orders[index].check = isChecked;
-            }
-        },
         toggleFilter() {
             this.hasFilter = !this.hasFilter;
         },

@@ -2,14 +2,17 @@
     <div class="modal-mask">
         <div class="modal-add">
             <div class="add-item">
-                <base-item :checkedItem="checkedItem" @apply="addItem">
+                <base-item
+                    :checkedItem="checkedOrder"
+                    @apply="appendPendingOrder"
+                >
                 </base-item>
             </div>
             <div class="add-list">
                 <base-table
-                    :items="newOrders"
+                    :items="pendingOrders"
                     :isModal="true"
-                    @delete="deleteItem"
+                    @delete="deletePendingOrder"
                 >
                 </base-table>
             </div>
@@ -34,17 +37,11 @@ export default {
     },
     mixins: [orderMixin],
     computed: {
-        checkedItem() {
-            return this.orders.find((i) => i.check);
+        checkedOrder() {
+            return this.checkedOrders.at(-1);
         },
     },
     methods: {
-        addItem(item) {
-            this.ADD_NEW_ORDER(item);
-        },
-        deleteItem(index) {
-            this.DELETE_NEW_ORDER(index);
-        },
         addBudget() {
             const param = this.addItems.map((i) => {
                 return {

@@ -44,7 +44,7 @@ export default {
         },
         closeModal(type) {
             this.isShowModal[type] = false;
-            this.SET_NEW_ORDERS();
+            this.initPendingOrders();
         },
     },
 };

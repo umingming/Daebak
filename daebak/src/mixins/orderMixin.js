@@ -1,26 +1,37 @@
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
+    data() {
+        return {
+            pendingOrders: [],
+        };
+    },
     computed: {
         ...mapGetters("order", [
             "orders",
             "currentMonthOrders",
             "currentMonthValues",
             "lastMonthValues",
-            "newOrders",
         ]),
+        checkedOrders() {
+            return this.orders.filter((i) => i.checked);
+        },
     },
     methods: {
-        ...mapMutations("order", [
-            "ADD_NEW_ORDER",
-            "DELETE_NEW_ORDER",
-            "SET_NEW_ORDERS",
-        ]),
         formatValue(value = 0) {
             return Math.round(value).toLocaleString();
         },
         getTotalValue(values = []) {
             return values.reduce((acc, curr) => acc + (+curr || 0), 0) || 0;
+        },
+        initPendingOrders(items = []) {
+            this.pendingOrders = items;
+        },
+        appendPendingOrder(item) {
+            this.pendingOrders.push(item);
+        },
+        deletePendingOrder(index) {
+            this.pendingOrders.splice(index, 1);
         },
     },
 };

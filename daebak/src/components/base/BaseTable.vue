@@ -3,16 +3,18 @@
         <div id="budget-table">
             <table>
                 <tr v-if="hasHeader" id="table-header">
-                    <slot name="header-col">
-                        <th class="col-check" v-if="hasCheckBox">
-                            <input
-                                type="checkbox"
-                                @click="checkAll"
-                                v-model="isCheckedAll"
-                            />
-                        </th>
-                        <th v-else-if="isModal" class="col-delete"></th>
-                    </slot>
+                    <th class="col-check" v-if="hasCheckBox">
+                        <input
+                            type="checkbox"
+                            id="all-check"
+                            v-model="isCheckedAll"
+                            @click="checkAll"
+                        />
+                        <label for="all-check">
+                            <i class="fa-solid fa-check"></i>
+                        </label>
+                    </th>
+                    <th v-else-if="isModal" class="col-delete"></th>
                     <th
                         v-for="(value, key) in header"
                         :key="key"
@@ -32,24 +34,22 @@
                     </th>
                 </tr>
                 <tr v-for="(item, index) in pageItems" :key="index">
-                    <slot name="body-col">
-                        <td class="col-check" v-if="hasCheckBox">
-                            <input
-                                ref="checkBox"
-                                type="checkbox"
-                                :id="itemIndex(index)"
-                                @input="checkItem"
-                            />
-                        </td>
-                        <td v-else-if="isModal" class="col-delete">
-                            <button
-                                class="btn-delete"
-                                @click="deleteItem(index)"
-                            >
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </td>
-                    </slot>
+                    <td class="col-check" v-if="hasCheckBox">
+                        <input
+                            ref="checkBox"
+                            type="checkbox"
+                            :id="itemIndex(index)"
+                            v-model="item.checked"
+                        />
+                        <label :for="itemIndex(index)">
+                            <i class="fa-solid fa-check"></i>
+                        </label>
+                    </td>
+                    <td v-else-if="isModal" class="col-delete">
+                        <button class="btn-delete" @click="deleteItem(index)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
                     <td id="date" ref="date">{{ item.date }}<span></span></td>
                     <td id="cate" ref="cate">
                         <img :src="typeImage(item.cate)" />
@@ -60,11 +60,9 @@
                     <td id="amount" ref="amount">
                         {{ item.amount }}건<span></span>
                     </td>
-                    <slot name="col-content">
-                        <td id="title" ref="title">
-                            {{ truncatedContent(item.title) }}
-                        </td>
-                    </slot>
+                    <td id="title" ref="title">
+                        {{ truncatedContent(item.title) }}
+                    </td>
                 </tr>
             </table>
         </div>
@@ -128,12 +126,15 @@ export default {
         pageCount() {
             return Math.ceil(this.tableItems.length / this.pageSize);
         },
+        startIndex() {
+            return this.pageIndex * this.pageSize;
+        },
+        endIndex() {
+            return this.startIndex + this.pageSize;
+        },
         pageItems() {
             if (!this.hasPagination) return this.tableItems;
-
-            let start = this.pageIndex * this.pageSize;
-            let end = start + this.pageSize;
-            return this.tableItems.slice(start, end);
+            return this.tableItems.slice(this.startIndex, this.endIndex);
         },
         itemPrice() {
             return (value) => {
@@ -145,7 +146,7 @@ export default {
         },
         itemIndex() {
             return (index) => {
-                return this.pageIndex * this.pageSize + index;
+                return this.startIndex + index;
             };
         },
         typeImage() {
@@ -212,14 +213,11 @@ export default {
             let inputList = this.$el.querySelectorAll(".col-check > input");
             inputList.forEach((i) => {
                 i.checked = this.isCheckedAll;
-                this.checkItem({ target: i });
             });
+            this.pageItems.map((i) => (i.checked = this.isCheckedAll));
         },
         deleteItem(index) {
             this.$emit("delete", index);
-        },
-        checkItem({ target }) {
-            this.$emit("check", target.id, target.checked);
         },
     },
 };
