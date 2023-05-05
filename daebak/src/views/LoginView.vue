@@ -25,11 +25,13 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
     mounted() {
         this.initNaver();
     },
     methods: {
+        ...mapMutations(["SET_USER"]),
         initNaver() {
             const naver_id_login = new window.naver_id_login(
                 "ZEBr31RYP_YsPp4wMrLq",
@@ -46,15 +48,16 @@ export default {
                 success: () => {
                     window.Kakao.API.request({
                         url: "/v2/user/me",
-                        success: () => {
+                        success: ({ id }) => {
+                            sessionStorage.setItem("id", `k_${id}`);
                             this.$router.push("/main").catch(() => {});
                         },
-                        fail: function (error) {
+                        fail: (error) => {
                             console.log(error);
                         },
                     });
                 },
-                fail: function (error) {
+                fail: (error) => {
                     console.log(error);
                 },
             });

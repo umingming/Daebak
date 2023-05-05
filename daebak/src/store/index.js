@@ -6,13 +6,10 @@ import date from "./module/date.js";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-    state: {
-        user: {},
-        list: [],
-    },
-    mutations: {},
+    state: {},
     getters: {},
     actions: {},
+    mutations: {},
     modules: {
         order,
         date,
