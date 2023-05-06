@@ -2,7 +2,7 @@
     <div id="app">
         <router-link to="/main">
             <div class="header" :class="$route.name">
-                <img src="@/assets/daebak.png" />대박나라
+                대박나라<img src="@/assets/money.png" />
             </div>
         </router-link>
         <transition name="fade" mode="out-in">
@@ -40,18 +40,21 @@ a {
     text-decoration: none;
 }
 .header {
-    font-size: 55px;
+    font-size: 58px;
+    font-weight: 700;
+    letter-spacing: 4px;
     color: rgb(255, 123, 0);
     text-align: center;
     margin: 25px auto;
     transform: translateY(-5px);
-    font-family: "Black Han Sans", sans-serif;
+    font-family: "Do Hyeon", "Black Han Sans", sans-serif;
 }
 .header.login {
     margin-top: 100px;
 }
 .header img {
     width: 50px;
+    transform: translateX(5px) translateY(6px);
 }
 .fade-enter-active,
 .fade-leave-active {
