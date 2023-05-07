@@ -18,7 +18,7 @@ function fetchOrders() {
                 {
                     orderDate: "2023-04-01",
                     content: "배달의민족이용",
-                    price: "3320000",
+                    price: "332000",
                     quantity: "10",
                     type: "배달의민족",
                 },

@@ -33,37 +33,44 @@
                         </i>
                     </th>
                 </tr>
-                <tr v-for="(item, index) in pageItems" :key="index">
-                    <td class="col-check" v-if="hasCheckBox">
-                        <input
-                            ref="checkBox"
-                            type="checkbox"
-                            :id="itemIndex(index)"
-                            v-model="item.checked"
-                        />
-                        <label :for="itemIndex(index)">
-                            <i class="fa-solid fa-check"></i>
-                        </label>
-                    </td>
-                    <td v-else-if="isModal" class="col-delete">
-                        <button class="btn-delete" @click="deleteItem(index)">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </td>
-                    <td id="date" ref="date">{{ item.date }}<span></span></td>
-                    <td id="cate" ref="cate">
-                        <img :src="typeImage(item.cate)" />
-                    </td>
-                    <td id="value" ref="value">
-                        {{ itemPrice(item.value) }}<span></span>
-                    </td>
-                    <td id="amount" ref="amount">
-                        {{ item.amount }}건<span></span>
-                    </td>
-                    <td id="title" ref="title">
-                        {{ truncatedContent(item.title) }}
-                    </td>
-                </tr>
+                <slot name="table-body">
+                    <tr v-for="(item, index) in pageItems" :key="index">
+                        <td class="col-check" v-if="hasCheckBox">
+                            <input
+                                ref="checkBox"
+                                type="checkbox"
+                                :id="itemIndex(index)"
+                                v-model="item.checked"
+                            />
+                            <label :for="itemIndex(index)">
+                                <i class="fa-solid fa-check"></i>
+                            </label>
+                        </td>
+                        <td v-else-if="isModal" class="col-delete">
+                            <button
+                                class="btn-delete"
+                                @click="deleteItem(index)"
+                            >
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </td>
+                        <td id="date" ref="date">
+                            {{ item.date }}<span></span>
+                        </td>
+                        <td id="cate" ref="cate">
+                            <img :src="typeImage(item.cate)" /><span></span>
+                        </td>
+                        <td id="value" ref="value">
+                            {{ itemPrice(item.value) }}<span></span>
+                        </td>
+                        <td id="amount" ref="amount">
+                            {{ item.amount }}건<span></span>
+                        </td>
+                        <td id="title" ref="title">
+                            {{ truncatedContent(item.title) }}<span></span>
+                        </td>
+                    </tr>
+                </slot>
             </table>
         </div>
         <div class="pagination" v-if="hasPagination">

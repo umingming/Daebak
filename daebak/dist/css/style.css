@@ -605,7 +605,7 @@ input[type="checkbox"]:checked + label {
   background: rgba(97, 97, 97, 0.24) !important;
   z-index: 100;
 }
-#board-view .modal-add {
+#board-view .modal {
   position: absolute;
   top: 170px;
   left: 50%;
@@ -618,26 +618,26 @@ input[type="checkbox"]:checked + label {
   font-size: 15px;
   z-index: 1000;
 }
-.modal-add .btn-icon {
+.modal .btn-icon {
   transform: translateX(110px) translateY(20px);
   width: 80px;
 }
-.modal-add .btn-icon button {
+.modal .btn-icon button {
   width: 28px;
   height: 20px;
   border-radius: 3px;
 }
-.modal-add .btn-icon button i {
+.modal .btn-icon button i {
   font-size: 16px;
 }
-.modal-add .add-item {
+.modal .modal-item {
   float: left;
   width: 200px;
   height: 70%;
   margin-top: 10px;
   border-right: 1px solid rgb(242, 242, 242);
 }
-.modal-add .add-list {
+.modal .modal-table {
   position: relative;
   float: left;
   width: 780px;
@@ -645,44 +645,63 @@ input[type="checkbox"]:checked + label {
   transform: translateX(15px);
   margin-left: 10px;
 }
-.modal-add .add-list .base-table {
+.modal .modal-table .base-table {
   position: relative;
   height: 380px;
   overflow-y: scroll;
   border-bottom: 1px solid rgb(242, 242, 242);
 }
-.modal-add .add-list .base-table::-webkit-scrollbar {
+.modal .modal-table .base-table::-webkit-scrollbar {
   position: relative;
   cursor: pointer;
   width: 8px;
 }
-.modal-add .add-list .base-table::-webkit-scrollbar-track {
+.modal .modal-table .base-table::-webkit-scrollbar-track {
   margin-top: 30px;
 }
-.modal-add .add-list .base-table::-webkit-scrollbar-thumb {
+.modal .modal-table .base-table::-webkit-scrollbar-thumb {
   background: rgba(253, 146, 5, 0.817);
   border-radius: 5px;
 }
-.modal-add .btn {
+.modal .btn {
   position: absolute;
   width: 95%;
   bottom: 10px;
   margin: 0 auto;
 }
-.modal-add .btn button {
+.modal .btn button {
   font-size: 20px;
   width: 60px;
   height: 30px;
   font-weight: bolder;
   display: inline-block;
 }
-.modal-add .btn button:nth-child(2) {
+.modal .btn button:nth-child(2) {
   float: right;
   transform: translateX(-5px);
 }
-.modal-add #budget-table table th {
+.modal #budget-table table th {
   min-width: 100px !important
 }
-.modal-add #budget-table table th.col-delete {
+.modal #budget-table table th.col-delete {
   min-width: 10px !important
+}
+.modal .btn button {
+  background: #a4a4a4;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transform: translateY(-4px) !important;
+  cursor: pointer;
+  font-size: 18px;
+  height: 30px;
+  line-height: 30px;
+  opacity: 0.8;
+}
+.modal .btn button.ok {
+  background: #ff7b00d7;
+  transform: translateY(-4px) translateX(5px) !important;
+}
+.modal .btn button:hover {
+  opacity: 1;
 }

@@ -44,7 +44,6 @@ export default {
         },
         closeModal(type) {
             this.isShowModal[type] = false;
-            this.initPendingOrders();
         },
     },
 };

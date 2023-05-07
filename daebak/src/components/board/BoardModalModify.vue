@@ -1,20 +1,61 @@
 <template>
     <div class="modal-mask">
-        <div class="modal-add">
-            <div class="add-item">
-                <base-item @apply="modifyItems"> </base-item>
+        <div class="modal">
+            <div class="modal-item">
+                <base-item @apply="updateOrders"> </base-item>
             </div>
-            <div class="add-list">
-                <base-table
-                    :items="pendingOrders"
-                    :isModal="true"
-                    @delete="deletePendingOrder"
-                >
+            <div class="modal-table">
+                <base-table :items="pendingOrders" :isModal="true">
+                    <template v-slot:table-body>
+                        <tr
+                            v-for="(order, index) in pendingOrders"
+                            :key="index"
+                        >
+                            <td class="col-delete">
+                                <button
+                                    class="btn-delete"
+                                    @click="deletePendingOrder(index)"
+                                >
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </td>
+                            <td id="date">
+                                {{ order.date }}
+                                <span :class="{ on: newOrder.date }">
+                                    {{ newOrder.date }}
+                                </span>
+                            </td>
+                            <td id="cate">
+                                <img :src="typeImage(order.cate)" />
+                                <span :class="{ on: newOrder.cate }">
+                                    <img :src="typeImage(newOrder.cate)" />
+                                </span>
+                            </td>
+                            <td id="value">
+                                {{ formatValue(order.value) }}원
+                                <span :class="{ on: newOrder.value }">
+                                    {{ formatValue(newOrder.value) }}원
+                                </span>
+                            </td>
+                            <td id="amount">
+                                {{ order.amount }}건
+                                <span :class="{ on: newOrder.amount }">
+                                    {{ newOrder.amount }}건
+                                </span>
+                            </td>
+                            <td id="title">
+                                {{ order.title }}
+                                <span :class="{ on: newOrder.title }">
+                                    {{ newOrder.title }}
+                                </span>
+                            </td>
+                        </tr>
+                    </template>
                 </base-table>
             </div>
             <div class="btn">
-                <button @click="$emit('close')">취소</button>
-                <button @click="$emit('ok')">확인</button>
+                <button class="close" @click="$emit('close')">취소</button>
+                <button class="ok" @click="$emit('ok')">확인</button>
             </div>
         </div>
     </div>
@@ -24,6 +65,7 @@
 import BaseTable from "@/components/base/BaseTable.vue";
 import BaseItem from "@/components/base/BaseItem.vue";
 import orderMixin from "@/mixins/orderMixin.js";
+import { TYPES } from "@/constants/order.js";
 
 export default {
     components: {
@@ -31,84 +73,49 @@ export default {
         BaseItem,
     },
     mixins: [orderMixin],
-    created() {
+    data() {
+        return {
+            newOrder: {},
+        };
+    },
+    computed: {
+        typeImage() {
+            return (name) => {
+                const { img } = TYPES.find((i) => i.name === name) ?? {};
+                return img;
+            };
+        },
+    },
+    mounted() {
         this.initPendingOrders(this.checkedOrders);
     },
+    beforeDestroy() {
+        this.initPendingOrders();
+    },
     methods: {
-        modifyItems(item) {
-            const keys = Object.keys(item);
-            for (const key of keys) {
-                const $values = document.querySelectorAll(
-                    `.add-list td#${key}`
-                );
-                $values.forEach((i) => (i.innerHTML += item[key]));
-            }
+        updateOrders(item) {
+            this.newOrder = item;
         },
     },
 };
 </script>
-
 <style scoped>
-.budget-add {
-    position: absolute;
-    top: 250px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    height: 300px;
-    padding: 20px 20px;
-    background: white;
-    border-radius: 5px;
-    border: 1px solid #7575753e;
-    font-size: 15px;
-    z-index: 1;
+td span {
+    display: none;
 }
-.budget-add .btn-icon {
-    transform: translateX(110px) translateY(20px);
-    width: 80px;
-}
-.budget-add .btn-icon button {
-    width: 28px;
-    height: 20px;
-    border-radius: 3px;
-}
-.budget-add .btn-icon button i {
-    font-size: 16px;
-}
-.budget-add .add-item {
-    float: left;
-    width: 200px;
-    height: 70%;
-    margin-top: 10px;
-    border-right: 1px solid #7575753e;
-}
-.budget-add .add-list {
-    float: left;
-    width: 660px;
-    height: 90%;
-    transform: translateX(15px);
-    margin-left: 10px;
-}
-.add-list #budget-table table th,
-.add-list #budget-table table td {
-    width: 19% !important;
-}
-
-.btn {
-    position: absolute;
-    width: 95%;
-    bottom: 10px;
-    margin: 0 auto;
-}
-.btn button {
-    font-size: 20px;
-    width: 60px;
-    height: 30px;
-    font-weight: bolder;
+td span.on {
     display: inline-block;
 }
-.btn button:nth-child(2) {
-    float: right;
-    transform: translateX(-5px);
+td span.on:before {
+    position: relative;
+    content: "\f061";
+    font-family: "Font Awesome 5 Free";
+    font-size: 12px;
+    font-weight: 900;
+    color: #ff7b00;
+}
+td#cate span.on:before {
+    padding: 0 5px;
+    top: -3px;
 }
 </style>
