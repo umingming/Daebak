@@ -18,6 +18,10 @@ function formatISODateForChartLabel(year, month, index) {
     return date.toISOString().slice(0, 10);
 }
 
+function $formatNumber(value) {
+    return Math.round(value).toLocaleString();
+}
+
 function $compareMonth(date, target) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -41,4 +45,5 @@ export {
     $compareMonth,
     $getTotalValue,
     $sortByLatest,
+    $formatNumber,
 };

@@ -19,34 +19,14 @@
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </td>
-                            <td id="date">
-                                {{ order.date }}
-                                <span :class="{ on: newOrder.date }">
-                                    {{ newOrder.date }}
-                                </span>
-                            </td>
-                            <td id="cate">
-                                <img :src="typeImage(order.cate)" />
-                                <span :class="{ on: newOrder.cate }">
-                                    <img :src="typeImage(newOrder.cate)" />
-                                </span>
-                            </td>
-                            <td id="value">
-                                {{ formatValue(order.value) }}원
-                                <span :class="{ on: newOrder.value }">
-                                    {{ formatValue(newOrder.value) }}원
-                                </span>
-                            </td>
-                            <td id="amount">
-                                {{ order.amount }}건
-                                <span :class="{ on: newOrder.amount }">
-                                    {{ newOrder.amount }}건
-                                </span>
-                            </td>
-                            <td id="title">
-                                {{ order.title }}
-                                <span :class="{ on: newOrder.title }">
-                                    {{ newOrder.title }}
+                            <td
+                                v-for="{ name, formatValue } in fields"
+                                :key="name"
+                                :id="name"
+                            >
+                                {{ formatValue(order[name]) }}
+                                <span :class="{ on: newOrder[name] }">
+                                    {{ newOrder[name] }}
                                 </span>
                             </td>
                         </tr>
@@ -65,7 +45,7 @@
 import BaseTable from "@/components/base/BaseTable.vue";
 import BaseItem from "@/components/base/BaseItem.vue";
 import orderMixin from "@/mixins/orderMixin.js";
-import { TYPES } from "@/constants/order.js";
+import { FIELDS } from "@/constants/order.js";
 
 export default {
     components: {
@@ -76,15 +56,8 @@ export default {
     data() {
         return {
             newOrder: {},
+            fields: FIELDS,
         };
-    },
-    computed: {
-        typeImage() {
-            return (name) => {
-                const { img } = TYPES.find((i) => i.name === name) ?? {};
-                return img;
-            };
-        },
     },
     mounted() {
         this.initPendingOrders(this.checkedOrders);
@@ -113,9 +86,5 @@ td span.on:before {
     font-size: 12px;
     font-weight: 900;
     color: #ff7b00;
-}
-td#cate span.on:before {
-    padding: 0 5px;
-    top: -3px;
 }
 </style>
