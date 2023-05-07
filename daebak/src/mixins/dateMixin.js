@@ -1,5 +1,3 @@
-import { formatISODateForChartLabel } from "@/utils/common";
-
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 const currentMonth = currentDate.getMonth() + 1;
@@ -14,8 +12,9 @@ export default {
     methods: {
         getDateLabelsOfCurrentMonth() {
             const lastDate = new Date(currentYear, currentMonth, 0).getDate();
-            const labels = Array.from({ length: lastDate }, (_, index) =>
-                formatISODateForChartLabel(currentYear, currentMonth, index)
+            const labels = Array.from(
+                { length: lastDate },
+                (_, index) => `${index}일`
             );
             return labels;
         },

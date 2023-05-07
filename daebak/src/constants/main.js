@@ -32,7 +32,7 @@ export const CHART_PRICE = {
                 display: true,
                 ticks: {
                     callback(data) {
-                        return +this.getLabelForValue(data).slice(-2);
+                        return `${data}`;
                     },
                     font: {
                         size: 14,
@@ -117,7 +117,7 @@ export const CHART_QUANTITY_AVG = {
 };
 
 export const CHART_QUANTITY_RATE = {
-    labels: ["배달의민족", "요기요", "쿠팡이츠", "배달특급", "기타"],
+    labels: ["요기요", "땡겨요", "쿠팡이츠", "배달의민족", "배달특급", "기타"],
     chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -137,5 +137,12 @@ export const CHART_QUANTITY_RATE = {
             },
         },
     },
-    backgroundColor: ["#4BC0C0", "#FF6384", "#FFCD56", "#36A2EB", "#E5E5E5"],
+    backgroundColor: [
+        "#FF6384",
+        "#FF7B00",
+        "#FFCD56",
+        "#4BC0C0",
+        "#36A2EB",
+        "#E5E5E5",
+    ],
 };
