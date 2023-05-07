@@ -1,14 +1,14 @@
 <template>
     <div class="modal-mask">
-        <div class="modal-add">
-            <div class="add-item">
+        <div class="modal">
+            <div class="modal-item">
                 <base-item
                     :checkedItem="checkedOrder"
                     @apply="appendPendingOrder"
                 >
                 </base-item>
             </div>
-            <div class="add-list">
+            <div class="modal-table">
                 <base-table
                     :items="pendingOrders"
                     :isModal="true"
@@ -17,8 +17,8 @@
                 </base-table>
             </div>
             <div class="btn">
-                <button @click="$emit('close')">취소</button>
-                <button @click="addBudget">확인</button>
+                <button class="close" @click="$emit('close')">취소</button>
+                <button class="ok" @click="addBudget">확인</button>
             </div>
         </div>
     </div>
