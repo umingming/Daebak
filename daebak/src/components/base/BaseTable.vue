@@ -4,15 +4,10 @@
             <table>
                 <tr v-if="hasHeader" id="table-header">
                     <th class="col-check" v-if="hasCheckBox">
-                        <input
-                            type="checkbox"
-                            id="all-check"
-                            v-model="isCheckedAll"
-                            @click="checkAll"
-                        />
-                        <label for="all-check">
-                            <i class="fa-solid fa-check"></i>
-                        </label>
+                        <base-check
+                            :value="isCheckedAll"
+                            @input="checkAll"
+                        ></base-check>
                     </th>
                     <th v-else-if="isModal" class="col-delete"></th>
                     <th
@@ -36,15 +31,10 @@
                 <slot name="table-body">
                     <tr v-for="(item, index) in pageItems" :key="index">
                         <td class="col-check" v-if="hasCheckBox">
-                            <input
-                                ref="checkBox"
-                                type="checkbox"
-                                :id="itemIndex(index)"
+                            <base-check
+                                :checkId="itemIndex(index)"
                                 v-model="item.checked"
-                            />
-                            <label :for="itemIndex(index)">
-                                <i class="fa-solid fa-check"></i>
-                            </label>
+                            ></base-check>
                         </td>
                         <td v-else-if="isModal" class="col-delete">
                             <button
@@ -101,8 +91,12 @@
 </template>
 
 <script>
+import BaseCheck from "@/components/base/BaseCheck.vue";
 import { TYPES } from "@/constants/order.js";
 export default {
+    components: {
+        BaseCheck,
+    },
     props: {
         items: { type: Array },
         hasPagination: { type: Boolean, default: false },
@@ -215,9 +209,9 @@ export default {
         setIndex(value) {
             this.pageIndex = value - 1;
         },
-        checkAll() {
-            this.isCheckedAll = !this.isCheckedAll;
-            let inputList = this.$el.querySelectorAll(".col-check > input");
+        checkAll(checked) {
+            this.isCheckedAll = checked;
+            let inputList = this.$el.querySelectorAll(".col-check input");
             inputList.forEach((i) => {
                 i.checked = this.isCheckedAll;
             });

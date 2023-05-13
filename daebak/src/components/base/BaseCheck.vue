@@ -2,11 +2,11 @@
     <div>
         <input
             type="checkbox"
-            id="all-check"
-            v-model="isChecked"
-            @click="checkAll"
+            :id="checkId"
+            :value="value"
+            @click="updateValue"
         />
-        <label for="all-check">
+        <label :for="checkId">
             <i class="fa-solid fa-check"></i>
         </label>
     </div>
@@ -15,7 +15,13 @@
 <script>
 export default {
     props: {
-        isChecked: { type: Boolean, required: true },
+        value: { type: Boolean, default: false },
+        checkId: { type: Number, default: -1 },
+    },
+    methods: {
+        updateValue({ target }) {
+            this.$emit("input", target.checked);
+        },
     },
 };
 </script>
