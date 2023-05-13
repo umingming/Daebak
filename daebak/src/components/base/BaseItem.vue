@@ -44,7 +44,7 @@
                 <i class="fa-solid fa-arrow-rotate-right"></i>
             </button>
             <button class="btn-add" @click="applyItem">
-                <i class="fa-solid fa-square-plus"></i>
+                <i class="fa-solid fa-circle-check"></i>
             </button>
         </div>
     </div>
