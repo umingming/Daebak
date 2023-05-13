@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="base-check">
         <input
             type="checkbox"
             :id="checkId"
@@ -16,7 +16,11 @@
 export default {
     props: {
         value: { type: Boolean, default: false },
-        checkId: { type: Number, default: -1 },
+    },
+    computed: {
+        checkId() {
+            return `check-${this._uid}`;
+        },
     },
     methods: {
         updateValue({ target }) {

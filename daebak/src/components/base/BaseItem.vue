@@ -1,14 +1,26 @@
 <template>
     <div class="budget-item">
         <div>
+            <base-check
+                v-if="hasCheckBox"
+                v-model="checkedField.date"
+            ></base-check>
             <span>날짜</span>
             <input type="date" id="date" v-model="item.date" />
         </div>
         <div>
+            <base-check
+                v-if="hasCheckBox"
+                v-model="checkedField.title"
+            ></base-check>
             <span>내용</span>
             <input type="text" id="title" v-model="item.title" />
         </div>
         <div>
+            <base-check
+                v-if="hasCheckBox"
+                v-model="checkedField.value"
+            ></base-check>
             <span>금액</span>
             <input
                 type="number"
@@ -20,6 +32,10 @@
             />
         </div>
         <div>
+            <base-check
+                v-if="hasCheckBox"
+                v-model="checkedField.amount"
+            ></base-check>
             <span>주문</span>
             <input
                 type="number"
@@ -30,6 +46,10 @@
             />
         </div>
         <div>
+            <base-check
+                v-if="hasCheckBox"
+                v-model="checkedField.cate"
+            ></base-check>
             <span>분류</span>
             <select name="type" id="cate" v-model="item.cate">
                 <option value="배달의민족">배달의민족</option>
@@ -51,13 +71,19 @@
 </template>
 
 <script>
+import BaseCheck from "@/components/base/BaseCheck.vue";
 export default {
+    components: {
+        BaseCheck,
+    },
     props: {
         checkedItem: { type: Object },
+        hasCheckBox: { type: Boolean, default: false },
     },
     data() {
         return {
             item: { ...this.checkedItem },
+            checkedField: {},
         };
     },
     methods: {
@@ -75,7 +101,11 @@ export default {
             this.$emit("reset");
         },
         applyItem() {
-            this.$emit("apply", { ...this.item });
+            const newItem = {};
+            Object.keys(this.checkedField)
+                .filter((i) => this.checkedField[i])
+                .forEach((i) => (newItem[i] = this.item[i]));
+            this.$emit("apply", newItem);
         },
     },
 };
@@ -124,5 +154,12 @@ export default {
     font-size: 13px;
     border: 1px solid #b4b4b4;
     border-radius: 3px;
+}
+::v-deep .base-check {
+    display: inline-block;
+    transform: translateX(-5px);
+}
+::v-deep .base-check i {
+    transform: translateX(1px) translateY(-7px);
 }
 </style>

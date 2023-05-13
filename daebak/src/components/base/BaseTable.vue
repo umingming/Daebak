@@ -31,10 +31,7 @@
                 <slot name="table-body">
                     <tr v-for="(item, index) in pageItems" :key="index">
                         <td class="col-check" v-if="hasCheckBox">
-                            <base-check
-                                :checkId="itemIndex(index)"
-                                v-model="item.checked"
-                            ></base-check>
+                            <base-check v-model="item.checked"></base-check>
                         </td>
                         <td v-else-if="isModal" class="col-delete">
                             <button
@@ -167,8 +164,9 @@ export default {
     },
     watch: {
         pageIndex() {
-            this.isCheckedAll = true;
-            this.checkAll();
+            const checked = false;
+            this.tableItems.map((i) => (i.checked = checked));
+            this.checkAll(checked);
         },
         items() {
             this.tableItems = [...this.items];

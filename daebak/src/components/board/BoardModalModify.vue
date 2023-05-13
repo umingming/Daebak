@@ -2,7 +2,8 @@
     <div class="modal-mask">
         <div class="modal">
             <div class="modal-item">
-                <base-item @apply="updateOrders"> </base-item>
+                <base-item :has-check-box="true" @apply="updateOrders">
+                </base-item>
             </div>
             <div class="modal-table">
                 <base-table :items="pendingOrders" :isModal="true">
