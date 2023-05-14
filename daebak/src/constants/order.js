@@ -24,6 +24,7 @@ export const FIELDS = [
         formatValue(value) {
             return value;
         },
+        text: "날짜",
     },
     {
         name: "cate",

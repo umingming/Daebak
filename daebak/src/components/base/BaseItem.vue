@@ -101,11 +101,15 @@ export default {
             this.$emit("reset");
         },
         applyItem() {
-            const newItem = {};
+            const newItem = this.hasCheckBox ? this.getCheckedItem : this.item;
+            this.$emit("apply", newItem);
+        },
+        getCheckedItem() {
+            const checkedItem = {};
             Object.keys(this.checkedField)
                 .filter((i) => this.checkedField[i])
-                .forEach((i) => (newItem[i] = this.item[i]));
-            this.$emit("apply", newItem);
+                .forEach((i) => (checkedItem[i] = this.item[i]));
+            return checkedItem;
         },
     },
 };
