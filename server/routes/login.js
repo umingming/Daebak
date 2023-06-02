@@ -25,11 +25,11 @@ module.exports = function (db) {
 
     router.post("/register", (req, res) => {
         const { id, pw } = req.body;
-        db.collection("login").findOne({ id }, (err, result) => {
+        db.collection("user").findOne({ id }, (err, result) => {
             if (err) return res.status(500).json();
             if (result) return res.status(409).json();
 
-            db.collection("login").insertOne({ id, pw }, (err) => {
+            db.collection("user").insertOne({ id, pw }, (err) => {
                 if (err) return res.status(500).json();
                 return res.status(200).json();
             });

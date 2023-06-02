@@ -30,7 +30,7 @@ passport.use(
             passReqToCallback: false,
         },
         (id, pw, done) => {
-            db.collection("login").findOne({ id: id }, (err, result) => {
+            db.collection("user").findOne({ id: id }, (err, result) => {
                 if (err) return done(err);
 
                 if (!result) {
@@ -57,7 +57,7 @@ passport.deserializeUser((id, done) => {
 MongoClient.connect(process.env.DB_URL, function (err, client) {
     if (err) return console.log(err);
 
-    db = client.db("todoapp");
+    db = client.db("daebak");
     console.log("Connected to database");
 
     const loginRouter = require("./routes/login")(db);

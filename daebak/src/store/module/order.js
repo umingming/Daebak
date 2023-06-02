@@ -1,6 +1,7 @@
-import { fetchOrders } from "@/api/index.js";
+import order from "@/api/order.js";
 import { $compareMonth, $sortByLatest } from "@/utils/common.js";
 
+const date = new Date();
 const state = () => ({
     orders: [],
 });
@@ -10,15 +11,16 @@ const getters = {
         return $sortByLatest(state.orders);
     },
     currentMonthOrders(state) {
-        const date = new Date();
         const monthOrders =
             state.orders.filter((i) => $compareMonth(date, i.date)) || [];
         return $sortByLatest(monthOrders);
     },
     currentMonthValues(state, getters) {
         return (type) => {
+            const index = date.getDate() + 2;
             const monthOrders = getters.currentMonthOrders;
-            return getMonthValuesByOrders(monthOrders, type);
+            const monthValues = getMonthValuesByOrders(monthOrders, type);
+            return monthValues.slice(0, index);
         };
     },
     lastMonthValues(state) {
@@ -35,20 +37,19 @@ const getters = {
 const actions = {
     async FETCH_ORDERS({ commit }) {
         try {
-            const { data } = await fetchOrders();
-            if (data.result === "SUCCESS") {
-                const successData = data.data.map((i) => {
-                    return {
-                        date: i.orderDate,
-                        title: i.content,
-                        value: i.price,
-                        amount: i.quantity,
-                        cate: i.type,
-                        orderId: i.orderId,
-                    };
-                });
-                commit("SET_ORDERS", successData);
-            }
+            const user_id = sessionStorage.getItem("user_id");
+            const { data } = await order.get({ user_id });
+            commit("SET_ORDERS", data);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async ADD_ORDERS({ commit }, params) {
+        try {
+            const user_id = sessionStorage.getItem("user_id");
+            const { data } = await order.add({ user_id, params });
+            commit("ADD_ORDERS", data);
             return data;
         } catch (error) {
             console.log(error);
@@ -59,6 +60,9 @@ const actions = {
 const mutations = {
     SET_ORDERS(state, data) {
         state.orders = data;
+    },
+    ADD_ORDERS(state, data) {
+        state.orders = [...state.orders, ...data];
     },
 };
 

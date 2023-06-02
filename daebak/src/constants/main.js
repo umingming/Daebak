@@ -32,7 +32,7 @@ export const CHART_PRICE = {
                 display: true,
                 ticks: {
                     callback(data) {
-                        return `${data}`;
+                        return `${++data}`;
                     },
                     font: {
                         size: 14,
@@ -48,12 +48,11 @@ export const CHART_PRICE = {
                 ticks: {
                     callback(data) {
                         let value = (data + "").slice(0, -4);
-                        return value || 0;
+                        return value || data;
                     },
                     font: {
                         size: 14,
                     },
-                    stepSize: 200000,
                     max: 1000000,
                 },
                 grid: {

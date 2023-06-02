@@ -16,6 +16,7 @@ import { mapActions } from "vuex";
 export default {
     name: "App",
     created() {
+        this.checkLogin();
         this.initKakao();
     },
     mounted() {
@@ -23,6 +24,11 @@ export default {
     },
     methods: {
         ...mapActions("order", ["FETCH_ORDERS"]),
+        checkLogin() {
+            if (!sessionStorage.getItem("user_id")) {
+                this.$router.push("/login");
+            }
+        },
         initKakao() {
             window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
         },

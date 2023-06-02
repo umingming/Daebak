@@ -1,4 +1,4 @@
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     data() {
@@ -18,6 +18,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions("order", ["ADD_ORDERS"]),
         formatValue(value = 0) {
             return Math.round(value).toLocaleString();
         },

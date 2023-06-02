@@ -28,7 +28,6 @@
 import BaseTable from "@/components/base/BaseTable.vue";
 import BaseItem from "@/components/base/BaseItem.vue";
 import orderMixin from "@/mixins/orderMixin.js";
-import { createOrders } from "@/api";
 
 export default {
     components: {
@@ -43,16 +42,7 @@ export default {
     },
     methods: {
         addBudget() {
-            const param = this.addItems.map((i) => {
-                return {
-                    quantity: i.amount,
-                    type: i.cate,
-                    orderDate: i.date,
-                    price: i.value,
-                    content: i.title,
-                };
-            });
-            createOrders(param);
+            this.ADD_ORDERS(this.pendingOrders);
             this.$emit("close");
         },
     },

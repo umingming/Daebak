@@ -3,15 +3,13 @@
         <section id="login">
             <div class="input">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" placeholder="아이디" />
+                <input type="text" placeholder="아이디" v-model="id" />
             </div>
             <div class="input">
                 <i class="fa-solid fa-key"></i>
-                <input type="password" placeholder="비밀번호" />
+                <input type="password" placeholder="비밀번호" v-model="pw" />
             </div>
-            <div class="oval login">
-                <router-link to="/main">로그인</router-link>
-            </div>
+            <div class="oval login" @click="login">로그인</div>
         </section>
         <section id="join">
             <div class="text">또는</div>
@@ -25,8 +23,15 @@
 </template>
 
 <script>
+import auth from "@/api/auth.js";
 import { mapMutations } from "vuex";
 export default {
+    data() {
+        return {
+            id: "",
+            pw: "",
+        };
+    },
     mounted() {
         this.initNaver();
     },
@@ -61,6 +66,24 @@ export default {
                     console.log(error);
                 },
             });
+        },
+        async login() {
+            try {
+                const { data } = await auth.login({
+                    id: this.id,
+                    pw: this.pw,
+                });
+
+                sessionStorage.setItem("user_id", data.user_id);
+                alert("로그인 성공");
+                this.$router.push("/main");
+            } catch (error) {
+                if (error.status === 401) {
+                    alert(`유효하지 않은 ${error.data.error}`);
+                } else {
+                    console.log(error);
+                }
+            }
         },
     },
 };
@@ -107,6 +130,7 @@ export default {
     margin-top: 30px;
     background: #ff7b00;
     cursor: pointer;
+    color: white;
 }
 .login a {
     text-decoration: none;

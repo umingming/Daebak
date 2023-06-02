@@ -122,7 +122,7 @@ export default {
     },
     computed: {
         pageCount() {
-            return Math.ceil(this.tableItems.length / this.pageSize);
+            return Math.ceil(this.tableItems.length / this.pageSize) || 1;
         },
         startIndex() {
             return this.pageIndex * this.pageSize;

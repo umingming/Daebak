@@ -4,7 +4,7 @@ module.exports = function (db) {
     router.get("/", (req, res) => {
         const { user_id } = req.query;
 
-        db.collection("journal")
+        db.collection("order")
             .find({ user_id })
             .toArray((err, result) => {
                 if (err) return res.status(500).json();
@@ -13,24 +13,25 @@ module.exports = function (db) {
     });
 
     router.post("/", (req, res) => {
-        const { user_id, content, date } = req.body;
+        const { user_id, params } = req.body;
 
-        db.collection("counter").findOne({ name: "journal" }, (err, result) => {
+        db.collection("counter").findOne({ name: "order" }, (err, result) => {
             if (err) return res.status(500).json();
 
-            const { total } = result;
-            db.collection("journal").insertOne(
-                { _id: total, content, date, user_id },
-                (err, result) => {
-                    if (err || !result) return res.status(500).json();
+            let { total } = result;
+            params.forEach((i) => {
+                i.user_id = user_id;
+                i._id = total++;
+            });
+            db.collection("order").insertMany(params, (err, result) => {
+                if (err || !result) return res.status(500).json();
 
-                    db.collection("counter").updateOne(
-                        { name: "journal" },
-                        { $inc: { total: 1 } }
-                    );
-                    return res.status(200).json(result.ops);
-                }
-            );
+                db.collection("counter").updateOne(
+                    { name: "order" },
+                    { $set: { total } }
+                );
+                return res.status(200).json(result.ops);
+            });
         });
     });
 

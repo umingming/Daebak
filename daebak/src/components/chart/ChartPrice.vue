@@ -42,7 +42,7 @@ export default {
         const { chartOptions } = CHART_PRICE;
         return {
             chartOptions,
-            labels: this.getDateLabelsOfCurrentMonth(),
+            labels: [],
         };
     },
     computed: {
@@ -66,6 +66,9 @@ export default {
         datasets() {
             return [this.datasetOfLastMonth, this.datasetOfCurrentMonth];
         },
+    },
+    created() {
+        this.labels = this.getDateLabelsOfCurrentMonth();
     },
 };
 </script>
