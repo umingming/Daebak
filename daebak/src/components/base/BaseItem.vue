@@ -3,25 +3,28 @@
         <div>
             <base-check
                 v-if="hasCheckBox"
+                id="check-date"
                 v-model="checkedField.date"
             ></base-check>
-            <span>날짜</span>
+            <label for="check-date">날짜</label>
             <input type="date" id="date" v-model="item.date" />
         </div>
         <div>
             <base-check
                 v-if="hasCheckBox"
+                id="check-title"
                 v-model="checkedField.title"
             ></base-check>
-            <span>내용</span>
+            <label for="check-title">내용</label>
             <input type="text" id="title" v-model="item.title" />
         </div>
         <div>
             <base-check
                 v-if="hasCheckBox"
+                id="check-value"
                 v-model="checkedField.value"
             ></base-check>
-            <span>금액</span>
+            <label for="check-value">금액</label>
             <input
                 type="number"
                 id="value"
@@ -34,9 +37,10 @@
         <div>
             <base-check
                 v-if="hasCheckBox"
+                id="check-amount"
                 v-model="checkedField.amount"
             ></base-check>
-            <span>주문</span>
+            <label for="check-amount">주문</label>
             <input
                 type="number"
                 id="amount"
@@ -48,9 +52,10 @@
         <div>
             <base-check
                 v-if="hasCheckBox"
+                id="check-cate"
                 v-model="checkedField.cate"
             ></base-check>
-            <span>분류</span>
+            <label for="check-cate">분류</label>
             <select name="type" id="cate" v-model="item.cate">
                 <option value="배달의민족">배달의민족</option>
                 <option value="요기요">요기요</option>
@@ -98,10 +103,17 @@ export default {
         },
         resetItem() {
             this.item = {};
+            this.checkedField = {};
+            const $checkboxes = this.$el.querySelectorAll(
+                "input[type=checkbox]"
+            );
+            $checkboxes.forEach((i) => (i.checked = false));
             this.$emit("reset");
         },
         applyItem() {
-            const newItem = this.hasCheckBox ? this.getCheckedItem : this.item;
+            const newItem = this.hasCheckBox
+                ? this.getCheckedItem()
+                : this.item;
             this.$emit("apply", newItem);
         },
         getCheckedItem() {
@@ -122,9 +134,10 @@ export default {
 .budget-item div {
     height: 34px;
 }
-.budget-item span {
+.budget-item label {
     font-weight: bolder;
     letter-spacing: 10px;
+    cursor: pointer !important;
 }
 .budget-item input::-webkit-calendar-picker-indicator {
     background: #000;

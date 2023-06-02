@@ -15,11 +15,12 @@
 <script>
 export default {
     props: {
+        id: { type: String },
         value: { type: Boolean, default: false },
     },
     computed: {
         checkId() {
-            return `check-${this._uid}`;
+            return this.id || `check-${this._uid}`;
         },
     },
     methods: {

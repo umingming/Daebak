@@ -2,7 +2,11 @@
     <div class="modal-mask">
         <div class="modal">
             <div class="modal-item">
-                <base-item :has-check-box="true" @apply="updateOrders">
+                <base-item
+                    :has-check-box="true"
+                    @reset="updateOrders"
+                    @apply="updateOrders"
+                >
                 </base-item>
             </div>
             <div class="modal-table">
@@ -67,7 +71,7 @@ export default {
         this.initPendingOrders();
     },
     methods: {
-        updateOrders(item) {
+        updateOrders(item = {}) {
             this.newOrder = item;
         },
     },
