@@ -18,7 +18,7 @@
             </div>
             <div class="btn">
                 <button class="close" @click="$emit('close')">취소</button>
-                <button class="ok" @click="addBudget">확인</button>
+                <button class="ok" @click="addOrders">확인</button>
             </div>
         </div>
     </div>
@@ -41,8 +41,11 @@ export default {
         },
     },
     methods: {
-        addBudget() {
-            this.ADD_ORDERS(this.pendingOrders);
+        addOrders() {
+            const orders = this.pendingOrders.forEach(
+                (i) => (i.checked = false)
+            );
+            this.ADD_ORDERS(orders);
             this.$emit("close");
         },
     },

@@ -4,8 +4,8 @@
             <div class="modal-item">
                 <base-item
                     :has-check-box="true"
-                    @reset="updateOrders"
-                    @apply="updateOrders"
+                    @reset="updateField"
+                    @apply="updateField"
                 >
                 </base-item>
             </div>
@@ -30,8 +30,8 @@
                                 :id="name"
                             >
                                 {{ formatValue(order[name]) }}
-                                <span :class="{ on: newOrder[name] }">
-                                    {{ newOrder[name] }}
+                                <span :class="{ on: newField[name] }">
+                                    {{ newField[name] }}
                                 </span>
                             </td>
                         </tr>
@@ -40,7 +40,7 @@
             </div>
             <div class="btn">
                 <button class="close" @click="$emit('close')">취소</button>
-                <button class="ok" @click="$emit('ok')">확인</button>
+                <button class="ok" @click="editOrders">확인</button>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@ export default {
     mixins: [orderMixin],
     data() {
         return {
-            newOrder: {},
+            newField: {},
             fields: FIELDS,
         };
     },
@@ -71,8 +71,16 @@ export default {
         this.initPendingOrders();
     },
     methods: {
-        updateOrders(item = {}) {
-            this.newOrder = item;
+        updateField(item = {}) {
+            this.newField = item;
+        },
+        editOrders() {
+            const param = {
+                _id: this.pendingOrders.map((i) => i._id),
+                field: this.newField,
+            };
+            this.EDIT_ORDERS(param);
+            this.$emit("close");
         },
     },
 };

@@ -18,7 +18,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions("order", ["ADD_ORDERS"]),
+        ...mapActions("order", ["ADD_ORDERS", "EDIT_ORDERS"]),
         formatValue(value = 0) {
             return Math.round(value).toLocaleString();
         },

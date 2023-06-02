@@ -36,11 +36,10 @@ module.exports = function (db) {
     });
 
     router.put("/", (req, res) => {
-        const { _id, ...param } = req.body;
-        db.collection("journal").findOneAndUpdate(
-            { _id },
-            { $set: { ...param } },
-            { returnOriginal: false },
+        const { _id, field } = req.body;
+        db.collection("order").updateMany(
+            { _id: { $in: [..._id] } },
+            { $set: { ...field } },
             (err, result) => {
                 if (err) return res.status(500).json();
                 return res.status(200).json(result.value);

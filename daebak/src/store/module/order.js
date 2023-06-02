@@ -55,6 +55,15 @@ const actions = {
             console.log(error);
         }
     },
+    async EDIT_ORDERS({ commit }, param) {
+        try {
+            const { data } = await order.edit(param);
+            commit("EDIT_ORDERS", data);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };
 
 const mutations = {
@@ -63,6 +72,9 @@ const mutations = {
     },
     ADD_ORDERS(state, data) {
         state.orders = [...state.orders, ...data];
+    },
+    EDIT_JOURNAL(state, data) {
+        console.log(data);
     },
 };
 
