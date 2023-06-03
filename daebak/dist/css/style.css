@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gowun+Dodum&family=Josefin+Sans:ital,wght@0,700;1,700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700&family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@200;400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap");
 
 * {
   margin: 0;
@@ -127,7 +127,6 @@ input[type="checkbox"]:checked + label {
   background-color: #ff7b00be;
   border-color: #ff7b0018;
 }
-
 
 /* main */
 #main-view .main-banner:nth-child(1) {
@@ -289,7 +288,7 @@ input[type="checkbox"]:checked + label {
 }
 #budget-table table .col-delete {
   width: 0px !important;
-  min-width: 0px !important
+  min-width: 0px !important;
 }
 #budget-table table td#amount,
 #budget-table table td#value {
@@ -557,11 +556,11 @@ input[type="checkbox"]:checked + label {
 #board-view .board-box .btn-filter {
   position: absolute;
   top: 0;
-  left: -21px; 
-  width: 20px; 
-  height: 30px; 
-  background-color: #ff7b00; 
-  border-radius: 0 30px 30px 0; 
+  left: -21px;
+  width: 20px;
+  height: 30px;
+  background-color: #ff7b00;
+  border-radius: 0 30px 30px 0;
   border: none;
   color: white;
   font-size: 15px;
@@ -572,7 +571,7 @@ input[type="checkbox"]:checked + label {
 }
 #board-view .has-filter .board-box .btn-filter {
   transform: rotate(180deg);
-  left: -40px
+  left: -40px;
 }
 #board-view .board-table .base-table {
   position: relative;
@@ -596,7 +595,7 @@ input[type="checkbox"]:checked + label {
 
 /* modal */
 .modal-mask {
-  position: absolute !important;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -681,10 +680,10 @@ input[type="checkbox"]:checked + label {
   transform: translateX(-5px);
 }
 .modal #budget-table table th {
-  min-width: 100px !important
+  min-width: 100px !important;
 }
 .modal #budget-table table th.col-delete {
-  min-width: 10px !important
+  min-width: 10px !important;
 }
 .modal .btn button {
   background: #a4a4a4;
