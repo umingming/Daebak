@@ -9,6 +9,7 @@
             :class="{ 'has-filter': isShowFilter }"
             @add="openModal('add')"
             @modify="openModal('modify')"
+            @remove="removeOrders"
         ></board-table>
     </div>
 </template>
@@ -44,6 +45,17 @@ export default {
         },
         closeModal(type) {
             this.isShowModal[type] = false;
+        },
+        removeOrders() {
+            const ids = this.checkedOrders.map((i) => i._id);
+            this.REMOVE_ORDERS(ids);
+            this.initCheckbox();
+        },
+        initCheckbox() {
+            const $checkboxes = this.$el.querySelectorAll(
+                "input[type=checkbox]"
+            );
+            $checkboxes.forEach((i) => (i.checked = false));
         },
     },
 };

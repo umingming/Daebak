@@ -49,7 +49,7 @@ export default {
             return total;
         },
         valueIncrement() {
-            const increment = this.values?.at(-1) - this.values?.at(-2) || 0;
+            const increment = this.values?.at(-1) || 0;
             return this.formatValue(increment);
         },
     },

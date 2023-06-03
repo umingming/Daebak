@@ -10,8 +10,8 @@ function add(data) {
 function edit(data) {
     return apiInstance.put(path, data);
 }
-function remove(id) {
-    return apiInstance.delete(`${path}/${id}`);
+function remove(ids) {
+    return apiInstance.delete(path, { params: { ids: ids.join(",") } });
 }
 
 export default { get, add, edit, remove };

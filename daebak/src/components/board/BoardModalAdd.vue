@@ -42,10 +42,8 @@ export default {
     },
     methods: {
         addOrders() {
-            const orders = this.pendingOrders.forEach(
-                (i) => (i.checked = false)
-            );
-            this.ADD_ORDERS(orders);
+            this.pendingOrders.forEach((i) => (i.checked = false));
+            this.ADD_ORDERS(this.pendingOrders);
             this.$emit("close");
         },
     },

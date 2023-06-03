@@ -9,7 +9,7 @@
                 <button class="btn-modify" @click="$emit('modify')">
                     <i class="fa-solid fa-pen"></i>
                 </button>
-                <button class="btn-delete">
+                <button class="btn-delete" @click="$emit('remove')">
                     <i class="fa-solid fa-trash"></i>
                 </button>
                 <export-excel

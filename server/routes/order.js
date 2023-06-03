@@ -40,19 +40,28 @@ module.exports = function (db) {
         db.collection("order").updateMany(
             { _id: { $in: [..._id] } },
             { $set: { ...field } },
-            (err, result) => {
+            (err) => {
                 if (err) return res.status(500).json();
-                return res.status(200).json(result.value);
+
+                db.collection("order")
+                    .find({ _id: { $in: [..._id] } })
+                    .toArray((err, result) => {
+                        if (err) return res.status(500).json();
+                        return res.status(200).json(result);
+                    });
             }
         );
     });
 
-    router.delete("/:id", (req, res) => {
-        const _id = +req.params.id;
-        db.collection("journal").deleteOne({ _id }, (err, result) => {
-            if (err) return res.status(500).json();
-            return res.status(200).json(result);
-        });
+    router.delete("/", (req, res) => {
+        const ids = req.query.ids.split(",").map((i) => +i);
+        db.collection("order").deleteMany(
+            { _id: { $in: [...ids] } },
+            (err, result) => {
+                if (err) return res.status(500).json();
+                return res.status(200).json(result);
+            }
+        );
     });
 
     return router;

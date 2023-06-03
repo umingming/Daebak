@@ -18,7 +18,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions("order", ["ADD_ORDERS", "EDIT_ORDERS"]),
+        ...mapActions("order", ["ADD_ORDERS", "EDIT_ORDERS", "REMOVE_ORDERS"]),
         formatValue(value = 0) {
             return Math.round(value).toLocaleString();
         },
@@ -29,7 +29,8 @@ export default {
             this.pendingOrders = items;
         },
         appendPendingOrder(item) {
-            this.pendingOrders.push(item);
+            const order = JSON.parse(JSON.stringify(item));
+            this.pendingOrders.push(order);
         },
         deletePendingOrder(index) {
             this.pendingOrders.splice(index, 1);

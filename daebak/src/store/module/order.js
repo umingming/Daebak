@@ -17,7 +17,7 @@ const getters = {
     },
     currentMonthValues(state, getters) {
         return (type) => {
-            const index = date.getDate() + 2;
+            const index = date.getDate();
             const monthOrders = getters.currentMonthOrders;
             const monthValues = getMonthValuesByOrders(monthOrders, type);
             return monthValues.slice(0, index);
@@ -64,6 +64,15 @@ const actions = {
             console.log(error);
         }
     },
+    async REMOVE_ORDERS({ commit }, ids) {
+        try {
+            const { data } = await order.remove(ids);
+            commit("REMOVE_ORDERS", ids);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };
 
 const mutations = {
@@ -73,8 +82,16 @@ const mutations = {
     ADD_ORDERS(state, data) {
         state.orders = [...state.orders, ...data];
     },
-    EDIT_JOURNAL(state, data) {
-        console.log(data);
+    EDIT_ORDERS(state, data) {
+        data.forEach((i) => {
+            const index = state.orders.findIndex(({ _id }) => i._id === _id);
+            state.orders[index] = i;
+        });
+        state.orders = [...state.orders];
+    },
+    REMOVE_ORDERS(state, ids) {
+        const orders = state.orders.filter((i) => !ids.includes(i._id));
+        state.orders = orders;
     },
 };
 
