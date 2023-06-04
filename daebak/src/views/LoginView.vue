@@ -24,7 +24,7 @@
 
 <script>
 import auth from "@/api/auth.js";
-import { mapMutations } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -36,6 +36,7 @@ export default {
         this.initNaver();
     },
     methods: {
+        ...mapActions("order", ["FETCH_ORDERS"]),
         ...mapMutations(["SET_USER"]),
         initNaver() {
             const naver_id_login = new window.naver_id_login(
@@ -76,6 +77,7 @@ export default {
 
                 sessionStorage.setItem("user_id", data.user_id);
                 alert("로그인 성공");
+                this.FETCH_ORDERS();
                 this.$router.push("/main");
             } catch (error) {
                 if (error.status === 401) {
