@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import BaseTable from "@/components/base/BaseTable.vue";
-import BaseItem from "@/components/base/BaseItem.vue";
+import BaseTable from "@/components/common/base/BaseTable.vue";
+import BaseItem from "@/components/common/base/BaseItem.vue";
 import orderMixin from "@/mixins/orderMixin.js";
 
 export default {

@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import BaseCheck from "@/components/base/BaseCheck.vue";
+import BaseCheck from "@/components/common/base/BaseCheck.vue";
 import { TYPES } from "@/constants/order.js";
 export default {
     components: {

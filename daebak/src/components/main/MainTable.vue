@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import BaseTable from "@/components/base/BaseTable.vue";
+import BaseTable from "@/components/common/base/BaseTable.vue";
 import orderMixin from "@/mixins/orderMixin.js";
 import dateMixin from "@/mixins/dateMixin.js";
 

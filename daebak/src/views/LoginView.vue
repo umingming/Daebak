@@ -13,11 +13,7 @@
         </section>
         <section id="join">
             <div class="text">또는</div>
-            <div class="btn">
-                <button id="naver_id_login"></button>
-                <button class="kakao" @click="kakaoLogin"></button>
-                <button class="google" @click="kakaoLogin"></button>
-            </div>
+            <div class="oval login" @click="register">회원가입</div>
         </section>
     </div>
 </template>
@@ -25,50 +21,21 @@
 <script>
 import auth from "@/api/auth.js";
 import { mapActions, mapMutations } from "vuex";
+import modalMixin from "@/mixins/modalMixin.js";
 export default {
+    mixins: [modalMixin],
     data() {
         return {
             id: "",
             pw: "",
         };
     },
-    mounted() {
-        this.initNaver();
-    },
     methods: {
         ...mapActions("order", ["FETCH_ORDERS"]),
         ...mapMutations(["SET_USER"]),
-        initNaver() {
-            const naver_id_login = new window.naver_id_login(
-                "ZEBr31RYP_YsPp4wMrLq",
-                "http://localhost:8080/login/naver"
-            );
-            const state = naver_id_login.getUniqState();
-            naver_id_login.setButton("green", 1, 45);
-            naver_id_login.setState(state);
-            naver_id_login.setPopup();
-            naver_id_login.init_naver_id_login();
-        },
-        kakaoLogin() {
-            window.Kakao.Auth.login({
-                success: () => {
-                    window.Kakao.API.request({
-                        url: "/v2/user/me",
-                        success: ({ id }) => {
-                            sessionStorage.setItem("id", `k_${id}`);
-                            this.$router.push("/main").catch(() => {});
-                        },
-                        fail: (error) => {
-                            console.log(error);
-                        },
-                    });
-                },
-                fail: (error) => {
-                    console.log(error);
-                },
-            });
-        },
         async login() {
+            if (!this.validateInput()) return;
+
             try {
                 const { data } = await auth.login({
                     id: this.id,
@@ -76,7 +43,6 @@ export default {
                 });
 
                 sessionStorage.setItem("user_id", data.user_id);
-                alert("로그인 성공");
                 this.FETCH_ORDERS();
                 this.$router.push("/main");
             } catch (error) {
@@ -86,6 +52,31 @@ export default {
                     console.log(error);
                 }
             }
+        },
+        async register() {
+            if (!this.validateInput()) return;
+
+            try {
+                const { status } = await auth.register({
+                    id: this.id,
+                    pw: this.pw,
+                });
+                if (status === 200) {
+                    this.setModal("Success", "회원가입 성공");
+                }
+            } catch ({ status }) {
+                if (status === 409) {
+                    alert("존재하는 회원입니다");
+                }
+            }
+        },
+        validateInput() {
+            if (!this.id || !this.pw) {
+                const field = !this.id ? "아이디" : "비밀번호";
+                alert(`${field} 입력하세요.`);
+                return false;
+            }
+            return true;
         },
     },
 };
@@ -154,6 +145,11 @@ export default {
     width: 85px;
     margin: 0 auto;
     background: #f9f2d3;
+}
+#join .login {
+    transform: translate(-15px, -10px);
+    background: white;
+    color: #ff7b00;
 }
 .btn {
     width: 270px;

@@ -20,6 +20,7 @@ import ModalModify from "@/components/board/BoardModalModify.vue";
 import BoardFilter from "@/components/board/BoardFilter.vue";
 import BoardTable from "@/components/board/BoardTable.vue";
 import orderMixin from "@/mixins/orderMixin.js";
+import modalMixin from "@/mixins/modalMixin.js";
 import "vue2-datepicker/index.css";
 
 export default {
@@ -29,7 +30,7 @@ export default {
         BoardFilter,
         BoardTable,
     },
-    mixins: [orderMixin],
+    mixins: [orderMixin, modalMixin],
     data() {
         return {
             isShowFilter: false,
@@ -45,11 +46,13 @@ export default {
         },
         closeModal(type) {
             this.isShowModal[type] = false;
+            this.setModal("Success", "적용되었습니다.");
         },
         removeOrders() {
             const ids = this.checkedOrders.map((i) => i._id);
             this.REMOVE_ORDERS(ids);
             this.initCheckbox();
+            this.setModal("Success", "삭제되었습니다.");
         },
         initCheckbox() {
             const $checkboxes = this.$el.querySelectorAll(

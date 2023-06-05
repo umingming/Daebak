@@ -8,30 +8,29 @@
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
+        <modal-success></modal-success>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import ModalSuccess from "./components/common/modal/ModalSuccess.vue";
 export default {
     name: "App",
+    components: {
+        ModalSuccess,
+    },
     created() {
-        this.checkLogin();
-        this.initKakao();
+        const userId = sessionStorage.getItem("user_id");
+
+        const path = userId ? "main" : "login";
+        this.$router.push(`/${path}`);
     },
     mounted() {
         this.FETCH_ORDERS();
     },
     methods: {
         ...mapActions("order", ["FETCH_ORDERS"]),
-        checkLogin() {
-            if (!sessionStorage.getItem("user_id")) {
-                this.$router.push("/login");
-            }
-        },
-        initKakao() {
-            window.Kakao.init("ddd04c05d8377d46d25230329657ea11");
-        },
     },
 };
 </script>
@@ -39,7 +38,7 @@ export default {
 #app {
     width: 1200px;
     height: 96vh;
-    /* overflow: hidden; */
+    /* overflow: hidden !important; */
     margin: 0 auto;
 }
 a {

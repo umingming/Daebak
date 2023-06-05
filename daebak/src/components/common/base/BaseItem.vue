@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import BaseCheck from "@/components/base/BaseCheck.vue";
+import BaseCheck from "@/components/common/base/BaseCheck.vue";
 export default {
     components: {
         BaseCheck,
@@ -144,7 +144,7 @@ export default {
     width: 10%;
     height: 60%;
     transform: translateX(-3px);
-    background: url(../../../public/img/btnCalendar.png) center/cover;
+    background: url(../../../../public/img/btnCalendar.png) center/cover;
 }
 .budget-item input {
     position: relative;
