@@ -14,12 +14,8 @@ export default {
     },
     watch: {
         type() {
-            if (this.name === this.type) {
-                this.isShowModal = true;
-                setTimeout(() => {
-                    this.isShowModal = false;
-                    this.setModal();
-                }, 3000);
+            if (this.type) {
+                this.$bvToast?.show("my-toast");
             }
         },
     },

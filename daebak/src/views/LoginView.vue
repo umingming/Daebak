@@ -62,7 +62,7 @@ export default {
                     pw: this.pw,
                 });
                 if (status === 200) {
-                    this.setModal("Success", "회원가입 성공");
+                    this.setModal("success", "회원가입 성공");
                 }
             } catch ({ status }) {
                 if (status === 409) {

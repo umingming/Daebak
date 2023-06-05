@@ -8,17 +8,17 @@
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
-        <modal-success></modal-success>
+        <base-toast></base-toast>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import ModalSuccess from "./components/common/modal/ModalSuccess.vue";
+import BaseToast from "./components/common/base/BaseToast.vue";
 export default {
     name: "App",
     components: {
-        ModalSuccess,
+        BaseToast,
     },
     created() {
         const userId = sessionStorage.getItem("user_id");

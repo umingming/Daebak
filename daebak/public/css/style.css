@@ -74,7 +74,7 @@ td {
 
 body {
   font-family: "Noto Sans KR", sans-serif;
-  background-color: #f9f2d3;
+  background-color: #f9f2d3 !important;
 }
 
 /* Main */
