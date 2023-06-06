@@ -21,6 +21,8 @@
 * vue2
 * Node.js v18.16.0
 * MongoDB
+* Firebase
+* Google Cloud
 <br />
 
 ### 3. 프로젝트 내용
