@@ -21,9 +21,9 @@
 <script>
 import auth from "@/api/auth.js";
 import { mapActions, mapMutations } from "vuex";
-import modalMixin from "@/mixins/modalMixin.js";
+import toastMixin from "@/mixins/toastMixin.js";
 export default {
-    mixins: [modalMixin],
+    mixins: [toastMixin],
     data() {
         return {
             id: "",
@@ -47,7 +47,9 @@ export default {
                 this.$router.push("/main");
             } catch (error) {
                 if (error.status === 401) {
-                    alert(`유효하지 않은 ${error.data.error}`);
+                    const field =
+                        error.data.error === "id" ? "아이디" : "비밀번호";
+                    this.showDangerToast(`유효하지 않은 ${field}입니다.`);
                 } else {
                     console.log(error);
                 }
@@ -62,18 +64,18 @@ export default {
                     pw: this.pw,
                 });
                 if (status === 200) {
-                    this.setModal("success", "회원가입 성공");
+                    this.showSuccessToast("회원가입 성공했습니다.");
                 }
             } catch ({ status }) {
                 if (status === 409) {
-                    alert("존재하는 회원입니다");
+                    this.showDangerToast("존재하는 회원입니다.");
                 }
             }
         },
         validateInput() {
             if (!this.id || !this.pw) {
                 const field = !this.id ? "아이디" : "비밀번호";
-                alert(`${field} 입력하세요.`);
+                this.showWarningToast(`${field} 입력하세요.`);
                 return false;
             }
             return true;

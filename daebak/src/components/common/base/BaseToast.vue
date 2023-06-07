@@ -1,15 +1,23 @@
 <template>
     <div>
-        <b-toast id="my-toast" :variant="type" :title="type" solid>
-            {{ content }}
+        <b-toast id="my-toast" :variant="getToastType" :title="title" solid>
+            {{ getToastContent }}
         </b-toast>
     </div>
 </template>
 
 <script>
-import modalMixin from "@/mixins/modalMixin.js";
+import { mapGetters } from "vuex";
+
 export default {
-    mixins: [modalMixin],
+    computed: {
+        ...mapGetters(["getToastType", "getToastContent"]),
+        title() {
+            const toPascal = (text) =>
+                text.replace(/^[a-z]/, (i) => i.toUpperCase());
+            return toPascal(this.getToastType);
+        },
+    },
 };
 </script>
 

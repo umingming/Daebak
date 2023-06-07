@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <router-link to="/main">
+        <router-link :to="basePath">
             <div class="header" :class="$route.name">
                 대박나라<img src="@/assets/money.png" />
             </div>
@@ -20,11 +20,14 @@ export default {
     components: {
         BaseToast,
     },
+    computed: {
+        basePath() {
+            const userId = sessionStorage.getItem("user_id");
+            return userId ? "/main" : "/login";
+        },
+    },
     created() {
-        const userId = sessionStorage.getItem("user_id");
-
-        const path = userId ? "main" : "login";
-        this.$router.push(`/${path}`);
+        this.$router.push(this.basePath);
     },
     mounted() {
         this.FETCH_ORDERS();
@@ -42,7 +45,7 @@ export default {
     margin: 0 auto;
 }
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .header {
     font-size: 58px;
@@ -53,6 +56,7 @@ a {
     margin: 25px auto;
     transform: translateY(-5px);
     font-family: "Do Hyeon", "Black Han Sans", sans-serif;
+    text-decoration: none;
 }
 .header.login {
     margin-top: 100px;
