@@ -7,12 +7,16 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
+        loggedIn: false,
         toast: {
             type: "",
             content: "",
         },
     },
     getters: {
+        isLoggedIn(state) {
+            return state.loggedIn;
+        },
         getToastType(state) {
             return state.toast.type;
         },
@@ -22,6 +26,10 @@ export const store = new Vuex.Store({
     },
     actions: {},
     mutations: {
+        SET_LOGIN_STATUS(state, loggedIn) {
+            state.loggedIn = loggedIn;
+            sessionStorage.setItem("loggedIn", loggedIn);
+        },
         SET_TOAST(state, data) {
             const { type = "", content = "" } = data;
             state.toast = { type, content };

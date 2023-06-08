@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         ...mapActions("order", ["FETCH_ORDERS"]),
-        ...mapMutations(["SET_USER"]),
+        ...mapMutations(["SET_USER", "SET_LOGIN_STATUS"]),
         async login() {
             if (!this.validateInput()) return;
 
@@ -43,6 +43,7 @@ export default {
                 });
 
                 sessionStorage.setItem("user_id", data.user_id);
+                this.SET_LOGIN_STATUS(true);
                 this.FETCH_ORDERS();
                 this.$router.push("/main");
             } catch (error) {

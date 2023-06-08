@@ -18,6 +18,14 @@ export const router = new VueRouter({
             path: "/login",
             name: "login",
             component: LoginView,
+            beforeEnter(to, from, next) {
+                const isLoggedIn = sessionStorage.getItem("loggedIn");
+                if (isLoggedIn) {
+                    next("/main");
+                } else {
+                    next();
+                }
+            },
         },
         {
             path: "/login/naver",
